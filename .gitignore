@@ -1,0 +1,9 @@
+####
+# CMake output
+#
+build/
+
+####
+# Qt Creator
+#
+CMakeLists.txt.user
