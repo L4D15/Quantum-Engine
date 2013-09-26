@@ -100,10 +100,23 @@ set(PROJECT_LIBRARIES_FOLDER
 link_directories(${PROJECT_LIBRARIES_FOLDER})
 include_directories(${PROJECT_LIBRARIES_INCLUDES_FOLDER})
 
-#target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2)
+# OpenGL
+find_package(OpenGL)
+target_link_libraries(${PROJECT_EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
+
+# SDL2
+target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2)
+
+# SDL2_image
 #target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2_image)
+
+# SDL2_ttf
 #target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2_ttf)
+
+# Artemis-Cpp
 target_link_libraries(${PROJECT_EXECUTABLE_NAME} artemis)
+
+# JsonCpp
 target_link_libraries(${PROJECT_EXECUTABLE_NAME} json)
 
 
