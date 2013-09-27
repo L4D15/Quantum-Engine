@@ -29,7 +29,7 @@ public:
 
     inline SDL_Renderer*                getRenderer() { return renderer; }
 
-    inline void                         clear() { SDL_RenderClear(this->renderer); }
+    void                                clear();
     inline void                         draw() { SDL_RenderPresent(this->renderer); }
 
 private:

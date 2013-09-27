@@ -1,6 +1,7 @@
 #include "quantum/Window.h"
 #include "quantum/Game.h"
 #include <sstream>
+#include <GL/gl.h>
 
 /**
  * @brief Initializes the Window and creates the appropiate renderer.
@@ -120,4 +121,22 @@ void Window::showDisplayModeInfo(SDL_DisplayMode& mode) {
     text << "Display mode: [ Resolution: { " << mode.w << "x" << mode.h <<  " } @ " << mode.refresh_rate << " Hz ];";
 
     Game::writeToConsole(text.str());
+}
+
+/**
+ * @brief Clear the color buffer of the window.
+ *
+ * In windows for 3D rendering it calls glClear(GL_COLOR_BUFFER_BIT). For windows
+ * for 2D rendering SDL_RenderClear(...) is called.
+ */
+void Window::clear()
+{
+    if (this->mode == Fullscreen2D || this->mode == Windowed2D)
+    {
+        SDL_RenderClear(this->renderer);
+    }
+    else
+    {
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
 }
