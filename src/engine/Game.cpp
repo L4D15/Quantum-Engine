@@ -6,8 +6,7 @@
 // =====================================
 
 Window* Game::window = NULL;
-//systems::SceneManager Game::sceneManager;
-//systems::ParallaxScrolling Game::parallaxScrolling;
+systems::SceneManager Game::sceneManager;
 float Game::deltaTime = 1.0f;
 
 bool Game::run = false;
@@ -60,6 +59,14 @@ void Game::start()
 }
 
 /**
+ * @brief Game::terminate
+ */
+void Game::terminate()
+{
+    run = false;
+}
+
+/**
  * @brief Game::mainLoop
  */
 void Game::mainLoop()
@@ -85,7 +92,7 @@ void Game::handleEvents()
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
-        //sceneManager.onEvent(&event);
+        sceneManager.onEvent(&event);
     }
 }
 
@@ -94,7 +101,7 @@ void Game::handleEvents()
  */
 void Game::update()
 {
-    //sceneManager.onLoop();
+    sceneManager.onLoop();
 }
 
 /**
@@ -104,7 +111,7 @@ void Game::render()
 {
     this->window->clear();
 
-    //sceneManager.onRender();
+    sceneManager.onRender();
 
     this->window->draw();
 

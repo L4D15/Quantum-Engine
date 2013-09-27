@@ -4,6 +4,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include "quantum/Window.h"
+#include "quantum/SceneManager.h"
 
 #define QUANTUM_MAX_FPS 60
 
@@ -65,6 +66,8 @@ public:
     static Window*                      window;
 
     static float                        deltaTime;      // Delta Time
+
+    static systems::SceneManager        sceneManager;
 
 protected:
     static bool                         run;

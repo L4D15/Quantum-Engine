@@ -6,9 +6,9 @@ cmake_minimum_required(VERSION 2.6)
 # Project variables
 # =================================================================
 # Setup these variables and the rest of the CMakeLists.txt won't need more changes.
-set(PROJECT_NAME "GAME 3D")
-set(PROJECT_EXECUTABLE_NAME "GAME-3D")
-set(PROJECT_LIBRARY_NAME "game3d")
+set(PROJECT_NAME "Quantum_Engine")
+set(PROJECT_EXECUTABLE_NAME "Quantum_Engine")
+set(PROJECT_LIBRARY_NAME "QuantumEngine")
 set(PROJECT_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(PROJECT_HEADERS_DIR "${CMAKE_SOURCE_DIR}/include")
 set(PROJECT_MAIN_FILE "${PROJECT_SOURCE_DIR}/main.cpp")
@@ -107,11 +107,11 @@ target_link_libraries(${PROJECT_EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
 # SDL2
 target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2)
 
-# SDL2_image
-#target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2_image)
+# SDL2_image (temporal)
+target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2_image)
 
-# SDL2_ttf
-#target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2_ttf)
+# SDL2_ttf (temporal)
+target_link_libraries(${PROJECT_EXECUTABLE_NAME} SDL2_ttf)
 
 # Artemis-Cpp
 target_link_libraries(${PROJECT_EXECUTABLE_NAME} artemis)
