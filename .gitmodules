@@ -1,0 +1,6 @@
+[submodule "res/Artemis-Cpp"]
+	path = res/Artemis-Cpp
+	url = https://github.com/L4D15/Artemis-Cpp.git
+[submodule "res/jsoncpp"]
+	path = res/jsoncpp
+	url = https://github.com/L4D15/jsoncpp
