@@ -1,6 +1,7 @@
 #include <iostream>
 #include "game/TestGame2D.h"
 #include "game/TestGame3D.h"
+#include <GL/gl.h>
 
 int main(int argc, char** argv)
 {
