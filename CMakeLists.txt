@@ -146,6 +146,53 @@ if(APPLE)
     target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
 endif(APPLE)
 
+if (${CMAKE_SYSTEM_NAME} MATCH "Linux")
+    include_directories("/usr/include")
+    link_directories("/usr/lib")
+
+    #OpenGL
+    set(OPENGL_LIBRARY "gl")
+
+    # Libraries directories
+    include_directories("/usr/local/include")
+    link_directories("/usr/local/lib")
+
+    # SDL2
+    if(NOT EXISTS "/usr/local/lib/libSDL2.a")
+        message(FATAL_ERROR "Failed to find SDL2 in /usr/local/lib.")
+    endif(NOT EXISTS "/usr/local/lib/libSDL2.a")
+    set(SDL2_LIBRARY "SDL2")
+
+    # SDL2_image
+    if(NOT EXISTS "/usr/local/lib/libSDL2_image.a")
+        message(FATAL_ERROR "Failed to find SDL2_image in /usr/local/lib.")
+    endif(NOT EXISTS "/usr/local/lib/libSDL2_image.a")
+    set(SDL2_IMAGE_LIBRARY "SDL2_image")
+
+    # SDL2_ttf
+    if(NOT EXISTS "/usr/local/lib/libSDL2_ttf.a")
+        message(FATAL_ERROR "Failed to find SDL2_ttf in /usr/local/lib.")
+    endif(NOT EXISTS "/usr/local/lib/libSDL2_ttf.a")
+    set(SDL2_TTF_LIBRARY "SDL2_ttf")
+
+    # Artemis-Cpp
+    if(NOT EXISTS "/usr/local/lib/libartemis.a")
+        message(FATAL_ERROR "Failed to find Artemis-Cpp in /usr/local/lib.")
+    endif(NOT EXISTS "/usr/local/lib/libartemis.a")
+    set(ARTEMIS_LIBRARY "artemis")
+
+    # JsonCpp
+    if(NOT EXISTS "/usr/local/lib/libjson.a")
+        message(FATAL_ERROR "Failed to find JsonCpp in /usr/local/lib.")
+    endif(NOT EXISTS "/usr/local/lib/libjson.a")
+    set(JSONCPP_LIBRARY "json")
+
+    # Link libraries
+    set(EXTRA_LIBS ${OPENGL_LIBRARY} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} ${ARTEMIS_LIBRARY} ${JSONCPP_LIBRARY})
+    target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
+
+endif(${CMAKE_SYSTEM_NAME} MATCH "Linux")
+
 # =================================================================
 # Post scripts
 # =================================================================
