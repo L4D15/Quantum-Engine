@@ -4,3 +4,6 @@
 [submodule "res/jsoncpp"]
 	path = res/jsoncpp
 	url = https://github.com/L4D15/jsoncpp
+[submodule "res/macosx/Artemis-Cpp"]
+	path = res/macosx/Artemis-Cpp
+	url = https://github.com/L4D15/Artemis-Cpp.git

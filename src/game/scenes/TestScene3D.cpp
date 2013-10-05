@@ -1,6 +1,10 @@
 #include "TestScene3D.h"
 #include "quantum/Game.h"
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
 #include <GL/gl.h>
+#endif
 
 TestScene3D::TestScene3D() :
     Scene("Test Scene 3D")

@@ -7,9 +7,14 @@ Quantum Engine is an Open Source crossplatform game engine. It is designed using
 
 Quantum Engine uses CMake build system so it can be compiled across Windows, Mac OS X and Linux using a single tool. You can find more information about CMake [here](http://www.cmake.org/).
 
-Before compiling you need to initialize some git submodules used by Quantum Engine (that means that we have other git repositories cloned inside Quantum Engine). From a terminal run the following command inside Quantum Engine's folder:
+### Prerequisites
 
-`git submodule init`
+Quantum Engine uses multiple libraries that need to be present in the system before compiling.
+* [SDL2](http://www.libsdl.org/download-2.0.php)
+* [SDL2_image](http://www.libsdl.org/projects/SDL_image/)
+* [SDL2_ttf](http://www.libsdl.org/projects/SDL_ttf/)
+* [Artemis-Cpp](https://github.com/L4D15/Artemis-Cpp)
+* [JsonCpp](https://github.com/L4D15/jsoncpp)
 
 Now you just need to follow these steps to compile Quantum Engine:
 
@@ -28,6 +33,6 @@ Fork this repository and play with the code. If you create some new component or
 
 You should separate your code between *engine* code and *game* code. The main porpuse of this is not to change the core of the engine for every game. That way new components and systems can be separated from the game instance and easily delivered to the main project's repository.
 
-For example: We have the abstract class Scene to represent a Scene in the game. It is stored in the `engine` folder. While making the game we want to create an intro scene to present our game with some fancy images. To do so, we create a new class called IntroScene that inherits from the class Scene from the engine. This new class will be stored in the `game` folder, since it is specifid to the game you are doing. You can ask yourself "This new class can be used by any one using this engine no matter the game he/she is doing, or is it specifig of _my_ game?". If the answer falls into the first option, the class will go into the `engine` folder (and if you feel like sharing that feature you can do it using the `pull request` feature in GitHub!) otherwise, use the `game` folder.
+For example: We have the abstract class Scene to represent a Scene in the game. It is stored in the `engine` folder. While making the game we want to create an intro scene to present our game with some fancy images. To do so, we create a new class called IntroScene that inherits from the class Scene from the engine. This new class will be stored in the `game` folder, since it is specifid to the game you are doing. You can ask yourself "This new class can be used by any one using this engine no matter the game he/she is doing, or is it specifig of __my__ game?". If the answer falls into the first option, the class will go into the `engine` folder (and if you feel like sharing that feature you can do it using the `pull request` feature in GitHub!) otherwise, use the `game` folder.
 
 Refer to the [Wiki](https://github.com/L4D15/Quantum-Engine/wiki) page for further instructions and tutorials on how to use Quantum Engine.

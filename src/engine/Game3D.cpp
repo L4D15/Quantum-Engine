@@ -1,6 +1,10 @@
 #include "quantum/Game3D.h"
-#include "GL/gl.h"
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include "GL/gl.h"
+#endif
 Game3D::Game3D(std::string name) :
     Game(name)
 {

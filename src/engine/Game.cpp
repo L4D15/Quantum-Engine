@@ -1,5 +1,5 @@
 #include "quantum/Game.h"
-#include <SDL2/SDL_ttf.h>
+//#include <SDL2/SDL_ttf.h>
 
 // =====================================
 // Static Variables
@@ -23,7 +23,7 @@ Game::Game(std::string name)
 
     // Initialize SDL and TTF
     SDL_Init(SDL_INIT_EVERYTHING);
-    TTF_Init();
+    //TTF_Init();
 
     this->currentTime = SDL_GetTicks();
     this->oldTime = 0;
@@ -46,7 +46,7 @@ Game::~Game()
 {
     delete window;
     SDL_Quit();
-    TTF_Quit();
+    //TTF_Quit();
 }
 
 /**

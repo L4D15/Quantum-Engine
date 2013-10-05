@@ -1,8 +1,12 @@
 #include "quantum/Window.h"
 #include "quantum/Game.h"
 #include <sstream>
-#include <GL/gl.h>
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#else
+#include <GL/gl.h>
+#endif
 /**
  * @brief Initializes the Window and creates the appropiate renderer.
  *
