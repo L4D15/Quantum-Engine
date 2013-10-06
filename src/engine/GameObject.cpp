@@ -10,6 +10,7 @@ GameObject::GameObject(std::string name, artemis::Entity& entity):
     entity(entity)
 {
     this->name = name;
+    this->parent = NULL;
 }
 
 /**

@@ -16,6 +16,10 @@ public:
 
     inline std::string                  GetName() { return name; }
 
+    inline void                         MakeChildOfObject(GameObject* parent) { this->parent = parent; }
+    inline void                         UnmakeChildOfObject() { this->parent = NULL; }
+    inline GameObject*                  GetParentObject() { return this->parent; }
+
     template<typename c>
         inline artemis::Component*      GetComponent() { return entity.getComponent<c>(); }
 
@@ -28,6 +32,7 @@ private:
     artemis::Entity&                    entity;
     std::string                         name;
     std::string                         currentTag;
+    GameObject*                         parent;
 };
 
 #endif // GAMEOBJECT_H

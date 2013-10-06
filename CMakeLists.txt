@@ -128,8 +128,8 @@ if(APPLE)
 endif(APPLE)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    include_directories("/usr/include")
-    link_directories("/usr/lib")
+    include_directories("/usr/local/include")
+    link_directories("/usr/local/lib")
 
     #OpenGL
     set(OPENGL_LIBRARY "gl")
