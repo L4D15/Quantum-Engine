@@ -17,7 +17,7 @@ Game2D::~Game2D()
  * @param height
  * @param fullscreen
  */
-void Game2D::createWindow(int width, int height, bool fullscreen)
+void Game2D::CreateWindow(int width, int height, bool fullscreen)
 {
     if (fullscreen == true)
     {
@@ -33,7 +33,7 @@ void Game2D::createWindow(int width, int height, bool fullscreen)
  * @brief Game2D::createWindow
  * @param fullscreen
  */
-void Game2D::createWindow(bool fullscreen)
+void Game2D::CreateWindow(bool fullscreen)
 {
     if (fullscreen == true)
     {

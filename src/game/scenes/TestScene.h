@@ -9,15 +9,15 @@ public:
     TestScene();
     ~TestScene();
 
-    void onActivate();
+    void OnActivate();
 
-    void onDeactivate();
+    void OnDeactivate();
 
-    void onRender();
+    void OnRender();
 
-    void onLoop();
+    void OnLoop();
 
-    void onKeyDown(SDL_Keycode key, Uint16 mod);
+    void OnKeyDown(SDL_Keycode key, Uint16 mod);
 
 private:
 

@@ -5,7 +5,10 @@
 #ifndef LIBRARIES_H
 #define LIBRARIES_H
 
+// Common
 #include <SDL2/SDL.h>
+#include <Artemis/Artemis.h>
+#include <json/json.h>
 
 #ifdef __APPLE__
 // Mac OS X

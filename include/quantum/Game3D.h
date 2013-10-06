@@ -9,11 +9,11 @@ public:
     Game3D(std::string name);
     virtual ~Game3D();
 
-    void                                createWindow(int width, int height, bool fullscreen);
-    void                                createWindow(bool fullscreen);
+    void                                CreateWindow(int width, int height, bool fullscreen);
+    void                                CreateWindow(bool fullscreen);
 
-    virtual void                        initializeGL();
-    virtual void                        setViewport(int width, int height);
+    virtual void                        InitializeGL();
+    virtual void                        SetViewport(int width, int height);
 
 private:
 

@@ -15,27 +15,27 @@ public:
     Game(std::string name);
     virtual ~Game();
 
-    virtual void                        createWindow(int width, int height, bool fullscreen) = 0;
-    virtual void                        createWindow(bool fullscreen) = 0;
+    virtual void                        CreateWindow(int width, int height, bool fullscreen) = 0;
+    virtual void                        CreateWindow(bool fullscreen) = 0;
 
-    virtual void                        start();
+    virtual void                        Start();
 
 protected:
 
 private:
-    void                                mainLoop();
-    void                                update();
-    void                                render();
-    void                                handleEvents();
+    void                                MainLoop();
+    void                                Update();
+    void                                Render();
+    void                                HandleEvents();
 
-    void                                updateDeltaTime();
-    void                                countFramesPerSecond();
-    void                                manageFramesPerSecond();
+    void                                UpdateDeltaTime();
+    void                                CountFramesPerSecond();
+    void                                ManageFramesPerSecond();
 
     // Static Methods
 public:
-    static void                         writeToConsole(std::string text);
-    static void                         terminate();
+    static void                         WriteToConsole(std::string text);
+    static void                         Terminate();
 protected:
 
     // Attributes

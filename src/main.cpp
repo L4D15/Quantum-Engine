@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     TestGame3D* game;
 
     game = new TestGame3D();
-    game->start();
+    game->Start();
 
     delete game;
 

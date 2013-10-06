@@ -10,11 +10,13 @@ Scene::Scene(std::string name):
 
 }
 
-Scene::~Scene() {
+Scene::~Scene()
+{
     // Empty the objects mapper
     std::map<std::string, GameObject* >::iterator mappedObject;
 
-    for (mappedObject = this->objectsMapping.begin(); mappedObject != this->objectsMapping.end(); ++mappedObject) {
+    for (mappedObject = this->objectsMapping.begin(); mappedObject != this->objectsMapping.end(); ++mappedObject)
+    {
         delete (*mappedObject).second;
     }
 
@@ -24,19 +26,23 @@ Scene::~Scene() {
     delete this->world;
 }
 
-void Scene::onActivate() {
+void Scene::OnActivate()
+{
 
 }
 
-void Scene::onDeactivate() {
+void Scene::OnDeactivate()
+{
 
 }
 
-void Scene::onLoop() {
+void Scene::OnLoop()
+{
     world->loopStart();
 }
 
-void Scene::onRender() {
+void Scene::OnRender()
+{
 
 }
 
@@ -45,7 +51,8 @@ void Scene::onRender() {
  * @param name
  * @return
  */
-GameObject* Scene::createGameObject(std::string name) {
+GameObject* Scene::CreateGameObject(std::string name)
+{
     GameObject* object;
 
     artemis::Entity& objectEntity = world->createEntity();
@@ -61,7 +68,8 @@ GameObject* Scene::createGameObject(std::string name) {
  * @brief Scene::destroyGameObject
  * @param object
  */
-void Scene::destroyGameObject(GameObject*& object) {
+void Scene::DestroyGameObject(GameObject*& object)
+{
     world->deleteEntity(object->entity);
     delete object;
     object = NULL;
@@ -71,12 +79,14 @@ void Scene::destroyGameObject(GameObject*& object) {
  * @brief Scene::destroyGameObject
  * @param name
  */
-void Scene::destroyGameObject(std::string name) {
+void Scene::DestroyGameObject(std::string name)
+{
     std::map<std::string, GameObject* >::iterator object;
 
     object = this->objectsMapping.find(name);
 
-    if (object != this->objectsMapping.end()) {
+    if (object != this->objectsMapping.end())
+    {
         this->objectsMapping.erase(object);
     }
 }

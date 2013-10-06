@@ -9,7 +9,7 @@ public:
     TestGame3D();
     ~TestGame3D();
 
-    void                                start();
+    void                                Start();
 
 private:
 

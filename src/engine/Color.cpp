@@ -1,33 +1,38 @@
 #include "quantum/Color.h"
 #include <sstream>
 
-Color::Color(){
+Color::Color()
+{
     this->color.r = 0;
     this->color.g = 0;
     this->color.b = 0;
     this->color.a = 255;
 }
 
-Color::Color(const int r, const int g, const int b, const int a){
+Color::Color(const int r, const int g, const int b, const int a)
+{
     this->color.r = r;
     this->color.g = g;
     this->color.b = b;
     this->color.a = a;
 }
 
-Color::Color(const char* hexString, const Uint8 alpha) {
+Color::Color(const char* hexString, const Uint8 alpha)
+{
     std::stringstream stream;
 
     stream << std::hex << hexString;
     std::string colorString = stream.str();
 
     // We remove the # character if present
-    if (colorString[0] == '#') {
+    if (colorString[0] == '#')
+    {
         colorString.erase(0,1);
     }
 
     // We check the size is correct
-    if (colorString.size() == 6) {
+    if (colorString.size() == 6)
+    {
         std::stringstream redString;
         redString << std::hex << (colorString.substr(0,2));
 
@@ -52,82 +57,102 @@ Color::Color(const char* hexString, const Uint8 alpha) {
     }
 }
 
-Color::Color(const Color & other) {
+Color::Color(const Color & other)
+{
     this->color = other.color;
 }
 
-void Color::setRed(int value){
-    if (value > 255){
+void Color::SetRed(int value)
+{
+    if (value > 255)
+    {
         value = 255;
     }
 
-    if (value < 0){
+    if (value < 0)
+    {
       value = 0;
     }
 
     this->color.r = value;
 }
 
-void Color::setGreen(int value){
-    if (value > 255){
+void Color::SetGreen(int value)
+{
+    if (value > 255)
+    {
         value = 255;
     }
 
-    if (value < 0){
+    if (value < 0)
+    {
         value = 0;
     }
 
     this->color.g = value;
 }
 
-void Color::setBlue(int value){
-    if (value > 255){
+void Color::SetBlue(int value)
+{
+    if (value > 255)
+    {
         value = 255;
     }
 
-    if (value < 0){
+    if (value < 0)
+    {
         value = 0;
     }
 
     this->color.b = value;
 }
 
-void Color::setAlpha(int value){
-    if (value > 255){
+void Color::SetAlpha(int value)
+{
+    if (value > 255)
+    {
         value = 255;
     }
 
-    if (value < 0){
+    if (value < 0)
+    {
         value = 0;
     }
     this->color.a = value;
 }
 
-Uint8 Color::red(){
+Uint8 Color::GetRed()
+{
     return this->color.r;
 }
 
-Uint8 Color::green(){
+Uint8 Color::GetGreen()
+{
     return this->color.g;
 }
 
-Uint8 Color::blue(){
+Uint8 Color::GetBlue()
+{
     return this->color.b;
 }
 
-Uint8 Color::alpha(){
+Uint8 Color::GetAlpha()
+{
     return this->color.a;
 }
 
-SDL_Color Color::toSDLColor(){
+SDL_Color Color::ToSDLColor()
+{
     return this->color;
 }
 
-Uint32 Color::toPixelValue(SDL_PixelFormat* format) {
+Uint32 Color::ToPixelValue(SDL_PixelFormat* format)
+{
     return SDL_MapRGBA(format, this->color.r, this->color.g, this->color.b, this->color.a);
 }
 
-const std::string Color::toString() {
+const std::string Color::ToString()
+{
     std::stringstream stream;
 
     stream << "red: " << this->color.r

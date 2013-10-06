@@ -18,7 +18,8 @@ GameObject::GameObject(std::string name, artemis::Entity& entity):
  * This is usually used to diferenciate between GameObjects. Common tags are "Player", "Enemy", "UI"...
  * @param tagName   Name of the tag to be applied to the object.
  */
-void GameObject::setTag(std::string tagName) {
+void GameObject::SetTag(std::string tagName)
+{
     this->entity.setTag(tagName);
     this->currentTag = tagName;
 }

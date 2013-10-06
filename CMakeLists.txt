@@ -28,18 +28,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 # =================================================================
 # Macros
 # =================================================================
-# Check cmake was not run from the source folder
-MACRO(MACRO_ENSURE_OUT_OF_SOURCE_BUILD MSG)
-    STRING(COMPARE EQUAL "${CMAKE_SOURCE_DIR}"
-"${CMAKE_BINARY_DIR}" insource)
-    GET_FILENAME_COMPONENT(PARENTDIR ${CMAKE_SOURCE_DIR} PATH)
-    STRING(COMPARE EQUAL "${CMAKE_SOURCE_DIR}"
-"${PARENTDIR}" insourcesubdir)
-    IF(insource OR insourcesubdir)
-        MESSAGE(FATAL_ERROR "${MSG}")
-    ENDIF(insource OR insourcesubdir)
-ENDMACRO(MACRO_ENSURE_OUT_OF_SOURCE_BUILD)
-
 # Find all directories inside a given directory
 MACRO(SUBDIRLIST result curdir)
   FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
@@ -52,13 +40,11 @@ MACRO(SUBDIRLIST result curdir)
   SET(${result} ${dirlist})
 ENDMACRO()
 
-
 # =================================================================
 # Source Files
 # =================================================================
 cmake_policy( SET CMP0009 NEW)      # Prevents cmake from following symbolic links using GLOB
 file(GLOB_RECURSE PROJECT_SOURCE_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
-
 
 # =================================================================
 # Include directories
@@ -74,14 +60,9 @@ set(PROJECT_SOURCE_FILES ${PROJECT_SOURCE_FILES} ${PROJECT_HEADER_FILES})
 # Define executable to be created
 add_executable(${PROJECT_EXECUTABLE_NAME} ${PROJECT_SOURCE_FILES})
 
-#add_library(${PROJECT_LIBRARY_NAME} ${PROJECT_SOURCE_FILES})
-#target_link_libraries(${PROJECT_EXECUTABLE_NAME} ${PROJECT_LIBRARY_NAME})
-
-
 # =================================================================
 # Libraries
 # =================================================================
-
 if(APPLE)
     # OpenGL
     include_directories("/System/Library/Frameworks")
@@ -194,11 +175,16 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # =================================================================
+# Fix Include Path
+# =================================================================
+include_directories(${PROJECT_HEADERS_DIR} ${PROJECT_INCLUDE_DIRECTORIES})
+
+# =================================================================
 # Post scripts
 # =================================================================
 # Create symbolic link to assets folder
-message("Creating symbolic link from ${CMAKE_SOURCE_DIR}/assets to ${CMAKE_BINARY_DIR}/bin/assets")
-add_custom_command(
-    TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ln -s "${CMAKE_SOURCE_DIR}/assets" "${CMAKE_BINARY_DIR}/bin/assets"
-)
+# message("Creating symbolic link from ${CMAKE_SOURCE_DIR}/assets to ${CMAKE_BINARY_DIR}/bin/assets")
+# add_custom_command(
+#     TARGET ${PROJECT_NAME} POST_BUILD
+#     COMMAND ln -s "${CMAKE_SOURCE_DIR}/assets" "${CMAKE_BINARY_DIR}/bin/assets"
+# )

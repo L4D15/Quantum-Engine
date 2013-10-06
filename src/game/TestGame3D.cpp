@@ -12,12 +12,12 @@ TestGame3D::~TestGame3D()
 
 }
 
-void TestGame3D::start()
+void TestGame3D::Start()
 {
-    createWindow(false);
-    initializeGL();
+    CreateWindow(false);
+    InitializeGL();
 
-    this->sceneManager.addScene(new TestScene3D());
-    this->sceneManager.changeToScene("Test Scene 3D");
-    Game3D::start();
+    this->sceneManager.AddScene(new TestScene3D());
+    this->sceneManager.ChangeToScene("Test Scene 3D");
+    Game3D::Start();
 }

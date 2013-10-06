@@ -12,33 +12,33 @@ TestScene::~TestScene()
 
 }
 
-void TestScene::onActivate()
+void TestScene::OnActivate()
 {
 
 }
 
-void TestScene::onDeactivate()
+void TestScene::OnDeactivate()
 {
 
 }
 
-void TestScene::onLoop()
+void TestScene::OnLoop()
 {
 
 }
 
-void TestScene::onRender()
+void TestScene::OnRender()
 {
 
 }
 
 
-void TestScene::onKeyDown(SDL_Keycode key, Uint16 mod)
+void TestScene::OnKeyDown(SDL_Keycode key, Uint16 mod)
 {
     switch (key)
     {
     case SDLK_ESCAPE:
-        Game::terminate();
+        Game::Terminate();
         break;
     }
 }

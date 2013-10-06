@@ -9,8 +9,8 @@ public:
     Game2D(std::string name);
     virtual ~Game2D();
 
-    void                                createWindow(int width, int height, bool fullscreen);
-    void                                createWindow(bool fullscreen);
+    void                                CreateWindow(int width, int height, bool fullscreen);
+    void                                CreateWindow(bool fullscreen);
 
 private:
 

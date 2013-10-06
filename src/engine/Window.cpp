@@ -13,7 +13,8 @@
  * This will create a window with half the size of the display current resolution in windowed mode.
  * Also the default background color is light blue.
  */
-Window::Window(std::string title, WindowMode mode) {
+Window::Window(std::string title, WindowMode mode)
+{
     this->title = title;
 
     // Search the desktop resolution
@@ -21,7 +22,7 @@ Window::Window(std::string title, WindowMode mode) {
 
     SDL_GetCurrentDisplayMode(0, &dMode);
 
-    showDisplayModeInfo(dMode);
+    ShowDisplayModeInfo(dMode);
 
     this->width = dMode.w / 2;
     this->height = dMode.h / 2;
@@ -31,13 +32,20 @@ Window::Window(std::string title, WindowMode mode) {
     this->bgColor = presetcolors::LightBlue;
 
     int windowFlags;
-    if (mode == Windowed2D) {
+    if (mode == Windowed2D)
+    {
         windowFlags = SDL_WINDOW_SHOWN;
-    } else if (mode == Fullscreen2D) {
+    }
+    else if (mode == Fullscreen2D)
+    {
         windowFlags = SDL_WINDOW_FULLSCREEN;
-    } else if (mode == Windowed3D) {
+    }
+    else if (mode == Windowed3D)
+    {
         windowFlags = SDL_WINDOW_OPENGL;
-    } else if (mode == Fullscreen3D) {
+    }
+    else if (mode == Fullscreen3D)
+    {
         windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL;
     }
 
@@ -55,10 +63,10 @@ Window::Window(std::string title, WindowMode mode) {
 
     // Set up the background color
     SDL_SetRenderDrawColor(this->renderer,
-                           this->bgColor.red(),
-                           this->bgColor.green(),
-                           this->bgColor.blue(),
-                           this->bgColor.alpha());
+                           this->bgColor.GetRed(),
+                           this->bgColor.GetGreen(),
+                           this->bgColor.GetBlue(),
+                           this->bgColor.GetAlpha());
 }
 
 /**
@@ -69,7 +77,8 @@ Window::Window(std::string title, WindowMode mode) {
  * @param mode      Use Windowed to create a windowed Window or Fullscreen to cover the whole display.
  * @param bg        Specifies the background color of the window. By default it is light blue.
  */
-Window::Window(std::string title, Uint16 w, Uint16 h, WindowMode mode, Color bg) {
+Window::Window(std::string title, Uint16 w, Uint16 h, WindowMode mode, Color bg)
+{
     this->title = title;
     this->width = w;
     this->height = h;
@@ -77,13 +86,20 @@ Window::Window(std::string title, Uint16 w, Uint16 h, WindowMode mode, Color bg)
     this->bgColor = bg;
 
     int windowFlags;
-    if (mode == Windowed2D) {
+    if (mode == Windowed2D)
+    {
         windowFlags = SDL_WINDOW_SHOWN;
-    } else if (mode == Fullscreen2D) {
+    }
+    else if (mode == Fullscreen2D)
+    {
         windowFlags = SDL_WINDOW_FULLSCREEN;
-    } else if (mode == Windowed3D) {
+    }
+    else if (mode == Windowed3D)
+    {
         windowFlags = SDL_WINDOW_OPENGL;
-    } else if (mode == Fullscreen3D) {
+    }
+    else if (mode == Fullscreen3D)
+    {
         windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL;
     }
 
@@ -101,16 +117,17 @@ Window::Window(std::string title, Uint16 w, Uint16 h, WindowMode mode, Color bg)
 
     // Set up the background color
     SDL_SetRenderDrawColor(this->renderer,
-                           this->bgColor.red(),
-                           this->bgColor.green(),
-                           this->bgColor.blue(),
-                           this->bgColor.alpha());
+                           this->bgColor.GetRed(),
+                           this->bgColor.GetGreen(),
+                           this->bgColor.GetBlue(),
+                           this->bgColor.GetAlpha());
 }
 
 /**
  * @brief Window::~Window
  */
-Window::~Window() {
+Window::~Window()
+{
     SDL_DestroyRenderer(this->renderer);
     SDL_DestroyWindow(this->window);
 }
@@ -119,12 +136,13 @@ Window::~Window() {
  * @brief Window::showDisplayModeInfo
  * @param mode
  */
-void Window::showDisplayModeInfo(SDL_DisplayMode& mode) {
+void Window::ShowDisplayModeInfo(SDL_DisplayMode& mode)
+{
     std::stringstream text;
 
     text << "Display mode: [ Resolution: { " << mode.w << "x" << mode.h <<  " } @ " << mode.refresh_rate << " Hz ];";
 
-    Game::writeToConsole(text.str());
+    Game::WriteToConsole(text.str());
 }
 
 /**
@@ -133,7 +151,7 @@ void Window::showDisplayModeInfo(SDL_DisplayMode& mode) {
  * In windows for 3D rendering it calls glClear(GL_COLOR_BUFFER_BIT). For windows
  * for 2D rendering SDL_RenderClear(...) is called.
  */
-void Window::clear()
+void Window::Clear()
 {
     if (this->mode == Fullscreen2D || this->mode == Windowed2D)
     {

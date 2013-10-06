@@ -52,16 +52,16 @@ Game::~Game()
 /**
  * @brief Game::start
  */
-void Game::start()
+void Game::Start()
 {
     run = true;
-    mainLoop();
+    MainLoop();
 }
 
 /**
  * @brief Game::terminate
  */
-void Game::terminate()
+void Game::Terminate()
 {
     run = false;
 }
@@ -69,58 +69,58 @@ void Game::terminate()
 /**
  * @brief Game::mainLoop
  */
-void Game::mainLoop()
+void Game::MainLoop()
 {
     while (run)
     {
-        updateDeltaTime();
+        UpdateDeltaTime();
 
-        handleEvents();
-        update();
-        render();
+        HandleEvents();
+        Update();
+        Render();
 
-        manageFramesPerSecond();
-        countFramesPerSecond();
+        ManageFramesPerSecond();
+        CountFramesPerSecond();
     }
 }
 
 /**
  * @brief Game::handleEvents
  */
-void Game::handleEvents()
+void Game::HandleEvents()
 {
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
-        sceneManager.onEvent(&event);
+        sceneManager.OnEvent(&event);
     }
 }
 
 /**
  * @brief Game::update
  */
-void Game::update()
+void Game::Update()
 {
-    sceneManager.onLoop();
+    sceneManager.OnLoop();
 }
 
 /**
  * @brief Game::render
  */
-void Game::render()
+void Game::Render()
 {
-    this->window->clear();
+    this->window->Clear();
 
-    sceneManager.onRender();
+    sceneManager.OnRender();
 
-    this->window->draw();
+    this->window->Draw();
 
 }
 
 /**
  * @brief Game::updateDeltaTime
  */
-void Game::updateDeltaTime()
+void Game::UpdateDeltaTime()
 {
     this->oldTime = this->currentTime;
     this->currentTime = SDL_GetTicks();
@@ -130,7 +130,7 @@ void Game::updateDeltaTime()
 /**
  * @brief Game::countFramesPerSecond
  */
-void Game::countFramesPerSecond()
+void Game::CountFramesPerSecond()
 {
     this->fpsCurrentTime = SDL_GetTicks();
     Uint32 timeElapsed = this->fpsCurrentTime - this->fpsOldTime;
@@ -152,7 +152,7 @@ void Game::countFramesPerSecond()
 /**
  * @brief Game::manageFramesPerSecond
  */
-void Game::manageFramesPerSecond()
+void Game::ManageFramesPerSecond()
 {
     this->frameSkipOldTime = this->frameSkipCurrentTime;
     this->frameSkipCurrentTime = SDL_GetTicks();    // Total time since the start of the game
@@ -172,7 +172,7 @@ void Game::manageFramesPerSecond()
  * @brief Game::writeToConsole
  * @param text
  */
-void Game::writeToConsole(std::string text)
+void Game::WriteToConsole(std::string text)
 {
     std::cout << text << std::endl;
 }

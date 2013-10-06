@@ -2,34 +2,41 @@
 
 using namespace systems;
 
-SceneManager::SceneManager() {
+SceneManager::SceneManager()
+{
     this->currentScene = NULL;
 }
 
-SceneManager::~SceneManager() {
+SceneManager::~SceneManager()
+{
 
 }
 
-void SceneManager::onEvent(SDL_Event* event) {
-    this->currentScene->onEvent(event);
+void SceneManager::OnEvent(SDL_Event* event)
+{
+    this->currentScene->OnEvent(event);
 }
 
-void SceneManager::onRender() {
-    this->currentScene->onRender();
+void SceneManager::OnRender()
+{
+    this->currentScene->OnRender();
 }
 
-void SceneManager::onLoop() {
+void SceneManager::OnLoop()
+{
     this->currentScene->world->loopStart();
-    this->currentScene->onLoop();
+    this->currentScene->OnLoop();
 }
 
 /**
  * @brief SceneManager::addScene
  * @param scene
  */
-void SceneManager::addScene(Scene *scene) {
-    if (scene != NULL) {
-        std::pair<std::string, Scene* > mappedObject(scene->getName(), scene);
+void SceneManager::AddScene(Scene *scene)
+{
+    if (scene != NULL)
+    {
+        std::pair<std::string, Scene* > mappedObject(scene->GetName(), scene);
 
         this->sceneMapper.insert(mappedObject);
     }
@@ -40,21 +47,26 @@ void SceneManager::addScene(Scene *scene) {
  * @param sceneName
  * @return
  */
-Scene* SceneManager::changeToScene(std::string sceneName) {
+Scene* SceneManager::ChangeToScene(std::string sceneName)
+{
     std::map<std::string, Scene* >::iterator mappedScene;
 
     mappedScene = this->sceneMapper.find(sceneName);
 
-    if (mappedScene != this->sceneMapper.end()) {
-        if (this->currentScene != NULL) {
-            this->currentScene->onDeactivate();
+    if (mappedScene != this->sceneMapper.end())
+    {
+        if (this->currentScene != NULL)
+        {
+            this->currentScene->OnDeactivate();
         }
 
         this->currentScene = mappedScene->second;
 
-        this->currentScene->onActivate();
+        this->currentScene->OnActivate();
         return this->currentScene;
-    } else {
+    }
+    else
+    {
         return NULL;
     }
 }
@@ -63,12 +75,14 @@ Scene* SceneManager::changeToScene(std::string sceneName) {
  * @brief SceneManager::deleteScene
  * @param sceneName
  */
-void SceneManager::deleteScene(std::string sceneName) {
+void SceneManager::DeleteScene(std::string sceneName)
+{
     std::map<std::string, Scene* >::iterator mappedScene;
 
     mappedScene = this->sceneMapper.find(sceneName);
 
-    if (mappedScene != this->sceneMapper.end()) {
+    if (mappedScene != this->sceneMapper.end())
+    {
         delete mappedScene->second;
         this->sceneMapper.erase(mappedScene);
     }

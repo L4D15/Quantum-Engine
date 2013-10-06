@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"PROJ",
+				"PROJECT_NAME"
+			],
+			[
+				"SDL2_",
+				"SDL2_IMAGE_LIBRARY"
+			],
+			[
+				"SDL",
+				"SDL2_LIBRARY"
+			],
+			[
+				"OPENGL_LIB",
+				"OPENGL_LIBRARY"
+			],
+			[
+				"SDL2_ttf",
+				"SDL2_ttf"
+			],
+			[
 				"PROJECT",
 				"PROJECT_EXECUTABLE_NAME"
 			],
@@ -19,70 +39,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Color.h",
-			"settings":
-			{
-				"buffer_size": 2025,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/EventListener.h",
-			"settings":
-			{
-				"buffer_size": 1556,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Game.h",
-			"settings":
-			{
-				"buffer_size": 2295,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Game2D.h",
-			"settings":
-			{
-				"buffer_size": 352,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/GameObject.h",
-			"settings":
-			{
-				"buffer_size": 954,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Window.h",
-			"settings":
-			{
-				"buffer_size": 1812,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Scene.h",
-			"settings":
-			{
-				"buffer_size": 1284,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/ladis/Projects/Quantum-Engine/src/engine/Game.cpp",
-			"settings":
-			{
-				"buffer_size": 3278,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -112,8 +68,17 @@
 	},
 	"file_history":
 	[
+		"/Users/ladis/Projects/Quantum-Engine/README.md",
 		"/Users/ladis/Projects/Quantum-Engine/CMakeLists.txt",
-		"/Users/ladis/Projects/Quantum-Engine/src/engine/Game.cpp"
+		"/Users/ladis/Projects/Quantum-Engine/src/main.cpp",
+		"/Users/ladis/Projects/Quantum-Engine/include/quantum/Color.h",
+		"/Users/ladis/Projects/Quantum-Engine/src/engine/Game.cpp",
+		"/Users/ladis/Projects/Quantum-Engine/include/quantum/Scene.h",
+		"/Users/ladis/Projects/Quantum-Engine/include/quantum/Window.h",
+		"/Users/ladis/Projects/Quantum-Engine/include/quantum/GameObject.h",
+		"/Users/ladis/Projects/Quantum-Engine/include/quantum/Game2D.h",
+		"/Users/ladis/Projects/Quantum-Engine/include/quantum/Game.h",
+		"/Users/ladis/Projects/Quantum-Engine/include/quantum/EventListener.h"
 	],
 	"find":
 	{
@@ -148,231 +113,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Color.h",
-					"settings":
-					{
-						"buffer_size": 2025,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								86,
-								86
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/EventListener.h",
-					"settings":
-					{
-						"buffer_size": 1556,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								64,
-								64
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Game.h",
-					"settings":
-					{
-						"buffer_size": 2295,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								98,
-								98
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Game2D.h",
-					"settings":
-					{
-						"buffer_size": 352,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/GameObject.h",
-					"settings":
-					{
-						"buffer_size": 954,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								79,
-								71
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Window.h",
-					"settings":
-					{
-						"buffer_size": 1812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								50,
-								45
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/Users/ladis/Projects/Quantum-Engine/include/quantum/Scene.h",
-					"settings":
-					{
-						"buffer_size": 1284,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								104,
-								96
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/Users/ladis/Projects/Quantum-Engine/src/engine/Game.cpp",
-					"settings":
-					{
-						"buffer_size": 3278,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1375,
-								1375
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 749.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

@@ -12,19 +12,19 @@ public:
     Scene(std::string name);
     virtual ~Scene();
 
-    virtual void                        onActivate();
-    virtual void                        onDeactivate();
+    virtual void                        OnActivate();
+    virtual void                        OnDeactivate();
 
-    virtual void                        onLoop();
-    virtual void                        onRender() = 0;
-    GameObject*                         createGameObject(std::string name);
-    void                                destroyGameObject(GameObject*& object);
-    void                                destroyGameObject(std::string name);
+    virtual void                        OnLoop();
+    virtual void                        OnRender() = 0;
+    GameObject*                         CreateGameObject(std::string name);
+    void                                DestroyGameObject(GameObject*& object);
+    void                                DestroyGameObject(std::string name);
 
-    inline std::string                  getName() { return name; }
+    inline std::string                  GetName() { return name; }
 
-    inline GameObject*                  getMainCamera() { return mainCamera; }
-    inline void                         setMainCamera(GameObject* camera) { mainCamera = camera; }
+    inline GameObject*                  GetMainCamera() { return mainCamera; }
+    inline void                         SetMainCamera(GameObject* camera) { mainCamera = camera; }
 
 protected:
     std::string                         name;   // Name of the Scene

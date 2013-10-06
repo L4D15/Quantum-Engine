@@ -17,22 +17,22 @@ TestScene3D::~TestScene3D()
 
 }
 
-void TestScene3D::onActivate()
+void TestScene3D::OnActivate()
 {
 
 }
 
-void TestScene3D::onDeactivate()
+void TestScene3D::OnDeactivate()
 {
 
 }
 
-void TestScene3D::onLoop()
+void TestScene3D::OnLoop()
 {
 
 }
 
-void TestScene3D::onRender()
+void TestScene3D::OnRender()
 {
     glClear(GL_DEPTH_BUFFER_BIT);
 
@@ -47,7 +47,7 @@ void TestScene3D::onRender()
 
     Uint8 red, green, blue, alpha;
 
-    SDL_GetRenderDrawColor(Game::window->getRenderer(), &red, &green, &blue, &alpha);
+    SDL_GetRenderDrawColor(Game::window->GetRenderer(), &red, &green, &blue, &alpha);
 
     SDL_Rect rect;
 
@@ -56,17 +56,17 @@ void TestScene3D::onRender()
     rect.w = 2;
     rect.h = 2;
 
-    SDL_SetRenderDrawColor(Game::window->getRenderer(), 255, 0, 0, 255);
-    SDL_RenderDrawRect(Game::window->getRenderer(), &rect);
-    SDL_SetRenderDrawColor(Game::window->getRenderer(), red, green, blue, alpha);
+    SDL_SetRenderDrawColor(Game::window->GetRenderer(), 255, 0, 0, 255);
+    SDL_RenderDrawRect(Game::window->GetRenderer(), &rect);
+    SDL_SetRenderDrawColor(Game::window->GetRenderer(), red, green, blue, alpha);
 }
 
-void TestScene3D::onKeyDown(SDL_Keycode key, Uint16 mod)
+void TestScene3D::OnKeyDown(SDL_Keycode key, Uint16 mod)
 {
     switch(key)
     {
     case SDLK_ESCAPE:
-        Game::terminate();
+        Game::Terminate();
         break;
     }
 }
