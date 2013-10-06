@@ -143,10 +143,10 @@ if(APPLE)
         message("    ${lib}")
     endforeach(lib)
 
-    target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
+    target_link_libraries(${PROJECT_EXECUTABLE_NAME} ${EXTRA_LIBS})
 endif(APPLE)
 
-if (${CMAKE_SYSTEM_NAME} MATCH "Linux")
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     include_directories("/usr/include")
     link_directories("/usr/lib")
 
@@ -189,9 +189,9 @@ if (${CMAKE_SYSTEM_NAME} MATCH "Linux")
 
     # Link libraries
     set(EXTRA_LIBS ${OPENGL_LIBRARY} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} ${ARTEMIS_LIBRARY} ${JSONCPP_LIBRARY})
-    target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS})
+    target_link_libraries(${PROJECT_EXECUTABLE_NAME} ${EXTRA_LIBS})
 
-endif(${CMAKE_SYSTEM_NAME} MATCH "Linux")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # =================================================================
 # Post scripts
@@ -200,5 +200,5 @@ endif(${CMAKE_SYSTEM_NAME} MATCH "Linux")
 message("Creating symbolic link from ${CMAKE_SOURCE_DIR}/assets to ${CMAKE_BINARY_DIR}/bin/assets")
 add_custom_command(
     TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ln -sf "${CMAKE_SOURCE_DIR}/assets" "${CMAKE_BINARY_DIR}/bin/assets"
+    COMMAND ln -s "${CMAKE_SOURCE_DIR}/assets" "${CMAKE_BINARY_DIR}/bin/assets"
 )
