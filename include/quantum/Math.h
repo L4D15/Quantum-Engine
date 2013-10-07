@@ -5,6 +5,7 @@
 
 class Vector2D;
 class Vector3D;
+class Color;
 
 namespace Math
 {
@@ -29,19 +30,21 @@ typedef enum
     Linear,
     EasyIn,
     EasyOut,
-    EasyInEasyOut
+    EasyInEasyOut,
+    Boomerang
 }Type;
 
 float LinearFunction(float x);
 float EasyInFunction(float x);
 float EasyOutFunction(float x);
 float EasyInEasyOutFunction(float x);
+float BoomerangFunction(float x);
 
 }
 
 float Interpolate(Interpolation::Type type, float start, float end, float time);
 Vector2D Interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time);
-
+Color Interpolate(Interpolation::Type type, Color start, Color end, float time);
 
 }
 

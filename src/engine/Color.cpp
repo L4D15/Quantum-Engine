@@ -141,6 +141,48 @@ Uint8 Color::GetAlpha()
     return this->color.a;
 }
 
+bool Color::operator !=(const Color& other)
+{
+    if (this->color.r != other.color.r)
+    {
+        return true;
+    }
+    else if (this->color.g != other.color.g)
+    {
+        return true;
+    }
+    else if (this->color.b != other.color.b)
+    {
+        return true;
+    }
+    else if (this->color.a != other.color.a)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Color::operator ==(const Color& other)
+{
+    if (this->color.r != other.color.r)
+    {
+        return false;
+    }
+    else if (this->color.g != other.color.g)
+    {
+        return false;
+    }
+    else if (this->color.b != other.color.b)
+    {
+        return false;
+    }
+    else if (this->color.a != other.color.a)
+    {
+        return false;
+    }
+    return true;
+}
+
 SDL_Color Color::ToSDLColor()
 {
     return this->color;
