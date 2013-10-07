@@ -132,7 +132,9 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     link_directories("/usr/lib")
 
     #OpenGL
-    set(OPENGL_LIBRARY "gl")
+    find_package(OpenGL REQUIRED)
+    include_directories(${OPENGL_INCLUDE_DIRS})
+    set(OPENGL_LIBRARY ${OPENGL_LIBRARIES})
 
     # Libraries directories
     include_directories("/usr/local/include")
