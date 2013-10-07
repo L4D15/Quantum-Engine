@@ -28,6 +28,10 @@ public:
     float               GetRotation();
     float               GetRelativeRotation();
 
+    void                Move(const Vector2D& movement);
+    void                Scale(const Vector2D& scaleFactor);
+    void                Rotate(float angle);
+
 private:
     Vector2D            position;
     Vector2D            scale;

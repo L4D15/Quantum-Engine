@@ -20,7 +20,7 @@ public:
 
     GameObject&             GetOwner();
 
-private:
+protected:
     GameObject&             owner;
 };
 

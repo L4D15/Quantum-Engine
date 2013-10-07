@@ -73,7 +73,9 @@ void Game::MainLoop()
 {
     while (run)
     {
-        UpdateDeltaTime();
+        Uint32 startTime = SDL_GetTicks();
+
+        UpdateTime();
 
         HandleEvents();
         Update();
@@ -81,6 +83,8 @@ void Game::MainLoop()
 
         ManageFramesPerSecond();
         CountFramesPerSecond();
+
+        Uint32 endTime = SDL_GetTicks();
     }
 }
 
@@ -120,7 +124,7 @@ void Game::Render()
 /**
  * @brief Game::updateDeltaTime
  */
-void Game::UpdateDeltaTime()
+void Game::UpdateTime()
 {
     this->oldTime = this->currentTime;
     this->currentTime = SDL_GetTicks();
