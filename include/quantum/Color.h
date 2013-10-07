@@ -22,6 +22,9 @@ public:
     Uint8                       GetBlue();
     Uint8                       GetAlpha();
 
+    bool                        operator !=(const Color& other);
+    bool                        operator ==(const Color& other);
+
     SDL_Color                   ToSDLColor();
     Uint32                      ToPixelValue(SDL_PixelFormat* format);
 

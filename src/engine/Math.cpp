@@ -1,6 +1,7 @@
 #include "quantum/Math.h"
 #include "quantum/Vector2D.h"
 #include "quantum/Vector3D.h"
+#include "quantum/Color.h"
 #include <cmath>
 #include <iostream>
 
@@ -99,19 +100,32 @@ float Math::Interpolate(Interpolation::Type type, float start, float end, float 
         time = 1.0f;
     }
 
+    if (time < 0.0f)
+    {
+        time = 0.0f;
+    }
+
     switch (type) {
     case Interpolation::Linear:
         return (start + (end - start) * Interpolation::LinearFunction(time));
         break;
+
     case Interpolation::EasyIn:
         return (start + (end - start) * Interpolation::EasyInFunction(time));
         break;
+
     case Interpolation::EasyOut:
         return (start + (end - start) * Interpolation::EasyOutFunction(time));
         break;
+
     case Interpolation::EasyInEasyOut:
         return (start + (end - start) * Interpolation::EasyInEasyOutFunction(time));
         break;
+
+    case Interpolation::Boomerang:
+        return (start + (end - start) * Interpolation::BoomerangFunction(time));
+        break;
+
     default:
         return 0.0f;
         break;
@@ -138,6 +152,11 @@ float Math::Interpolation::EasyInEasyOutFunction(float x)
     return (x * x) / ((x *x) + ((1-x) * (1-x)));
 }
 
+float Math::Interpolation::BoomerangFunction(float x)
+{
+    return (sin(x * Math::PI));
+}
+
 /**
  * @brief Math::Interpolate
  * @param type
@@ -155,4 +174,27 @@ Vector2D Math::Interpolate(Interpolation::Type type, Vector2D start, Vector2D en
     y = Interpolate(type, start.GetY(), end.GetY(), time);
 
     return Vector2D(x, y);
+}
+
+/**
+ * @brief Math::Interpolate
+ * @param type
+ * @param start
+ * @param end
+ * @param time
+ * @return
+ */
+Color Math::Interpolate(Interpolation::Type type, Color start, Color end, float time)
+{
+    float red;
+    float green;
+    float blue;
+    float alpha;
+
+    red = Interpolate(type, start.GetRed(), end.GetRed(), time);
+    green = Interpolate(type, start.GetGreen(), end.GetGreen(), time);
+    blue = Interpolate(type, start.GetBlue(), end.GetBlue(), time);
+    alpha = Interpolate(type, start.GetAlpha(), end.GetAlpha(), time);
+
+    return Color(red, green, blue, alpha);
 }
