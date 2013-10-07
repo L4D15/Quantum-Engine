@@ -40,7 +40,7 @@ void TestScene::OnActivate()
     finalPos4.SetY(140.0f);
 
     this->initialTime = Game::GetTime();
-    this->duration = 5000;
+    this->duration = 1000;
 
     this->movement.SetX(100);
 }
@@ -52,8 +52,7 @@ void TestScene::OnDeactivate()
 
 void TestScene::OnLoop()
 {
-
-    if (Game::GetTime() < this->initialTime + this->duration)
+    if (pos1 != finalPos1 || pos2 != finalPos2 || pos3 != finalPos3 || pos4 != finalPos4)
     {
         pos1 = Math::Interpolate(Math::Interpolation::Linear, initialPos1, finalPos1, Math::Normalize(this->initialTime, this->initialTime + this->duration, Game::GetTime()));
         pos2 = Math::Interpolate(Math::Interpolation::EasyIn, initialPos2, finalPos2, Math::Normalize(this->initialTime, this->initialTime + this->duration, Game::GetTime()));

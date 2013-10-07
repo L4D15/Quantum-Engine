@@ -1,11 +1,15 @@
 #ifndef QUANTUM_MATH_H
 #define QUANTUM_MATH_H
 
+#include <cmath>
+
 class Vector2D;
 class Vector3D;
 
 namespace Math
 {
+
+static double PI = atan(1) * 4;
 
 float InverseSquareRoot(float number);
 float SquareRoot(float x);

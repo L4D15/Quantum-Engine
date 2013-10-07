@@ -94,6 +94,11 @@ float Math::Normalize(float start, float end, float current)
  */
 float Math::Interpolate(Interpolation::Type type, float start, float end, float time)
 {
+    if (time > 1.0f)
+    {
+        time = 1.0f;
+    }
+
     switch (type) {
     case Interpolation::Linear:
         return (start + (end - start) * Interpolation::LinearFunction(time));
@@ -125,7 +130,7 @@ float Math::Interpolation::EasyInFunction(float x)
 
 float Math::Interpolation::EasyOutFunction(float x)
 {
-    return sin(x * 3.14159265f / 2.0f);
+    return sin(x * Math::PI / 2.0f);
 }
 
 float Math::Interpolation::EasyInEasyOutFunction(float x)
