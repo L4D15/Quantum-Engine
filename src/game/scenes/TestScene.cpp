@@ -40,7 +40,7 @@ void TestScene::OnActivate()
     finalPos4.SetY(140.0f);
 
     this->initialTime = Game::GetTime();
-    this->duration = 5000;
+    this->duration = 1000;
 
     this->movement.SetX(100);
 }

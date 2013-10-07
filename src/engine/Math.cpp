@@ -125,7 +125,7 @@ float Math::Interpolation::EasyInFunction(float x)
 
 float Math::Interpolation::EasyOutFunction(float x)
 {
-    return sin(x * 3.14159265f / 2.0f);
+    return sin(x * Math::PI / 2.0f);
 }
 
 float Math::Interpolation::EasyInEasyOutFunction(float x)
