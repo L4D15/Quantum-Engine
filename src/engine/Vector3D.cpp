@@ -1,6 +1,6 @@
 #include "quantum/Vector3D.h"
 #include "quantum/Vector2D.h"
-#include "quantum/ExtraTools.h"
+#include "quantum/Math.h"
 #include <sstream>
 
 /**

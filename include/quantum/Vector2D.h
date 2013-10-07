@@ -24,8 +24,8 @@ public:
     inline float                GetX() { return x; }
     inline float                GetY() { return y; }
 
-    inline void                 SetX(float x) { x = x; }
-    inline void                 SetY(float y) { y = y; }
+    inline void                 SetX(float x) { this->x = x; }
+    inline void                 SetY(float y) { this->y = y; }
 
     float                       GetLengthQuadratic();
     float                       GetLength();

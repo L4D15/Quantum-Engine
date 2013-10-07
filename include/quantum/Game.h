@@ -28,7 +28,7 @@ private:
     void                                Render();
     void                                HandleEvents();
 
-    void                                UpdateDeltaTime();
+    void                                UpdateTime();
     void                                CountFramesPerSecond();
     void                                ManageFramesPerSecond();
 
@@ -36,6 +36,7 @@ private:
 public:
     static void                         WriteToConsole(std::string text);
     static void                         Terminate();
+    static inline Uint32                GetTime() { return SDL_GetTicks(); }
 protected:
 
     // Attributes
