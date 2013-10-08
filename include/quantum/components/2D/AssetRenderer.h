@@ -13,8 +13,8 @@ namespace Components2D {
  */
 class AssetRenderer : public Components::Component {
 public:
-    AssetRenderer(GameObject& owner);
-    AssetRenderer(GameObject& owner, Assets2D::RenderizableAsset* asset, int zIndex = 0, int distance = 0);
+    AssetRenderer(GameObject& owner, GameObject* camera);
+    AssetRenderer(GameObject& owner, GameObject* camera, Assets2D::RenderizableAsset* asset, int zIndex = 0, int distance = 0);
     virtual ~AssetRenderer();
 
     void                                Render(GameObject* camera, Vector2D position, Vector2D scale, float rotation);
@@ -22,11 +22,16 @@ public:
     inline void                         SetVisible(bool visible) { this->visible = visible; }
     inline bool                         IsVisible() { return this->visible; }
 
+    inline GameObject*                  GetCamera() { return camera; }
+    inline void                         SetCamera(GameObject* camera) { this->camera = camera; }
+
+    inline void                         Update() { asset->Update(); }
 private:
     int                                 zIndex;
     int                                 distance;
     Assets2D::RenderizableAsset*        asset;
     bool                                visible;
+    GameObject*                         camera;     // Camera where the rendering will be done
 
 };
 

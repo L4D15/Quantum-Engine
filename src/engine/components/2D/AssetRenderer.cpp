@@ -8,13 +8,14 @@ using namespace Components2D;
 /**
  * @brief AssetRenderer::AssetRenderer
  */
-AssetRenderer::AssetRenderer(GameObject &owner) :
+AssetRenderer::AssetRenderer(GameObject &owner, GameObject *camera) :
     Component(owner)
 {
     this->zIndex = 0;
     this->distance = 0;
     this->asset = NULL;
     this->visible = true;
+    this->camera = camera;
 }
 
 /**
@@ -23,9 +24,10 @@ AssetRenderer::AssetRenderer(GameObject &owner) :
  * @param zIndex
  * @param distance
  */
-AssetRenderer::AssetRenderer(GameObject& owner, Assets2D::RenderizableAsset *asset, int zIndex, int distance) :
+AssetRenderer::AssetRenderer(GameObject& owner, GameObject* camera, Assets2D::RenderizableAsset *asset, int zIndex, int distance) :
     Component(owner)
 {
+    this->camera = camera;
     this->zIndex = zIndex;
     this->distance = distance;
     this->asset = asset;
