@@ -2,6 +2,7 @@
 #define GAME2D_H
 
 #include "quantum/Game.h"
+#include "quantum/ParallaxScrolling.h"
 
 class Game2D : public Game
 {
@@ -11,6 +12,9 @@ public:
 
     void                                CreateWindow(int width, int height, bool fullscreen);
     void                                CreateWindow(bool fullscreen);
+
+public: // Systems
+    static Systems2D::ParallaxScrolling parallaxScrolling;
 
 private:
 

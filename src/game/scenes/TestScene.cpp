@@ -1,20 +1,31 @@
 #include "TestScene.h"
 #include "quantum/Game.h"
 #include "quantum/Math.h"
+#include "quantum/components/ComponentsList.h"
 
 TestScene::TestScene() :
     Scene("Test Scene")
 {
-    // This Scene will have a Physics system
+    // This Scene will have a Physics and rendering system
     this->physicsSystem = (Systems2D::Physics*) AddSystem(new Systems2D::Physics());
+    this->renderingSystem = (Systems2D::AssetRendering*) AddSystem(new Systems2D::AssetRendering());
+
+    // Resources
+    image = new Assets2D::SpriteSheet("Zero", "assets/images/zero.png");
+    sprite = new Assets2D::AnimatedSprite(image);
+
+    bgImage = new Assets2D::SpriteSheet("Background", "assets/images/bg.png");
 
     // Objects
     object = CreateGameObject("Object");
+    object->SetPosition(0, 0);
     object->AddComponent(new Components2D::Physics(*object));
-    object->SetPosition(Game::window->GetWidth()/2 - 50, Game::window->GetHeight()/2 - 50);
+    object->AddComponent(new Components2D::AssetRenderer(*object, mainCamera, sprite));
 
-    child = CreateGameObject("Child");
-    child->SetPosition(100, 100);
+    background = CreateGameObject("Background");
+    background->AddComponent(new Components2D::AssetRenderer(*background, mainCamera, bgImage, -1, 1000));
+
+    mainCamera->AddComponent(new Components2D::Physics(*mainCamera));
 }
 
 TestScene::~TestScene()
@@ -24,8 +35,7 @@ TestScene::~TestScene()
 
 void TestScene::OnActivate()
 {
-    this->initialTime = Game::GetTime();
-    this->duration = 5000;
+    keyDown = false;
 }
 
 void TestScene::OnDeactivate()
@@ -39,33 +49,24 @@ void TestScene::OnLoop()
 
     // Process systems
     physicsSystem->process();
+
+    // If there is no directional key pressed, smoot the stop of the camera
+    Components2D::Physics* p;
+    p = (Components2D::Physics*) mainCamera->GetComponent<Components2D::Physics>();
+    if (keyDown == false && p->GetVelocity() != Vector2D(0,0))
+    {
+        // Camera Smoothing
+        Vector2D velocity;
+
+        velocity = Math::Interpolate(Math::Interpolation::EasyIn, p->GetVelocity(), Vector2D(0,0), Math::Normalize(timeKeyUp, timeKeyUp + 1000, Game::GetTime()));
+        p->SetVelocity(velocity);
+    }
 }
 
 void TestScene::OnRender()
 {
-    Uint8 red, green, blue, alpha;
-
-    SDL_GetRenderDrawColor(Game::window->GetRenderer(), &red, &green, &blue, &alpha);
-
-    // Render
-    Vector2D pos;
-    SDL_Rect rect;
-
-    pos = object->GetPosition2D();
-    rect.x = pos.GetX();
-    rect.y = pos.GetY();
-    rect.w = 100;
-    rect.h = 100;
-
-    SDL_SetRenderDrawColor(Game::window->GetRenderer(), 255, 0, 255, 255);
-    SDL_RenderFillRect(Game::window->GetRenderer(), &rect);
-
-    rect.x = child->GetPosition2D().GetX();
-    rect.y = child->GetPosition2D().GetY();
-    SDL_SetRenderDrawColor(Game::window->GetRenderer(), 0, 0, 0, 255);
-    SDL_RenderFillRect(Game::window->GetRenderer(), &rect);
-
-    SDL_SetRenderDrawColor(Game::window->GetRenderer(), red, green, blue, alpha);
+    this->renderingSystem->process();
+    Scene::OnRender();
 }
 
 
@@ -79,28 +80,35 @@ void TestScene::OnKeyDown(SDL_Keycode key, Uint16 mod)
         break;
 
     case SDLK_RIGHT:
-        p = (Components2D::Physics*) object->GetComponent<Components2D::Physics>();
-        p->AddAceleration(5, 0);
+        p = (Components2D::Physics*) mainCamera->GetComponent<Components2D::Physics>();
+        p->AddVelocity(5.0f, 0.0f);
         break;
 
     case SDLK_LEFT:
-        p = (Components2D::Physics*) object->GetComponent<Components2D::Physics>();
-        p->AddAceleration(-5, 0);
+        p = (Components2D::Physics*) mainCamera->GetComponent<Components2D::Physics>();
+        p->AddVelocity(-5.0f, 0.0f);
         break;
 
-    case SDLK_1:
-        if (child->GetParentObject() == NULL)
-        {
-            child->MakeChildOfObject(object);
-        }
-        else
-        {
-            child->UnmakeChildOfObject();
-        }
+    case SDLK_UP:
+        p = (Components2D::Physics*) mainCamera->GetComponent<Components2D::Physics>();
+        p->AddVelocity(0.0f, -5.0f);
         break;
 
-    case SDLK_2:
-        child->SetPosition(100, 100);
+    case SDLK_DOWN:
+        p = (Components2D::Physics*) mainCamera->GetComponent<Components2D::Physics>();
+        p->AddVelocity(0.0f, 5.0f);
         break;
     }
+    this->keyDown = true;
+}
+
+void TestScene::OnKeyUp(SDL_Keycode key, Uint16 mod)
+{
+    // If we transition between pressed and unpressed
+    if (keyDown == true)
+    {
+        timeKeyUp = Game::GetTime();
+    }
+
+    keyDown = false;
 }

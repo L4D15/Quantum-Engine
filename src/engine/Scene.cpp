@@ -9,7 +9,8 @@ Scene::Scene(std::string name):
     world = new artemis::World();
 
     // Create the main camera
-
+    mainCamera = CreateGameObject("Main Camera");
+    mainCamera->AddComponent(new Components2D::Camera(*mainCamera));
 }
 
 Scene::~Scene()
@@ -24,7 +25,7 @@ Scene::~Scene()
 
     this->objectsMapping.clear();
 
-    delete this->mainCamera;
+    DestroyGameObject(mainCamera);
     delete this->world;
 }
 
@@ -46,7 +47,17 @@ void Scene::OnLoop()
 
 void Scene::OnRender()
 {
+    RenderScene();
+}
 
+void Scene::RenderScene()
+{
+    // TODO: Support multiple cameras
+    Components2D::Camera* cameraComp;
+
+    cameraComp = (Components2D::Camera*) mainCamera->GetComponent<Components2D::Camera>();
+
+    cameraComp->RenderScene();
 }
 
 /**

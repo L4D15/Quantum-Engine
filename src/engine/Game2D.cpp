@@ -1,5 +1,9 @@
 #include "quantum/Game2D.h"
 
+// Static variables
+Systems2D::ParallaxScrolling Game2D::parallaxScrolling;
+// ==
+
 Game2D::Game2D(std::string name) :
     Game(name)
 {

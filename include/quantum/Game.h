@@ -68,7 +68,7 @@ public:
 
     static float                        deltaTime;      // Delta Time
 
-    static systems::SceneManager        sceneManager;
+    static Systems2D::SceneManager      sceneManager;
 
 protected:
     static bool                         run;

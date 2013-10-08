@@ -5,6 +5,9 @@
 #include "quantum/Vector2D.h"
 #include "quantum/Libraries.h"
 #include "quantum/systems/2D/Physics.h"
+#include "quantum/systems/2D/AssetRendering.h"
+#include "quantum/SpriteSheet.h"
+#include "quantum/AnimatedSprite.h"
 
 class TestScene : public Scene
 {
@@ -21,15 +24,22 @@ public:
     void OnLoop();
 
     void OnKeyDown(SDL_Keycode key, Uint16 mod);
+    void OnKeyUp(SDL_Keycode key, Uint16 mod);
 
 private:
-    Uint32 initialTime;
-    Uint32 duration;
-
     GameObject* object;
-    GameObject* child;
+    GameObject* background;
+
+    Assets2D::SpriteSheet* image;
+    Assets2D::AnimatedSprite* sprite;
+    Assets2D::SpriteSheet* bgImage;
 
     Systems2D::Physics* physicsSystem;
+    Systems2D::AssetRendering* renderingSystem;
+
+    // Control related
+    int timeKeyUp;
+    bool keyDown;
 
 };
 
