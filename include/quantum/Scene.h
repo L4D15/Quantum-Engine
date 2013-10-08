@@ -17,9 +17,12 @@ public:
 
     virtual void                        OnLoop();
     virtual void                        OnRender() = 0;
+
     GameObject*                         CreateGameObject(std::string name);
     void                                DestroyGameObject(GameObject*& object);
     void                                DestroyGameObject(std::string name);
+
+    artemis::EntitySystem*              AddSystem(artemis::EntitySystem* system);
 
     inline std::string                  GetName() { return name; }
 
