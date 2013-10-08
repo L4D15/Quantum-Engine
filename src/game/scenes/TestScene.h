@@ -27,6 +27,7 @@ private:
     Uint32 duration;
 
     GameObject* object;
+    GameObject* child;
 
     Systems2D::Physics* physicsSystem;
 

@@ -18,8 +18,8 @@ public:
 
     inline std::string                  GetName() { return name; }
 
-    inline void                         MakeChildOfObject(GameObject* parent) { this->parent = parent; }
-    inline void                         UnmakeChildOfObject() { this->parent = NULL; }
+    void                                MakeChildOfObject(GameObject* parent);
+    void                                UnmakeChildOfObject();
     inline GameObject*                  GetParentObject() { return this->parent; }
 
     Vector2D                            GetPosition2D();

@@ -61,3 +61,21 @@ void GameObject::SetPosition(float x, float y)
 
     posComponent->SetPosition(x, y);
 }
+
+void GameObject::MakeChildOfObject(GameObject *parent)
+{
+    this->parent = parent;
+    Vector2D parentPos = parent->GetPosition2D();
+    Vector2D relativePos = GetRelativePosition2D() - parentPos;
+
+    SetPosition(relativePos.GetX(), relativePos.GetY());
+}
+
+void GameObject::UnmakeChildOfObject()
+{
+    Vector2D globalPosition;
+
+    globalPosition = this->GetPosition2D();
+    this->parent = NULL;
+    SetPosition(globalPosition.GetX(), globalPosition.GetY());
+}

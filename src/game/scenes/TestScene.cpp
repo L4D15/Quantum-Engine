@@ -12,6 +12,9 @@ TestScene::TestScene() :
     object = CreateGameObject("Object");
     object->AddComponent(new Components2D::Physics(*object));
     object->SetPosition(Game::window->GetWidth()/2 - 50, Game::window->GetHeight()/2 - 50);
+
+    child = CreateGameObject("Child");
+    child->SetPosition(100, 100);
 }
 
 TestScene::~TestScene()
@@ -57,6 +60,11 @@ void TestScene::OnRender()
     SDL_SetRenderDrawColor(Game::window->GetRenderer(), 255, 0, 255, 255);
     SDL_RenderFillRect(Game::window->GetRenderer(), &rect);
 
+    rect.x = child->GetPosition2D().GetX();
+    rect.y = child->GetPosition2D().GetY();
+    SDL_SetRenderDrawColor(Game::window->GetRenderer(), 0, 0, 0, 255);
+    SDL_RenderFillRect(Game::window->GetRenderer(), &rect);
+
     SDL_SetRenderDrawColor(Game::window->GetRenderer(), red, green, blue, alpha);
 }
 
@@ -78,6 +86,21 @@ void TestScene::OnKeyDown(SDL_Keycode key, Uint16 mod)
     case SDLK_LEFT:
         p = (Components2D::Physics*) object->GetComponent<Components2D::Physics>();
         p->AddAceleration(-5, 0);
+        break;
+
+    case SDLK_1:
+        if (child->GetParentObject() == NULL)
+        {
+            child->MakeChildOfObject(object);
+        }
+        else
+        {
+            child->UnmakeChildOfObject();
+        }
+        break;
+
+    case SDLK_2:
+        child->SetPosition(100, 100);
         break;
     }
 }
