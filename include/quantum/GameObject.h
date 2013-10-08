@@ -2,7 +2,9 @@
 #define GAMEOBJECT_H
 
 #include <string>
-#include <Artemis/Artemis.h>
+#include "quantum/Libraries.h"
+#include "quantum/Vector2D.h"
+#include "quantum/Vector3D.h"
 
 // Prototype
 class Scene;
@@ -20,10 +22,15 @@ public:
     inline void                         UnmakeChildOfObject() { this->parent = NULL; }
     inline GameObject*                  GetParentObject() { return this->parent; }
 
+    Vector2D                            GetPosition2D();
+    Vector2D                            GetRelativePosition2D();
+
+    void                                SetPosition(float x, float y);
+
     template<typename c>
         inline artemis::Component*      GetComponent() { return entity.getComponent<c>(); }
 
-    inline void                         AddComponent(artemis::Component* component) { entity.addComponent(component);}
+    void                         AddComponent(artemis::Component* component) { entity.addComponent(component); entity.refresh();}
 
 private:
     GameObject(std::string name, artemis::Entity& entity);

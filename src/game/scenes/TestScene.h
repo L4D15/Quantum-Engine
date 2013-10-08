@@ -4,7 +4,7 @@
 #include "quantum/Scene.h"
 #include "quantum/Vector2D.h"
 #include "quantum/Libraries.h"
-#include "quantum/Color.h"
+#include "quantum/systems/2D/Physics.h"
 
 class TestScene : public Scene
 {
@@ -23,12 +23,12 @@ public:
     void OnKeyDown(SDL_Keycode key, Uint16 mod);
 
 private:
-    Color initialColor;
-    Color finalColor;
-    Color currentColor;
-
     Uint32 initialTime;
     Uint32 duration;
+
+    GameObject* object;
+
+    Systems2D::Physics* physicsSystem;
 
 };
 
