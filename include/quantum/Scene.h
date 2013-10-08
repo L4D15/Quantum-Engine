@@ -12,11 +12,11 @@ public:
     Scene(std::string name);
     virtual ~Scene();
 
-    virtual void                        OnActivate();
-    virtual void                        OnDeactivate();
+    virtual void                        OnActivate() = 0;
+    virtual void                        OnDeactivate() = 0;
 
     virtual void                        OnLoop();
-    virtual void                        OnRender() = 0;
+    virtual void                        OnRender();
 
     GameObject*                         CreateGameObject(std::string name);
     void                                DestroyGameObject(GameObject*& object);
@@ -28,6 +28,9 @@ public:
 
     inline GameObject*                  GetMainCamera() { return mainCamera; }
     inline void                         SetMainCamera(GameObject* camera) { mainCamera = camera; }
+
+protected:
+    void                                RenderScene();
 
 protected:
     std::string                         name;   // Name of the Scene

@@ -6,3 +6,8 @@ RenderizableAsset::RenderizableAsset(std::string name) :
     name(name) {
 
 }
+
+void RenderizableAsset::Update()
+{
+    // Pure virtual
+}

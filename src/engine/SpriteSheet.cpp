@@ -61,7 +61,7 @@ SpriteSheet::SpriteSheet(std::string name, std::string filePath) :
     unsigned int numberOfAnimations = animations.size();
 
     // Reserve memory for all the animations
-    this->animations = new std::vector<SpriteAnimation *>(numberOfAnimations);
+    this->animations = new std::vector<Sprite *>(numberOfAnimations);
 
     unsigned int maxNumberOfFrames = 0; // We will need it later
     unsigned int currentNumberOfFrames;
@@ -89,7 +89,7 @@ SpriteSheet::SpriteSheet(std::string name, std::string filePath) :
 
         this->animations->at(currentAnimationIndex)
                 =
-                new SpriteAnimation(
+                new Sprite(
                 name,
                 currentAnimationIndex,
                 this->frameWidth,
@@ -127,19 +127,15 @@ SpriteSheet::~SpriteSheet() {
  * @param animation     Name of the animation.
  * @return              Reference to the animation.
  */
-SpriteAnimation * SpriteSheet::operator [](const char * animation) {
-    if (animation == NULL) {
-        return (this->animations->at(0));
-    } else {
-        return (this->animations->at(this->animationsMapper.find(animation)->second));
-    }
+Sprite * SpriteSheet::operator [](std::string animation) {
+    return (this->animations->at(this->animationsMapper.find(animation)->second));
 }
 
 /**
  *
  * @return
  */
-SpriteAnimation * SpriteSheet::getDefaultAnimation() {
+Sprite * SpriteSheet::GetDefaultAnimation() {
     return (this->animations->at(0));
 }
 
@@ -148,7 +144,7 @@ SpriteAnimation * SpriteSheet::getDefaultAnimation() {
  * @param animation     Name of the animation.
  * @return              Reference to the animation.
  */
-SpriteAnimation * SpriteSheet::getAnimation(const char * animation) {
+Sprite * SpriteSheet::GetAnimation(std::string animation) {
    std::map<std::string, unsigned int>::iterator animationFound;
 
    if (this->animationsMapper.count(animation) == 0) {
@@ -177,15 +173,15 @@ SpriteAnimation * SpriteSheet::getAnimation(const char * animation) {
  * @param scale
  * @param rotation
  */
-void SpriteSheet::render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation) {
+void SpriteSheet::Render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation) {
     // TODO: Implement
 
     SDL_Rect geometry;
 
     geometry.x = position.GetX();
     geometry.y = position.GetY();
-    geometry.w = this->getWidth() * scale.GetX();
-    geometry.h = this->getHeight() * scale.GetY();
+    geometry.w = this->GetWidth() * scale.GetX();
+    geometry.h = this->GetHeight() * scale.GetY();
 
     SDL_Point centerPoint;
 
@@ -200,13 +196,13 @@ void SpriteSheet::render(SDL_Renderer *renderer, Vector2D position, Vector2D sca
  *
  * @return
  */
-std::string SpriteSheet::toString() {
+std::string SpriteSheet::ToString() {
     std::stringstream stream;
 
     stream << "[========================]" << std::endl;
     stream << "-->ANIMATIONS<---" << std::endl;
     for (unsigned int i = 0; i < this->animations->size(); ++i) {
-        stream << "Animations[" << i << "] = " << this->animations->at(i)->getName() << std::endl;
+        stream << "Animations[" << i << "] = " << this->animations->at(i)->GetName() << std::endl;
     }
 
     stream << std::endl;

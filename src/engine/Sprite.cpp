@@ -1,13 +1,13 @@
 #include <sstream>
 
-#include "quantum/SpriteAnimation.h"
+#include "quantum/Sprite.h"
 
-SpriteAnimation::SpriteAnimation() {
+Sprite::Sprite() {
     // TODO: Implement?
     // Is necessary a default constructor for STL container
 }
 
-SpriteAnimation::SpriteAnimation(
+Sprite::Sprite(
         std::string name,
         unsigned int animationIndex,
         unsigned int widthPerFrame,
@@ -32,7 +32,7 @@ SpriteAnimation::SpriteAnimation(
     this->frameRate = frameRate;
 }
 
-SpriteAnimation::~SpriteAnimation() {
+Sprite::~Sprite() {
     this->frames->clear();
     delete this->frames;
 }
@@ -42,7 +42,7 @@ SpriteAnimation::~SpriteAnimation() {
  * @param frameIndex    Frame index from 0 to the total number of frames that composes the animation.
  * @return              SDL_Rect representing the area to be cropped from the texture to obtain the current frame of the animation.
  */
-SDL_Rect SpriteAnimation::operator [](const unsigned int frameIndex) {
+SDL_Rect Sprite::operator [](const unsigned int frameIndex) {
     SDL_Rect frame;
 
     if (frameIndex >= this->frames->size()) {
@@ -66,7 +66,7 @@ SDL_Rect SpriteAnimation::operator [](const unsigned int frameIndex) {
     return frame;
 }
 
-std::string SpriteAnimation::toString() {
+std::string Sprite::ToString() {
     std::stringstream stream;
 
     stream << "/******************************/" << std::endl;

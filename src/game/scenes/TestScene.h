@@ -24,11 +24,7 @@ public:
     void OnKeyDown(SDL_Keycode key, Uint16 mod);
 
 private:
-    Uint32 initialTime;
-    Uint32 duration;
-
     GameObject* object;
-    GameObject* child;
 
     Assets2D::SpriteSheet* image;
 

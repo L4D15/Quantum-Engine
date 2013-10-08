@@ -1,12 +1,15 @@
+#ifndef QUANTUM_SPRITE_H
+#define QUANTUM_SPRITE_H
+
 #include <string>
 #include <vector>
 #include "quantum/Libraries.h"
 #include "Vector2D.h"
 
-class SpriteAnimation {
+class Sprite {
 public:
-    SpriteAnimation();
-    SpriteAnimation(
+    Sprite();
+    Sprite(
             std::string name,
             unsigned int animationIndex,
             unsigned int widthPerFrame,
@@ -14,18 +17,18 @@ public:
             unsigned int numberOfFrames,
             unsigned int frameRate = 200,
             bool oscillate = false);
-    virtual ~SpriteAnimation();
+    virtual ~Sprite();
     
     SDL_Rect                    operator[](const unsigned int frameIndex);
     
-    std::string                 toString();
+    std::string                 ToString();
     
-    inline std::string          getName() { return name; }
-    inline int                  getFrameRate() { return frameRate; }
-    inline int                  isOscillating() { return oscillate; }
-    inline int                  getNumberOfFrames() { return frames->size(); }
-    inline int                  getWidth() { return frameWidth; }
-    inline int                  getHeight() { return frameHeight; }
+    inline std::string          GetName() { return name; }
+    inline int                  GetFrameRate() { return frameRate; }
+    inline int                  IsOscillating() { return oscillate; }
+    inline int                  GetNumberOfFrames() { return frames->size(); }
+    inline int                  GetWidth() { return frameWidth; }
+    inline int                  GetHeight() { return frameHeight; }
     
 private:
     std::string                 name;
@@ -38,3 +41,5 @@ private:
     unsigned int                frameRate;
     bool                        oscillate;
 };
+
+#endif // QUANTUM_SPRITE_H
