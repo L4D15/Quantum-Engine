@@ -1,4 +1,6 @@
 #include "quantum/Scene.h"
+#include "quantum/Game.h"
+#include "quantum/components/ComponentsList.h"
 
 Scene::Scene(std::string name):
     name(name)
@@ -39,6 +41,7 @@ void Scene::OnDeactivate()
 void Scene::OnLoop()
 {
     world->loopStart();
+    world->setDelta(Game::deltaTime);
 }
 
 void Scene::OnRender()
@@ -58,6 +61,9 @@ GameObject* Scene::CreateGameObject(std::string name)
     artemis::Entity& objectEntity = world->createEntity();
     object = new GameObject(name, objectEntity);
 
+    // Add the transform component (every object will have at least that)
+    object->AddComponent(new Components2D::Transform2D(*object));
+
     std::pair<std::string, GameObject* > objectMapped(name, object);
     this->objectsMapping.insert(objectMapped);
 
@@ -71,7 +77,7 @@ GameObject* Scene::CreateGameObject(std::string name)
 void Scene::DestroyGameObject(GameObject*& object)
 {
     world->deleteEntity(object->entity);
-    delete object;
+    delete &object;
     object = NULL;
 }
 
@@ -89,4 +95,18 @@ void Scene::DestroyGameObject(std::string name)
     {
         this->objectsMapping.erase(object);
     }
+}
+
+/**
+ * @brief Scene::AddSystem
+ * @param system
+ * @return
+ */
+artemis::EntitySystem* Scene::AddSystem(artemis::EntitySystem *system)
+{
+    artemis::EntitySystem* sys;
+    sys = this->world->getSystemManager()->setSystem(system);
+    system->initialize();
+
+    return sys;
 }

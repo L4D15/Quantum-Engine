@@ -5,7 +5,13 @@
 TestScene::TestScene() :
     Scene("Test Scene")
 {
+    // This Scene will have a Physics system
+    this->physicsSystem = (Systems2D::Physics*) AddSystem(new Systems2D::Physics());
 
+    // Objects
+    object = CreateGameObject("Object");
+    object->AddComponent(new Components2D::Physics(*object));
+    object->SetPosition(Game::window->GetWidth()/2 - 50, Game::window->GetHeight()/2 - 50);
 }
 
 TestScene::~TestScene()
@@ -17,9 +23,6 @@ void TestScene::OnActivate()
 {
     this->initialTime = Game::GetTime();
     this->duration = 5000;
-
-    this->initialColor = presetcolors::LightPurple;
-    this->finalColor = presetcolors::Orange;
 }
 
 void TestScene::OnDeactivate()
@@ -29,13 +32,10 @@ void TestScene::OnDeactivate()
 
 void TestScene::OnLoop()
 {
-    currentColor = Math::Interpolate(Math::Interpolation::Boomerang, initialColor, finalColor,
-                                     Math::Normalize(this->initialTime, this->initialTime + this->duration, Game::GetTime()));
-    if (currentColor == initialColor)
-    {
-        // Reset Interpolation
-        this->initialTime = Game::GetTime();
-    }
+    Scene::OnLoop();
+
+    // Process systems
+    physicsSystem->process();
 }
 
 void TestScene::OnRender()
@@ -45,14 +45,16 @@ void TestScene::OnRender()
     SDL_GetRenderDrawColor(Game::window->GetRenderer(), &red, &green, &blue, &alpha);
 
     // Render
+    Vector2D pos;
     SDL_Rect rect;
 
-    rect.x = 100;
-    rect.y = 100;
+    pos = object->GetPosition2D();
+    rect.x = pos.GetX();
+    rect.y = pos.GetY();
     rect.w = 100;
     rect.h = 100;
 
-    SDL_SetRenderDrawColor(Game::window->GetRenderer(), currentColor.GetRed(), currentColor.GetGreen(), currentColor.GetBlue(), currentColor.GetAlpha());
+    SDL_SetRenderDrawColor(Game::window->GetRenderer(), 255, 0, 255, 255);
     SDL_RenderFillRect(Game::window->GetRenderer(), &rect);
 
     SDL_SetRenderDrawColor(Game::window->GetRenderer(), red, green, blue, alpha);
@@ -61,10 +63,21 @@ void TestScene::OnRender()
 
 void TestScene::OnKeyDown(SDL_Keycode key, Uint16 mod)
 {
+    Components2D::Physics* p;
     switch (key)
     {
     case SDLK_ESCAPE:
         Game::Terminate();
+        break;
+
+    case SDLK_RIGHT:
+        p = (Components2D::Physics*) object->GetComponent<Components2D::Physics>();
+        p->AddAceleration(5, 0);
+        break;
+
+    case SDLK_LEFT:
+        p = (Components2D::Physics*) object->GetComponent<Components2D::Physics>();
+        p->AddAceleration(-5, 0);
         break;
     }
 }

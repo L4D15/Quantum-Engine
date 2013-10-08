@@ -1,5 +1,7 @@
 #include "quantum/GameObject.h"
 #include "quantum/Scene.h"
+#include "quantum/components/ComponentsList.h"
+
 
 /**
  * @brief Creates a new object in the scene.
@@ -23,4 +25,39 @@ void GameObject::SetTag(std::string tagName)
 {
     this->entity.setTag(tagName);
     this->currentTag = tagName;
+}
+
+/**
+ * @brief GameObject::GetPosition2D
+ * @return
+ */
+Vector2D GameObject::GetPosition2D()
+{
+    Components2D::Transform2D* posComponent;
+
+    posComponent = (Components2D::Transform2D*)this->entity.getComponent<Components2D::Transform2D>();
+
+    return posComponent->GetPosition();
+}
+
+/**
+ * @brief GameObject::GetRelativePosition2D
+ * @return
+ */
+Vector2D GameObject::GetRelativePosition2D()
+{
+    Components2D::Transform2D* posComponent;
+
+    posComponent = (Components2D::Transform2D*)this->entity.getComponent<Components2D::Transform2D>();
+
+    return posComponent->GetRelativePosition();
+}
+
+void GameObject::SetPosition(float x, float y)
+{
+    Components2D::Transform2D* posComponent;
+
+    posComponent = (Components2D::Transform2D*)this->entity.getComponent<Components2D::Transform2D>();
+
+    posComponent->SetPosition(x, y);
 }
