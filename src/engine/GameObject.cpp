@@ -65,17 +65,44 @@ void GameObject::SetPosition(float x, float y)
 void GameObject::MakeChildOfObject(GameObject *parent)
 {
     this->parent = parent;
-    Vector2D parentPos = parent->GetPosition2D();
-    Vector2D relativePos = GetRelativePosition2D() - parentPos;
 
-    SetPosition(relativePos.GetX(), relativePos.GetY());
+    // 2D
+    Components2D::Transform2D* transformParent = (Components2D::Transform2D*) parent->GetComponent<Components2D::Transform2D>();
+    Components2D::Transform2D* transform = (Components2D::Transform2D*) GetComponent<Components2D::Transform2D>();
+
+    // Check if both objects have the Transform2D component
+    if (transformParent != NULL && transform != NULL)
+    {
+        Vector2D parentPos = parent->GetPosition2D();
+        Vector2D relativePos = GetRelativePosition2D() - parentPos;
+
+        SetPosition(relativePos.GetX(), relativePos.GetY());
+
+        float parentRotation = transformParent->GetRotation();
+        float relativeRotation = transform->GetRotation() - parentRotation;
+
+        transform->SetRotation(relativeRotation);
+    }
+
+    // 3D
+    // TODO
 }
 
 void GameObject::UnmakeChildOfObject()
 {
-    Vector2D globalPosition;
+    // 2D
+    Components2D::Transform2D* transform = (Components2D::Transform2D*) GetComponent<Components2D::Transform2D>();
 
-    globalPosition = this->GetPosition2D();
+    if (transform != NULL)
+    {
+        Vector2D globalPosition;
+        globalPosition = this->GetPosition2D();
+        SetPosition(globalPosition.GetX(), globalPosition.GetY());
+    }
+
+    // 3D
+    // TODO
+
     this->parent = NULL;
-    SetPosition(globalPosition.GetX(), globalPosition.GetY());
+
 }
