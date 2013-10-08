@@ -5,6 +5,7 @@
 #include "quantum/Vector2D.h"
 #include "quantum/Libraries.h"
 #include "quantum/systems/2D/Physics.h"
+#include "quantum/SpriteSheet.h"
 
 class TestScene : public Scene
 {
@@ -28,6 +29,8 @@ private:
 
     GameObject* object;
     GameObject* child;
+
+    Assets2D::SpriteSheet* image;
 
     Systems2D::Physics* physicsSystem;
 
