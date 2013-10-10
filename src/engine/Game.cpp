@@ -6,7 +6,7 @@
 // =====================================
 
 Window* Game::window = NULL;
-systems::SceneManager Game::sceneManager;
+Systems2D::SceneManager Game::sceneManager;
 float Game::deltaTime = 1.0f;
 
 bool Game::run = false;
