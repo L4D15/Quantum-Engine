@@ -1,6 +1,8 @@
 # CMake minimun version required to compile
 cmake_minimum_required(VERSION 2.6)
 
+message("Building Makefile for Quantum Engine")
+
 # =================================================================
 # Project variables
 # =================================================================
@@ -22,8 +24,6 @@ project("${PROJECT_NAME}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-
-
 
 # =================================================================
 # Macros
@@ -58,8 +58,7 @@ set(PROJECT_SOURCE_FILES ${PROJECT_SOURCE_FILES} ${PROJECT_HEADER_FILES})
 # Link sources
 # =================================================================
 # Define executable to be created
-#add_executable(${PROJECT_EXECUTABLE_NAME} ${PROJECT_SOURCE_FILES})
-add_library(${PROJECT_LIBRARY_NAME} ${PROJECT_SOURCE_FILES})
+add_library(${PROJECT_LIBRARY_NAME} SHARED ${PROJECT_SOURCE_FILES} ${PROJECT_HEADER_FILES})
 
 # =================================================================
 # Libraries
@@ -173,7 +172,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
     # Link libraries
     set(EXTRA_LIBS ${OPENGL_LIBRARY} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} ${ARTEMIS_LIBRARY} ${JSONCPP_LIBRARY})
-    target_link_libraries(${PROJECT_LIBRARY_NAME} ${EXTRA_LIBS})
+    target_link_libraries(${PROJECT_LIBRARY_NAME} ${EXTRA_LIBS} ${PROJECT_LIBRARY_NAME})
 
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
