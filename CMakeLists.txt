@@ -58,7 +58,8 @@ set(PROJECT_SOURCE_FILES ${PROJECT_SOURCE_FILES} ${PROJECT_HEADER_FILES})
 # Link sources
 # =================================================================
 # Define executable to be created
-add_executable(${PROJECT_EXECUTABLE_NAME} ${PROJECT_SOURCE_FILES})
+#add_executable(${PROJECT_EXECUTABLE_NAME} ${PROJECT_SOURCE_FILES})
+add_library(${PROJECT_LIBRARY_NAME} ${PROJECT_SOURCE_FILES})
 
 # =================================================================
 # Libraries
@@ -124,7 +125,7 @@ if(APPLE)
         message("    ${lib}")
     endforeach(lib)
 
-    target_link_libraries(${PROJECT_EXECUTABLE_NAME} ${EXTRA_LIBS})
+    target_link_libraries(${PROJECT_LIBRARY_NAME} ${EXTRA_LIBS})
 endif(APPLE)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -172,7 +173,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
     # Link libraries
     set(EXTRA_LIBS ${OPENGL_LIBRARY} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} ${ARTEMIS_LIBRARY} ${JSONCPP_LIBRARY})
-    target_link_libraries(${PROJECT_EXECUTABLE_NAME} ${EXTRA_LIBS})
+    target_link_libraries(${PROJECT_LIBRARY_NAME} ${EXTRA_LIBS})
 
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
@@ -180,13 +181,3 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 # Fix Include Path
 # =================================================================
 include_directories(${PROJECT_HEADERS_DIR} ${PROJECT_INCLUDE_DIRECTORIES})
-
-# =================================================================
-# Post scripts
-# =================================================================
-# Create symbolic link to assets folder
-# message("Creating symbolic link from ${CMAKE_SOURCE_DIR}/assets to ${CMAKE_BINARY_DIR}/bin/assets")
-# add_custom_command(
-#     TARGET ${PROJECT_NAME} POST_BUILD
-#     COMMAND ln -s "${CMAKE_SOURCE_DIR}/assets" "${CMAKE_BINARY_DIR}/bin/assets"
-# )
