@@ -28,6 +28,7 @@ For Artemis-Cpp and JsonCpp follow the steps in their GitHub's page.
 OpenGL should be present in the systems but the development libraries may be missing, so make sure the package `mesa-common-dev` is installed.
 
 For SDL2 libraries (SDL2, SDL2_image and SDL2_ttf) the best option is to download the source code from their respective websites and compile it yourself. It's a very straight forward process since you only need to run these three commands inside the folder of each library:
+
 1. `./configure`
 2. `make`
 3. `make install`
@@ -35,6 +36,7 @@ For SDL2 libraries (SDL2, SDL2_image and SDL2_ttf) the best option is to downloa
 This will install the libraries into `/usr/local/lib` and the header files in `/usr/local/include`.
 
 For Artemis-Cpp y JsonCpp the process is almost the same except we have included CMake compiling support so you just need to run the following:
+
 1. `mkdir build`
 2. `cd build`
 3. `cmake ..`
@@ -42,6 +44,8 @@ For Artemis-Cpp y JsonCpp the process is almost the same except we have included
 5. `make install`
 
 ### Windows
+
+_Pending to do, sorry_ :-(
 
 ## Build Quantum Engine
 Follow these steps to compile Quantum Engine:
