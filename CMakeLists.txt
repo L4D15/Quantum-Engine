@@ -1,7 +1,11 @@
 # CMake minimun version required to compile
 cmake_minimum_required(VERSION 2.6)
 
+message("====================================")
 message("Building Makefile for Quantum Engine")
+message("====================================")
+message("Source Dir: ${CMAKE_CURRENT_SOURCE_DIR}")
+message("Binary Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
 # =================================================================
 # Project properties
@@ -9,9 +13,9 @@ message("Building Makefile for Quantum Engine")
 project("${PROJECT_NAME}")
 
 # Specify build output directories
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 
 # Prevents cmake from following symbolic links using GLOB
 cmake_policy( SET CMP0009 NEW)
@@ -34,9 +38,9 @@ ENDMACRO()
 # =================================================================
 # Source Files (.cpp files)
 # =================================================================
-file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/*.cpp")
+file(GLOB_RECURSE SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-message("Source Files (.cpp)")
+message("-- Source Files (.cpp)")
 foreach(file ${SOURCE_FILES})
     message("    ${file}")
 endforeach()
@@ -44,10 +48,11 @@ endforeach()
 # =================================================================
 # Include directories (containing .h files)
 # =================================================================
-SUBDIRLIST(INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/include")
-file(GLOB_RECURSE HEADER_FILES "${CMAKE_SOURCE_DIR}/*.h")
+# SUBDIRLIST(INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include")
+file(GLOB_RECURSE HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
-message("Header Files (.h)")
+message("-- Header Files (.h)")
 foreach(file ${HEADER_FILES})
     message("    ${file}")
 endforeach()
@@ -95,13 +100,18 @@ endif(APPLE)
 # =================================================================
 # Output Library
 # =================================================================
+include_directories(${INCLUDE_DIRECTORIES})
 message("Directories included in the Header search:")
 foreach(dir ${INCLUDE_DIRECTORIES})
     message("    ${dir}")
 endforeach(dir)
 
-include_directories("${CMAKE_SOURCE_DIR}/include")
 
+# Create the library
 add_library(QuantumEngine SHARED ${SOURCE_FILES} ${HEADER_FILES})
 
 target_link_libraries(QuantumEngine ${OPENGL_LIB} ${ARTEMIS_LIB} ${JSON_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
+
+message("====================================")
+message("Quantum Engine Finished")
+message("====================================")
