@@ -23,7 +23,7 @@ GameObject::GameObject(std::string name, artemis::Entity& entity):
  */
 void GameObject::SetTag(std::string tagName)
 {
-    this->entity.setTag(tagName);
+    //this->entity.setTag(tagName);
     this->currentTag = tagName;
 }
 
