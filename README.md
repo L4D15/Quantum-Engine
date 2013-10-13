@@ -18,14 +18,14 @@ Quantum Engine uses multiple libraries that need to be present in the system bef
 * [JsonCpp](https://github.com/L4D15/jsoncpp)
 
 ### Mac OS X
-OpenGL, SDL2, SDL2_image and SDL2_ttf are loaded from its Frameworks containers that must be present in the system. OpenGL.framework should be installed in the system by default (commonly in `/System/Library/Frameworks`.
+OpenGL, SDL2, SDL2_image and SDL2_ttf are loaded from its Frameworks containers that must be present in the system. OpenGL.framework should be installed in the system by default (commonly in /System/Library/Frameworks.
 
-In the case of SDL2 libraries, install the development libraries available in their respective websites (copy them to `/Library/Frameworks`).
+In the case of SDL2 libraries, install the development libraries available in their respective websites (copy them to /Library/Frameworks).
 
 For Artemis-Cpp and JsonCpp follow the steps in their GitHub's page.
 
 ### Linux
-OpenGL should be present in the systems but the development libraries may be missing, so make sure the package `mesa-common-dev` is installed.
+OpenGL should be present in the systems but the development libraries may be missing, so make sure the package _mesa-common-dev_ is installed.
 
 For SDL2 libraries (SDL2, SDL2_image and SDL2_ttf) the best option is to download the source code from their respective websites and compile it yourself. It's a very straight forward process since you only need to run these three commands inside the folder of each library:
 

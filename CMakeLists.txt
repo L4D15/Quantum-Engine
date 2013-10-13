@@ -40,22 +40,12 @@ ENDMACRO()
 # =================================================================
 file(GLOB_RECURSE SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-message("-- Source Files (.cpp)")
-foreach(file ${SOURCE_FILES})
-    message("    ${file}")
-endforeach()
-
 # =================================================================
 # Include directories (containing .h files)
 # =================================================================
 # SUBDIRLIST(INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include")
 file(GLOB_RECURSE HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
-
-message("-- Header Files (.h)")
-foreach(file ${HEADER_FILES})
-    message("    ${file}")
-endforeach()
 
 # =================================================================
 # Libraries
