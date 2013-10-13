@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include "quantum/Window.h"
 #include "quantum/SceneManager.h"
+#include "quantum/ResourceManager.h"
 
 #define QUANTUM_MAX_FPS 60
 
@@ -37,13 +38,14 @@ public:
     static void                         WriteToConsole(std::string text);
     static void                         Terminate();
     static inline Uint32                GetTime() { return SDL_GetTicks(); }
+    static std::string                  GetName() { return name; }
 protected:
 
     // Attributes
 public:
 
 protected:
-    std::string                         name;
+    static std::string                  name;
 
 private:
     // Delta time
@@ -69,6 +71,7 @@ public:
     static float                        deltaTime;      // Delta Time
 
     static Systems2D::SceneManager      sceneManager;
+    static ResourceManager              resourceManager;
 
 protected:
     static bool                         run;

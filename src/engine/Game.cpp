@@ -7,9 +7,11 @@
 
 Window* Game::window = NULL;
 Systems2D::SceneManager Game::sceneManager;
+ResourceManager Game::resourceManager;
 float Game::deltaTime = 1.0f;
 
 bool Game::run = false;
+std::string Game::name;
 
 // =====================================
 
@@ -19,7 +21,7 @@ bool Game::run = false;
  */
 Game::Game(std::string name)
 {
-    this->name = name;
+    Game::name = name;
 
     // Initialize SDL and TTF
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -54,6 +56,10 @@ Game::~Game()
  */
 void Game::Start()
 {
+    // Initial information
+    std::cout << "Working dir : " << Game::resourceManager.GetWorkingPath() << std::endl;
+    std::cout << "Assets folder : " << Game::resourceManager.GetAssetsDir() << std::endl;
+    // ===================
     run = true;
     MainLoop();
 }
