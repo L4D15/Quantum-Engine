@@ -9,7 +9,25 @@ ResourceManager::ResourceManager()
 
 ResourceManager::~ResourceManager()
 {
+    std::map<std::string, Assets2D::AnimatedSprite*>::iterator currentAS;
 
+    for (currentAS = this->animatedSprites.begin(); currentAS != this->animatedSprites.end(); ++currentAS)
+    {
+        std::cout << "Deallocating resource [" << currentAS->first << " @ AnimatedSprite]" << std::endl;
+        delete currentAS->second;
+    }
+    this->animatedSprites.clear();
+    std::cout << "Deallocated all AnimatedSprites." << std::endl;
+
+    std::map<std::string, Assets2D::Sprite*>::iterator currentSprite;
+
+    for (currentSprite = this->sprites.begin(); currentSprite != this->sprites.end(); ++currentSprite)
+    {
+        std::cout << "Unallocating resource [" << currentSprite->first << " @ Sprite]" << std::endl;
+        delete currentSprite->second;
+    }
+    this->sprites.clear();
+    std::cout << "Deallocated all Sprites." << std::endl;
 }
 
 std::string ResourceManager::GetWorkingPath()
