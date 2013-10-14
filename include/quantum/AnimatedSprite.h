@@ -2,7 +2,7 @@
 #define QUANTUM_ANIMATEDSPRITE_H
 
 #include "quantum/RenderizableAsset.h"
-#include "quantum/SpriteSheet.h"
+#include "quantum/Sprite.h"
 
 namespace Assets2D
 {
@@ -10,7 +10,7 @@ namespace Assets2D
 class AnimatedSprite : public RenderizableAsset
 {
 public:
-    AnimatedSprite(SpriteSheet* sprite);
+    AnimatedSprite(Sprite* sprite);
     virtual ~AnimatedSprite();
 
     void                ChangeAnimation(std::string animationName);
@@ -22,8 +22,8 @@ public:
     void                Render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation);
 
 private:
-    SpriteSheet*        sprite;
-    Sprite*             currentAnimation;
+    Sprite*        sprite;
+    SpriteSheetAnimation*             currentAnimation;
     int                 currentAnimationFrame;
 
     int                 timeLastUpdate;

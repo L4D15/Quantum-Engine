@@ -3,7 +3,7 @@
 
 using namespace Assets2D;
 
-AnimatedSprite::AnimatedSprite(SpriteSheet *sprite)
+AnimatedSprite::AnimatedSprite(Sprite *sprite)
     : RenderizableAsset(sprite->GetName())
 {
     this->sprite = sprite;
