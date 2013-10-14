@@ -2,6 +2,9 @@
 #define QUANTUM_RESOURCEMANAGER_H
 
 #include <string>
+#include "quantum/AnimatedSprite.h"
+#include "quantum/Sprite.h"
+#include <map>
 
 #ifdef __APPLE__
     #include <unistd.h>
@@ -26,12 +29,31 @@ public:
     ResourceManager();
     virtual ~ResourceManager();
 
-    std::string             GetWorkingPath();
-    std::string             GetPath(std::string path);
-    std::string             GetAssetsDir();
-    std::string             GetImagesDir();
+    // Resource management
+    Assets2D::AnimatedSprite*       GetAnimatedSprite(std::string name);
+    Assets2D::Sprite*               GetSprite(std::string name);
+
+    // Path management
+    std::string                     GetWorkingPath();
+    std::string                     GetPath(std::string path);
+    std::string                     GetAssetsDir();
+    std::string                     GetImagesDir();
+    std::string                     FixPath(std::string path);
+
 private:
-    std::string             gameName;
+    void                            SetUsed(std::string assetName);
+    void                            SetUnused(std::string assetName);
+
+private:
+    std::string                     gameName;
+
+    // Resources
+    std::map<
+        std::string,
+        Assets2D::AnimatedSprite*>  animatedSprites;
+    std::map<
+        std::string,
+        Assets2D::Sprite*>          sprites;
 };
 
 #endif // QUANTUM_RESOURCEMANAGER_H
