@@ -7,6 +7,9 @@ message("====================================")
 message("Source Dir: ${CMAKE_CURRENT_SOURCE_DIR}")
 message("Binary Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp")
+
 # =================================================================
 # Project properties
 # =================================================================
@@ -64,6 +67,13 @@ if(APPLE)
     endif(NOT OPENGL_LIB)
 endif(APPLE)
 
+if(${CMAKE_SYSTEM_NAME} matches "Linux")
+    find_package(OpenGL REQUIRED)
+    set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} ${OpenGL_INCLUDE_DIRS})
+    set(OPENGL_LIB ${OPENGL_LIBRARIES})
+    add_definitions(${OpenGL_DEFINITIONS})
+endif()
+
 # SDL2 Libraries
 if(APPLE)
     find_library(SDL2_LIB SDL2)
@@ -100,7 +110,8 @@ endforeach(dir)
 # Create the library
 add_library(QuantumEngine SHARED ${SOURCE_FILES} ${HEADER_FILES})
 
-target_link_libraries(QuantumEngine ${OPENGL_LIB} ${ARTEMIS_LIB} ${JSON_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
+# Artemis-Cpp and JsonCpp are in the scope of CMake from the subdirs
+target_link_libraries(QuantumEngine ${OPENGL_LIB} artemis json ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
 
 message("====================================")
 message("Quantum Engine Finished")
