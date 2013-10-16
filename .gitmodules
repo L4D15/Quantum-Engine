@@ -7,3 +7,12 @@
 [submodule "res/macosx/Artemis-Cpp"]
 	path = res/macosx/Artemis-Cpp
 	url = https://github.com/L4D15/Artemis-Cpp.git
+[submodule "lib/Artemis-Cpp"]
+	path = lib/Artemis-Cpp
+	url = https://github.com/L4D15/Artemis-Cpp.git
+[submodule "lib/JsonCpp"]
+	path = lib/JsonCpp
+	url = https://github.com/L4D15/jsoncpp.git
+[submodule "lib/SDL2"]
+	path = lib/SDL2
+	url = https://github.com/L4D15/SDL2.git

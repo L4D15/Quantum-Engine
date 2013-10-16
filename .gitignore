@@ -7,12 +7,6 @@
 # CMake output
 #
 build/
-CMakeCache.txt
-CMakeFiles/
-Makefile
-bin/
-lib/
-cmake_install.cmake
 
 ####
 # Qt Creator
