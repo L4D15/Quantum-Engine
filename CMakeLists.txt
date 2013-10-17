@@ -7,15 +7,18 @@ message("====================================")
 message("Source Dir: ${CMAKE_CURRENT_SOURCE_DIR}")
 message("Binary Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp")
+
 # =================================================================
 # Project properties
 # =================================================================
 project("${PROJECT_NAME}")
 
 # Specify build output directories
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 # Prevents cmake from following symbolic links using GLOB
 cmake_policy( SET CMP0009 NEW)
@@ -38,7 +41,7 @@ ENDMACRO()
 # =================================================================
 # Source Files (.cpp files)
 # =================================================================
-file(GLOB_RECURSE SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+file(GLOB_RECURSE SOURCE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 # =================================================================
 # Include directories (containing .h files)
@@ -50,11 +53,16 @@ file(GLOB_RECURSE HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 # =================================================================
 # Libraries
 # =================================================================
+set(EXTRA_LIBS "")
 # Artemis-Cpp
-find_library(ARTEMIS_LIB NAMES artemis HINTS "/usr/local/lib")
+#find_library(ARTEMIS_LIB NAMES artemis HINTS "/usr/local/lib")
+set(EXTRA_LIBS ${EXTRA_LIBS} ArtemisCpp)
+set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp/include")
 
 # JsonCpp
-find_library(JSON_LIB NAMES json HINTS "/usr/local/lib")
+#find_library(JSON_LIB NAMES json HINTS "/usr/local/lib")
+set(EXTRA_LIBS ${EXTRA_LIBS} JsonCpp)
+set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp/include")
 
 # OpenGL
 if(APPLE)
@@ -63,6 +71,16 @@ if(APPLE)
         message (FATAL_ERROR "Failed to find OpenGL in your Frameworks directory")
     endif(NOT OPENGL_LIB)
 endif(APPLE)
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    find_package(OpenGL REQUIRED)
+    if(NOT OPENGL_FOUND)
+        message(ERROR "OpenGL not found!")
+    endif(NOT OPENGL_FOUND)
+    set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} ${OPENGL_INCLUDE_DIRS})
+    set(EXTRA_LIBS ${EXTRA_LIBS} ${OPENGL_LIBRARIES})
+    #add_definitions(${OPENGL_DEFINITIONS})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # SDL2 Libraries
 if(APPLE)
@@ -82,6 +100,13 @@ if(APPLE)
     endif(NOT SDL2_TTF_LIB)
 endif(APPLE)
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    find_library(SDL2_LIB NAMES SDL2 HINTS "/usr/local/lib")
+    find_library(SDL2_IMAGE_LIB NAMES SDL2_image HINTS "/usr/local/lib")
+    find_library(SDL2_TTF_LIB NAMES SDL2_ttf HINTS "/usr/local/lib")
+    set(EXTRA_LIBS ${EXTRA_LIBS} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
 # Additional step for Mac OS X
 if(APPLE)
     mark_as_advanced(OPENGL_LIB SDL2_LIB SDL2_IMAGE_LIB SDL2_TTF_LIB)
@@ -91,16 +116,24 @@ endif(APPLE)
 # Output Library
 # =================================================================
 include_directories(${INCLUDE_DIRECTORIES})
+
 message("Directories included in the Header search:")
 foreach(dir ${INCLUDE_DIRECTORIES})
     message("    ${dir}")
 endforeach(dir)
 
-
 # Create the library
-add_library(QuantumEngine SHARED ${SOURCE_FILES} ${HEADER_FILES})
+add_library(QuantumEngine STATIC ${SOURCE_FILES} ${HEADER_FILES})
 
-target_link_libraries(QuantumEngine ${OPENGL_LIB} ${ARTEMIS_LIB} ${JSON_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
+# Artemis-Cpp and JsonCpp are in the scope of CMake from the subdirs
+if(APPLE)
+    target_link_libraries(QuantumEngine ${OPENGL_LIB} ${ARTEMIS_LIB} ${JSON_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
+endif(APPLE)
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    message("Linking libraries : ${EXTRA_LIBS}")
+    target_link_libraries(QuantumEngine ${EXTRA_LIBS})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 message("====================================")
 message("Quantum Engine Finished")

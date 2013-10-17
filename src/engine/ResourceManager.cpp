@@ -80,7 +80,7 @@ std::string ResourceManager::GetPath(std::string path)
             absolutePath.replace(characterIndex, 1, "\\");
         }
     }
-    absolutePath.insert(0, "\");
+    absolutePath.insert(0, "\\");
 #endif
 
 #ifdef __APPLE__
@@ -90,7 +90,7 @@ std::string ResourceManager::GetPath(std::string path)
     absolutePath.insert(0, "/");
 #endif
 
-#ifdef _linux
+#ifdef __linux
     absolutePath = path;
     absolutePath.insert(0, "/");
 #endif
