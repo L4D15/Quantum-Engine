@@ -11,7 +11,7 @@
     #define GetWorkingDir getcwd
 
 #elif __linux
-    #include <unistd.h>>
+    #include <unistd.h>
     #define GetWorkingDir getcwd
 
 #elif _WIN32
