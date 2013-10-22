@@ -1,6 +1,9 @@
 # CMake minimun version required to compile
 cmake_minimum_required(VERSION 2.6)
 
+# Add modules
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
+
 message("====================================")
 message("Building Makefile for Quantum Engine")
 message("====================================")
@@ -82,6 +85,15 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     #add_definitions(${OPENGL_DEFINITIONS})
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    find_package(OpenGL REQUIRED)
+    if(NOT OPENGL_FOUND)
+        message(ERROR "OpenGL not found!")
+    endif(NOT OPENGL_FOUND)
+    set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} ${OPENGL_INCLUDE_DIRS})
+    set(EXTRA_LIBS ${EXTRA_LIBS} ${OPENGL_LIBRARIES})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
 # SDL2 Libraries
 if(APPLE)
     find_library(SDL2_LIB SDL2)
@@ -106,6 +118,15 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     find_library(SDL2_TTF_LIB NAMES SDL2_ttf HINTS "/usr/local/lib")
     set(EXTRA_LIBS ${EXTRA_LIBS} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    find_library(SDL2_LIB NAMES SDL2 HINTS "C:/MinGW/lib")
+    find_library(SDL2_IMAGE_LIB NAMES SDL2_image HINTS "C:/MinGW/lib")
+    find_library(SDL2_TTF_LIB NAMES SDL2_ttf HINTS "C:/MinGW/lib")
+    find_library(SDL2_MAIN_LIB NAMES SDL2main HINTS "C:/MinGW/lib")
+    find_library(MINGW_LIB NAMES mingw32 HINTS "C:/MinGW/lib")
+    set(EXTRA_LIBS ${EXTRA_LIBS} ${MINGW_LIB} ${SDL2_MAIN_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 # Additional step for Mac OS X
 if(APPLE)
@@ -134,6 +155,11 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message("Linking libraries : ${EXTRA_LIBS}")
     target_link_libraries(QuantumEngine ${EXTRA_LIBS})
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    message("Linking libraries : ${EXTRA_LIBS}")
+    target_link_libraries(QuantumEngine ${EXTRA_LIBS})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 message("====================================")
 message("Quantum Engine Finished")
