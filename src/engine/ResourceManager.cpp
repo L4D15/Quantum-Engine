@@ -73,7 +73,7 @@ std::string ResourceManager::GetPath(std::string path)
     std::string absolutePath;
 #ifdef _WIN32
     absolutePath = path;
-    for (int characterIndex = 0; characterIndex < abosolutePath.length(); ++characterIndex)
+    for (int characterIndex = 0; characterIndex < absolutePath.length(); ++characterIndex)
     {
         if (absolutePath[characterIndex] == '/')
         {

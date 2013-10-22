@@ -17,6 +17,11 @@ Quantum Engine uses multiple libraries that need to be present in the system bef
 * [Artemis-Cpp](https://github.com/L4D15/Artemis-Cpp)
 * [JsonCpp](https://github.com/L4D15/jsoncpp)
 
+After cloning the repository you need to initialize its submodules running the following commands:
+
+1. `git submodules init`
+2. `git submodules update`
+
 ### Mac OS X
 OpenGL, SDL2, SDL2_image and SDL2_ttf are loaded from its Frameworks containers that must be present in the system. OpenGL.framework should be installed in the system by default (commonly in /System/Library/Frameworks.
 
@@ -45,7 +50,18 @@ For Artemis-Cpp y JsonCpp the process is almost the same except we have included
 
 ### Windows
 
-_Pending to do, sorry_ :-(
+Install MinGW + MSYS and add its respective *bin* directories to your system's PATH variable. Install CMake and add it to PATH too.
+
+You'll need some third libraries to make work SDL2_image and SDL2_ttf properly. Install this libraries in the given order following the steps provided in its respectives websites.
+* [zlib](http://www.zlib.net/)
+* [libpng](http://www.libpng.org/pub/png/libpng.html)
+* [FreeType](http://www.freetype.org/)
+
+Download the SDL2 development libraries (base, image and ttf) for MinGW and follow these steps for each library:
+
+1. Copy the *lib* folder to C:\MinGW merging with the existing *lib* folder.
+2. Copy the *include* folder to C:\MinGW merging with the existing *include* folder.
+3. Copy the .dll files inside *bin* folder to  the output folder where the executable will be placed (commonly in ./build/bin).
 
 ## Build Quantum Engine
 Follow these steps to compile Quantum Engine:
@@ -55,7 +71,7 @@ Follow these steps to compile Quantum Engine:
 3. Open a new terminal and navigate to the Quantum Engine's folder.
 4. `mkdir build`
 5. `cd build`
-6. `cmake ..`
+6. `cmake ..` (if you are in Windows use the generator "MSYS Makefiles")
 7. `make`
 8. Enjoy.
 
