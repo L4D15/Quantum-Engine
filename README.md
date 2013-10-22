@@ -27,7 +27,7 @@ OpenGL, SDL2, SDL2_image and SDL2_ttf are loaded from its Frameworks containers 
 
 In the case of SDL2 libraries, install the development libraries available in their respective websites (copy them to /Library/Frameworks).
 
-For Artemis-Cpp and JsonCpp follow the steps in their GitHub's page.
+Artemis-Cpp and JsonCpp are added to the CMake project as subdirectories, so they will be compiled and linked alongside Quantum-Engine when you call the `make` command.
 
 ### Linux
 OpenGL should be present in the systems but the development libraries may be missing, so make sure the package _mesa-common-dev_ is installed.
@@ -40,13 +40,7 @@ For SDL2 libraries (SDL2, SDL2_image and SDL2_ttf) the best option is to downloa
 
 This will install the libraries into `/usr/local/lib` and the header files in `/usr/local/include`.
 
-For Artemis-Cpp y JsonCpp the process is almost the same except we have included CMake compiling support so you just need to run the following:
-
-1. `mkdir build`
-2. `cd build`
-3. `cmake ..`
-4. `make`
-5. `make install`
+Artemis-Cpp and JsonCpp are added to the CMake project as subdirectories, so they will be compiled and linked alongside Quantum-Engine when you call the `make` command.
 
 ### Windows
 
@@ -62,6 +56,8 @@ Download the SDL2 development libraries (base, image and ttf) for MinGW and foll
 1. Copy the *lib* folder to C:\MinGW merging with the existing *lib* folder.
 2. Copy the *include* folder to C:\MinGW merging with the existing *include* folder.
 3. Copy the .dll files inside *bin* folder to  the output folder where the executable will be placed (commonly in ./build/bin).
+
+Artemis-Cpp and JsonCpp are added to the CMake project as subdirectories, so they will be compiled and linked alongside Quantum-Engine when you call the `make` command.
 
 ## Build Quantum Engine
 Follow these steps to compile Quantum Engine:
