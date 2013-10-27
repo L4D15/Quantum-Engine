@@ -3,7 +3,7 @@
 
 #include "quantum/Vector2D.h"
 
-namespace Systems2D {
+namespace systems2D {
 
 class ParallaxScrolling {
 public:

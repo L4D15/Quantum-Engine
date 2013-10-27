@@ -5,7 +5,7 @@
 #include <map>
 #include <SDL2/SDL.h>
 
-namespace Systems2D {
+namespace systems2D {
 
 class SceneManager {
 public:

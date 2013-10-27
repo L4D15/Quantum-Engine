@@ -10,7 +10,7 @@ public:
     CollisionBox(const float x, const float y, const float w, const float h);
 
     bool collides(Vector2D globalPosition, CollisionBox& other, Vector2D otherGlobalPosition);
-    void render(Components2D::Camera * cameraToRender, Vector2D position, Color color = presetcolors::Green);
+    void render(components2D::Camera * cameraToRender, Vector2D position, Color color = presetcolors::Green);
 private:
     float width;
     float height;

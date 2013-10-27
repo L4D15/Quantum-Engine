@@ -6,7 +6,7 @@
 #include "quantum/RenderizableAsset.h"
 #include <list>
 
-namespace Components2D
+namespace components2D
 {
 
 // ==================================================== //
@@ -20,7 +20,7 @@ typedef struct {
 }RenderPackage;
 // ==================================================== //
 
-class Camera : public Components::Component
+class Camera : public components::Component
 {
 public:
     Camera(GameObject& owner);

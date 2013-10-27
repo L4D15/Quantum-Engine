@@ -14,7 +14,7 @@ public:
     void                                createWindow(bool fullscreen);
 
 public: // Systems
-    static Systems2D::ParallaxScrolling parallaxScrolling;
+    static systems2D::ParallaxScrolling parallaxScrolling;
 
 private:
 

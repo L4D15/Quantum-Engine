@@ -1,6 +1,6 @@
 #include "quantum/components/Component.h"
 
-using namespace Components;
+using namespace components;
 
 Component::Component(GameObject &owner) :
     owner(owner)

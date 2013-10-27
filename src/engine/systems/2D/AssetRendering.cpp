@@ -1,11 +1,11 @@
 #include "quantum/systems/2D/AssetRendering.h"
 
-using namespace Systems2D;
+using namespace systems2D;
 
 AssetRendering::AssetRendering()
 {
-    addComponentType<Components2D::Transform2D>();
-    addComponentType<Components2D::AssetRenderer>();
+    addComponentType<components2D::Transform2D>();
+    addComponentType<components2D::AssetRenderer>();
 }
 
 AssetRendering::~AssetRendering()
@@ -22,8 +22,8 @@ void AssetRendering::initialize()
 void AssetRendering::processEntity(artemis::Entity &e)
 {
     // Queue the asset for render
-    Components2D::Transform2D* transform;
-    Components2D::AssetRenderer* renderer;
+    components2D::Transform2D* transform;
+    components2D::AssetRenderer* renderer;
 
     transform = transformMapper.get(e);
     renderer = rendererMapper.get(e);

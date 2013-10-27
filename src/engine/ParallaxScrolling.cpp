@@ -1,6 +1,6 @@
 #include "quantum/ParallaxScrolling.h"
 #include <cmath>
-using namespace Systems2D;
+using namespace systems2D;
 
 ParallaxScrolling::ParallaxScrolling() {
     this->backgroundDistance = 1000;

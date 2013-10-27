@@ -70,7 +70,7 @@ public:
 
     static float                        deltaTime;      // Delta Time
 
-    static Systems2D::SceneManager      sceneManager;
+    static systems2D::SceneManager      sceneManager;
     static ResourceManager              resourceManager;
 
 protected:

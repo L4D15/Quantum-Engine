@@ -5,7 +5,7 @@
 
 class GameObject;
 
-namespace Components
+namespace components
 {
 
 /**

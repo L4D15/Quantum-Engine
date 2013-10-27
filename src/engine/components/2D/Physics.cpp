@@ -1,7 +1,7 @@
 #include "quantum/components/2D/Physics.h"
 #include "quantum/Game.h"
 
-using namespace Components2D;
+using namespace components2D;
 
 Physics::Physics(GameObject &owner) :
     Component(owner)

@@ -1,6 +1,6 @@
 #include "quantum/SceneManager.h"
 
-using namespace Systems2D;
+using namespace systems2D;
 
 SceneManager::SceneManager()
 {

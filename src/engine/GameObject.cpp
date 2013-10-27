@@ -33,9 +33,9 @@ void GameObject::setTag(std::string tagName)
  */
 Vector2D GameObject::getPosition2D()
 {
-    Components2D::Transform2D* posComponent;
+    components2D::Transform2D* posComponent;
 
-    posComponent = (Components2D::Transform2D*)this->entity.getComponent<Components2D::Transform2D>();
+    posComponent = (components2D::Transform2D*)this->entity.getComponent<components2D::Transform2D>();
 
     return posComponent->GetPosition();
 }
@@ -46,18 +46,18 @@ Vector2D GameObject::getPosition2D()
  */
 Vector2D GameObject::getRelativePosition2D()
 {
-    Components2D::Transform2D* posComponent;
+    components2D::Transform2D* posComponent;
 
-    posComponent = (Components2D::Transform2D*)this->entity.getComponent<Components2D::Transform2D>();
+    posComponent = (components2D::Transform2D*)this->entity.getComponent<components2D::Transform2D>();
 
     return posComponent->GetRelativePosition();
 }
 
 void GameObject::setPosition(float x, float y)
 {
-    Components2D::Transform2D* posComponent;
+    components2D::Transform2D* posComponent;
 
-    posComponent = (Components2D::Transform2D*)this->entity.getComponent<Components2D::Transform2D>();
+    posComponent = (components2D::Transform2D*)this->entity.getComponent<components2D::Transform2D>();
 
     posComponent->SetPosition(x, y);
 }
@@ -67,8 +67,8 @@ void GameObject::makeChildOfObject(GameObject *parent)
     this->parent = parent;
 
     // 2D
-    Components2D::Transform2D* transformParent = (Components2D::Transform2D*) parent->getComponent<Components2D::Transform2D>();
-    Components2D::Transform2D* transform = (Components2D::Transform2D*) getComponent<Components2D::Transform2D>();
+    components2D::Transform2D* transformParent = (components2D::Transform2D*) parent->getComponent<components2D::Transform2D>();
+    components2D::Transform2D* transform = (components2D::Transform2D*) getComponent<components2D::Transform2D>();
 
     // Check if both objects have the Transform2D component
     if (transformParent != NULL && transform != NULL)
@@ -91,7 +91,7 @@ void GameObject::makeChildOfObject(GameObject *parent)
 void GameObject::unmakeChildOfObject()
 {
     // 2D
-    Components2D::Transform2D* transform = (Components2D::Transform2D*) getComponent<Components2D::Transform2D>();
+    components2D::Transform2D* transform = (components2D::Transform2D*) getComponent<components2D::Transform2D>();
 
     if (transform != NULL)
     {

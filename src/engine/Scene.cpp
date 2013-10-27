@@ -10,7 +10,7 @@ Scene::Scene(std::string name):
 
     // Create the main camera
     mainCamera = createGameObject("Main Camera");
-    mainCamera->addComponent(new Components2D::Camera(*mainCamera));
+    mainCamera->addComponent(new components2D::Camera(*mainCamera));
 }
 
 Scene::~Scene()
@@ -53,9 +53,9 @@ void Scene::onRender()
 void Scene::renderScene()
 {
     // TODO: Support multiple cameras
-    Components2D::Camera* cameraComp;
+    components2D::Camera* cameraComp;
 
-    cameraComp = (Components2D::Camera*) mainCamera->getComponent<Components2D::Camera>();
+    cameraComp = (components2D::Camera*) mainCamera->getComponent<components2D::Camera>();
 
     cameraComp->RenderScene();
 }
@@ -73,7 +73,7 @@ GameObject* Scene::createGameObject(std::string name)
     object = new GameObject(name, objectEntity);
 
     // Add the transform component (every object will have at least that)
-    object->addComponent(new Components2D::Transform2D(*object));
+    object->addComponent(new components2D::Transform2D(*object));
 
     std::pair<std::string, GameObject* > objectMapped(name, object);
     this->objectsMapping.insert(objectMapped);

@@ -4,10 +4,10 @@
 #include "quantum/components/Component.h"
 #include "quantum/Vector2D.h"
 
-namespace Components2D
+namespace components2D
 {
 
-class Physics : public Components::Component
+class Physics : public components::Component
 {
 public:
     Physics(GameObject& owner);

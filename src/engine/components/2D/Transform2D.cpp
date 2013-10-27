@@ -1,7 +1,7 @@
 #include "quantum/components/2D/Transform2D.h"
 #include "quantum/GameObject.h"
 
-using namespace Components2D;
+using namespace components2D;
 
 Transform2D::Transform2D(GameObject &owner) :
     Component(owner),

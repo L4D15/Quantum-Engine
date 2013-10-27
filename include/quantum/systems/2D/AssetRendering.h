@@ -4,7 +4,7 @@
 #include "quantum/Libraries.h"
 #include "quantum/components/ComponentsList.h"
 
-namespace Systems2D
+namespace systems2D
 {
 
 class AssetRendering : public artemis::EntityProcessingSystem
@@ -17,8 +17,8 @@ public:
     void                processEntity(artemis::Entity &e);
 
 private:
-    artemis::ComponentMapper<Components2D::Transform2D> transformMapper;
-    artemis::ComponentMapper<Components2D::AssetRenderer> rendererMapper;
+    artemis::ComponentMapper<components2D::Transform2D> transformMapper;
+    artemis::ComponentMapper<components2D::AssetRenderer> rendererMapper;
 };
 
 }

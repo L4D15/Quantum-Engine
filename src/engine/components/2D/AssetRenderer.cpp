@@ -3,7 +3,7 @@
 #include "quantum/Game.h"
 #include <sstream>
 
-using namespace Components2D;
+using namespace components2D;
 
 /**
  * @brief AssetRenderer::AssetRenderer
@@ -45,9 +45,9 @@ AssetRenderer::~AssetRenderer() {
  * @param angle         Rotation angle from the center point
  */
 void AssetRenderer::Render(GameObject* camera, Vector2D position, Vector2D scale, float rotation) {
-    Components2D::Camera* cameraComponent;
+    components2D::Camera* cameraComponent;
 
-    cameraComponent = (Components2D::Camera*)camera->getComponent<Components2D::Camera>();
+    cameraComponent = (components2D::Camera*)camera->getComponent<components2D::Camera>();
 
     if (cameraComponent != NULL && this->asset != NULL && this->visible == true) {
         RenderPackage package;

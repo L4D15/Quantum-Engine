@@ -6,12 +6,12 @@
 #include "quantum/components/Component.h"
 #include "quantum/GameObject.h"
 
-namespace Components2D {
+namespace components2D {
 
 /**
  * @brief Component used to render any asset capable of being rendered into the scene
  */
-class AssetRenderer : public Components::Component {
+class AssetRenderer : public components::Component {
 public:
     AssetRenderer(GameObject& owner, GameObject* camera);
     AssetRenderer(GameObject& owner, GameObject* camera, assets2D::RenderizableAsset* asset, int zIndex = 0, int distance = 0);

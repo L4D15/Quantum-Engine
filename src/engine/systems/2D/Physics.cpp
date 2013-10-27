@@ -1,11 +1,11 @@
 #include "quantum/systems/2D/Physics.h"
 
-using namespace Systems2D;
+using namespace systems2D;
 
 Physics::Physics()
 {
-    addComponentType<Components2D::Physics>();
-    addComponentType<Components2D::Transform2D>();
+    addComponentType<components2D::Physics>();
+    addComponentType<components2D::Transform2D>();
 }
 
 Physics::~Physics()

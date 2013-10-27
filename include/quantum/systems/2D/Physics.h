@@ -5,7 +5,7 @@
 #include "quantum/components/2D/Transform2D.h"
 #include "quantum/components/2D/Physics.h"
 
-namespace Systems2D
+namespace systems2D
 {
 
 class Physics : public artemis::EntityProcessingSystem
@@ -18,8 +18,8 @@ public:
     void                processEntity(artemis::Entity& e);
 
 private:
-    artemis::ComponentMapper<Components2D::Physics>     physicsMapper;
-    artemis::ComponentMapper<Components2D::Transform2D> transformMapper;
+    artemis::ComponentMapper<components2D::Physics>     physicsMapper;
+    artemis::ComponentMapper<components2D::Transform2D> transformMapper;
 };
 
 }

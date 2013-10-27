@@ -1,7 +1,7 @@
 #include "quantum/components/2D/Camera.h"
 #include "quantum/Game2D.h"
 
-using namespace Components2D;
+using namespace components2D;
 
 Camera::Camera(GameObject &owner) :
     Component(owner)
