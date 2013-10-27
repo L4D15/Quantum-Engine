@@ -103,14 +103,22 @@ std::string ResourceManager::getPath(std::string path)
     return absolutePath;
 }
 
+/**
+ * @brief ResourceManager::getAssetsDir
+ * @return
+ */
 std::string ResourceManager::getAssetsDir()
 {
-    return getPath("Assets/");
+    return getPath("assets/");
 }
 
+/**
+ * @brief ResourceManager::getImagesDir
+ * @return
+ */
 std::string ResourceManager::getImagesDir()
 {
-    return getPath("Assets/Images/");
+    return getPath("assets/images/");
 }
 
 /**
