@@ -30,19 +30,19 @@ public:
     virtual ~ResourceManager();
 
     // Resource management
-    Assets2D::AnimatedSprite*       GetAnimatedSprite(std::string name);
-    Assets2D::Sprite*               GetSprite(std::string name);
+    assets2D::AnimatedSprite*       getAnimatedSprite(std::string name);
+    assets2D::Sprite*               getSprite(std::string name);
 
     // Path management
-    std::string                     GetWorkingPath();
-    std::string                     GetPath(std::string path);
-    std::string                     GetAssetsDir();
-    std::string                     GetImagesDir();
-    std::string                     FixPath(std::string path);
+    std::string                     getWorkingPath();
+    std::string                     getPath(std::string path);
+    std::string                     getAssetsDir();
+    std::string                     getImagesDir();
+    std::string                     fixPath(std::string path);
 
 private:
-    void                            SetUsed(std::string assetName);
-    void                            SetUnused(std::string assetName);
+    void                            setUsed(std::string assetName);
+    void                            setUnused(std::string assetName);
 
 private:
     std::string                     gameName;
@@ -50,10 +50,10 @@ private:
     // Resources
     std::map<
         std::string,
-        Assets2D::AnimatedSprite*>  animatedSprites;
+        assets2D::AnimatedSprite*>  animatedSprites;
     std::map<
         std::string,
-        Assets2D::Sprite*>          sprites;
+        assets2D::Sprite*>          sprites;
 };
 
 #endif // QUANTUM_RESOURCEMANAGER_H

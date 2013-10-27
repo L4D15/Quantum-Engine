@@ -8,27 +8,27 @@
 #include "quantum/SpriteSheetAnimation.h"
 #include "quantum/RenderizableAsset.h"
 
-namespace Assets2D {
+namespace assets2D {
 
 class Sprite : public RenderizableAsset {
 public:
     Sprite(std::string name, std::string filePath);
     virtual ~Sprite();
 
-    SpriteSheetAnimation *                            operator[](std::string animation);
-    SpriteSheetAnimation *                            GetDefaultAnimation();
-    SpriteSheetAnimation *                            GetAnimation(std::string animation);
+    SpriteSheetAnimation *              operator[](std::string animation);
+    SpriteSheetAnimation *              getDefaultAnimation();
+    SpriteSheetAnimation *              getAnimation(std::string animation);
 
-    inline int                          GetWidth() { return totalWidth; }
-    inline int                          GetHeight() { return totalHeight; }
-    inline int                          GetIndividualFrameWidth() { return frameWidth; }
-    inline int                          GetIndividualFrameHeight() { return frameHeight; }
+    inline int                          getWidth() { return totalWidth; }
+    inline int                          getHeight() { return totalHeight; }
+    inline int                          getIndividualFrameWidth() { return frameWidth; }
+    inline int                          getIndividualFrameHeight() { return frameHeight; }
 
-    inline SDL_Texture *                GetTexture() { return spriteSheet; }
+    inline SDL_Texture *                getTexture() { return spriteSheet; }
 
-    void                                Render(SDL_Renderer* renderer, Vector2D position, Vector2D scale, float rotation);
+    void                                render(SDL_Renderer* renderer, Vector2D position, Vector2D scale, float rotation);
 
-    std::string                         ToString();
+    std::string                         toString();
 private:
     SDL_Texture *                       spriteSheet;
 

@@ -9,8 +9,8 @@ Scene::Scene(std::string name):
     world = new artemis::World();
 
     // Create the main camera
-    mainCamera = CreateGameObject("Main Camera");
-    mainCamera->AddComponent(new Components2D::Camera(*mainCamera));
+    mainCamera = createGameObject("Main Camera");
+    mainCamera->addComponent(new Components2D::Camera(*mainCamera));
 }
 
 Scene::~Scene()
@@ -25,37 +25,37 @@ Scene::~Scene()
 
     this->objectsMapping.clear();
 
-    DestroyGameObject(mainCamera);
+    destroyGameObject(mainCamera);
     delete this->world;
 }
 
-void Scene::OnActivate()
+void Scene::onActivate()
 {
 
 }
 
-void Scene::OnDeactivate()
+void Scene::onDeactivate()
 {
 
 }
 
-void Scene::OnLoop()
+void Scene::onLoop()
 {
     world->loopStart();
     world->setDelta(Game::deltaTime);
 }
 
-void Scene::OnRender()
+void Scene::onRender()
 {
-    RenderScene();
+    renderScene();
 }
 
-void Scene::RenderScene()
+void Scene::renderScene()
 {
     // TODO: Support multiple cameras
     Components2D::Camera* cameraComp;
 
-    cameraComp = (Components2D::Camera*) mainCamera->GetComponent<Components2D::Camera>();
+    cameraComp = (Components2D::Camera*) mainCamera->getComponent<Components2D::Camera>();
 
     cameraComp->RenderScene();
 }
@@ -65,7 +65,7 @@ void Scene::RenderScene()
  * @param name
  * @return
  */
-GameObject* Scene::CreateGameObject(std::string name)
+GameObject* Scene::createGameObject(std::string name)
 {
     GameObject* object;
 
@@ -73,7 +73,7 @@ GameObject* Scene::CreateGameObject(std::string name)
     object = new GameObject(name, objectEntity);
 
     // Add the transform component (every object will have at least that)
-    object->AddComponent(new Components2D::Transform2D(*object));
+    object->addComponent(new Components2D::Transform2D(*object));
 
     std::pair<std::string, GameObject* > objectMapped(name, object);
     this->objectsMapping.insert(objectMapped);
@@ -85,7 +85,7 @@ GameObject* Scene::CreateGameObject(std::string name)
  * @brief Scene::destroyGameObject
  * @param object
  */
-void Scene::DestroyGameObject(GameObject*& object)
+void Scene::destroyGameObject(GameObject*& object)
 {
     world->deleteEntity(object->entity);
     delete &object;
@@ -96,7 +96,7 @@ void Scene::DestroyGameObject(GameObject*& object)
  * @brief Scene::destroyGameObject
  * @param name
  */
-void Scene::DestroyGameObject(std::string name)
+void Scene::destroyGameObject(std::string name)
 {
     std::map<std::string, GameObject* >::iterator object;
 
@@ -113,7 +113,7 @@ void Scene::DestroyGameObject(std::string name)
  * @param system
  * @return
  */
-artemis::EntitySystem* Scene::AddSystem(artemis::EntitySystem *system)
+artemis::EntitySystem* Scene::addSystem(artemis::EntitySystem *system)
 {
     artemis::EntitySystem* sys;
     sys = this->world->getSystemManager()->setSystem(system);

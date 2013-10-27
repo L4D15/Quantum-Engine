@@ -1,13 +1,13 @@
 #include "quantum/RenderizableAsset.h"
 
-using namespace Assets2D;
+using namespace assets2D;
 
 RenderizableAsset::RenderizableAsset(std::string name) :
     name(name) {
 
 }
 
-void RenderizableAsset::Update()
+void RenderizableAsset::update()
 {
     // Pure virtual
 }

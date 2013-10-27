@@ -54,20 +54,20 @@ Game::~Game()
 /**
  * @brief Game::start
  */
-void Game::Start()
+void Game::start()
 {
     // Initial information
-    std::cout << "Working dir : " << Game::resourceManager.GetWorkingPath() << std::endl;
-    std::cout << "Assets folder : " << Game::resourceManager.GetAssetsDir() << std::endl;
+    std::cout << "Working dir : " << Game::resourceManager.getWorkingPath() << std::endl;
+    std::cout << "Assets folder : " << Game::resourceManager.getAssetsDir() << std::endl;
     // ===================
     run = true;
-    MainLoop();
+    mainLoop();
 }
 
 /**
  * @brief Game::terminate
  */
-void Game::Terminate()
+void Game::terminate()
 {
     run = false;
 }
@@ -75,20 +75,20 @@ void Game::Terminate()
 /**
  * @brief Game::mainLoop
  */
-void Game::MainLoop()
+void Game::mainLoop()
 {
     while (run)
     {
         Uint32 startTime = SDL_GetTicks();
 
-        UpdateTime();
+        updateTime();
 
-        HandleEvents();
-        Update();
-        Render();
+        handleEvents();
+        update();
+        render();
 
-        ManageFramesPerSecond();
-        CountFramesPerSecond();
+        manageFramesPerSecond();
+        countFramesPerSecond();
 
         Uint32 endTime = SDL_GetTicks();
     }
@@ -97,40 +97,40 @@ void Game::MainLoop()
 /**
  * @brief Game::handleEvents
  */
-void Game::HandleEvents()
+void Game::handleEvents()
 {
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
-        sceneManager.OnEvent(&event);
+        sceneManager.onEvent(&event);
     }
 }
 
 /**
  * @brief Game::update
  */
-void Game::Update()
+void Game::update()
 {
-    sceneManager.OnLoop();
+    sceneManager.onLoop();
 }
 
 /**
  * @brief Game::render
  */
-void Game::Render()
+void Game::render()
 {
-    this->window->Clear();
+    this->window->clear();
 
-    sceneManager.OnRender();
+    sceneManager.onRender();
 
-    this->window->Draw();
+    this->window->draw();
 
 }
 
 /**
  * @brief Game::updateDeltaTime
  */
-void Game::UpdateTime()
+void Game::updateTime()
 {
     this->oldTime = this->currentTime;
     this->currentTime = SDL_GetTicks();
@@ -140,7 +140,7 @@ void Game::UpdateTime()
 /**
  * @brief Game::countFramesPerSecond
  */
-void Game::CountFramesPerSecond()
+void Game::countFramesPerSecond()
 {
     this->fpsCurrentTime = SDL_GetTicks();
     Uint32 timeElapsed = this->fpsCurrentTime - this->fpsOldTime;
@@ -162,7 +162,7 @@ void Game::CountFramesPerSecond()
 /**
  * @brief Game::manageFramesPerSecond
  */
-void Game::ManageFramesPerSecond()
+void Game::manageFramesPerSecond()
 {
     this->frameSkipOldTime = this->frameSkipCurrentTime;
     this->frameSkipCurrentTime = SDL_GetTicks();    // Total time since the start of the game
@@ -182,7 +182,7 @@ void Game::ManageFramesPerSecond()
  * @brief Game::writeToConsole
  * @param text
  */
-void Game::WriteToConsole(std::string text)
+void Game::writeToConsole(std::string text)
 {
     std::cout << text << std::endl;
 }

@@ -12,25 +12,25 @@ public:
     Scene(std::string name);
     virtual ~Scene();
 
-    virtual void                        OnActivate() = 0;
-    virtual void                        OnDeactivate() = 0;
+    virtual void                        onActivate() = 0;
+    virtual void                        onDeactivate() = 0;
 
-    virtual void                        OnLoop();
-    virtual void                        OnRender();
+    virtual void                        onLoop();
+    virtual void                        onRender();
 
-    GameObject*                         CreateGameObject(std::string name);
-    void                                DestroyGameObject(GameObject*& object);
-    void                                DestroyGameObject(std::string name);
+    GameObject*                         createGameObject(std::string name);
+    void                                destroyGameObject(GameObject*& object);
+    void                                destroyGameObject(std::string name);
 
-    artemis::EntitySystem*              AddSystem(artemis::EntitySystem* system);
+    artemis::EntitySystem*              addSystem(artemis::EntitySystem* system);
 
-    inline std::string                  GetName() { return name; }
+    inline std::string                  getName() { return name; }
 
-    inline GameObject*                  GetMainCamera() { return mainCamera; }
-    inline void                         SetMainCamera(GameObject* camera) { mainCamera = camera; }
+    inline GameObject*                  getMainCamera() { return mainCamera; }
+    inline void                         setMainCamera(GameObject* camera) { mainCamera = camera; }
 
 protected:
-    void                                RenderScene();
+    void                                renderScene();
 
 protected:
     std::string                         name;   // Name of the Scene

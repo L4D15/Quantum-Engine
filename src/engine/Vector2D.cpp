@@ -115,7 +115,7 @@ Vector2D Vector2D::operator *(const Vector2D& vector) {
  Length of the vector (without applying the square root to the result).
  @return    Quadratic length.
  */
-float Vector2D::GetLengthQuadratic() {
+float Vector2D::getLengthQuadratic() {
     return (x * x + y * y);
 }
 
@@ -124,8 +124,8 @@ float Vector2D::GetLengthQuadratic() {
  @return    Length.
  */
 
-float Vector2D::GetLength() {
-    return Math::SquareRoot(x * x + y * y);
+float Vector2D::getLength() {
+    return Math::squareRoot(x * x + y * y);
 }
 
 /**
@@ -133,7 +133,7 @@ float Vector2D::GetLength() {
  @param vector    The other vector.
  @return          Quadratic distance.
  */
-float Vector2D::DistanceQuadratic(const Vector2D& vector) {
+float Vector2D::distanceQuadratic(const Vector2D& vector) {
     float Ax,Ay;
 
     Ax = x - vector.x;
@@ -147,19 +147,19 @@ float Vector2D::DistanceQuadratic(const Vector2D& vector) {
  @param vector      The other vector.
  @return            Distante to the other vector.
  */
-float Vector2D::Distance(const Vector2D& vector) {
+float Vector2D::distance(const Vector2D& vector) {
     float Ax,Ay;
 
     Ax = x - vector.x;
     Ay = y - vector.y;
 
-    return Math::SquareRoot(Ax*Ax + Ay*Ay);
+    return Math::squareRoot(Ax*Ax + Ay*Ay);
 }
 
 /**
  Normalizes the vector to values between 0 and 1.
  */
-Vector2D Vector2D::Normalized() {
+Vector2D Vector2D::normalized() {
     Vector2D normalized;
     float lengthsq = (x * x + y * y);
 
@@ -169,14 +169,14 @@ Vector2D Vector2D::Normalized() {
         return normalized;
     }
 
-    float recip = Math::InverseSquareRoot(lengthsq);
+    float recip = Math::inverseSquareRoot(lengthsq);
     normalized.x *= recip;
     normalized.y *= recip;
 
     return normalized;
 }
 
-Vector3D Vector2D::ToVector3D()
+Vector3D Vector2D::toVector3D()
 {
     return Vector3D(this->x, this->y, 0.0f);
 }
@@ -185,7 +185,7 @@ Vector3D Vector2D::ToVector3D()
  Format the values of the vector to represent it as a string.
  @return    String with the forma (x,y).
  */
-std::string Vector2D::ToString() {
+std::string Vector2D::toString() {
     std::stringstream str;
 
     str << "(" << x << "," << y << ")";

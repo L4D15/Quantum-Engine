@@ -9,7 +9,7 @@ ResourceManager::ResourceManager()
 
 ResourceManager::~ResourceManager()
 {
-    std::map<std::string, Assets2D::AnimatedSprite*>::iterator currentAS;
+    std::map<std::string, assets2D::AnimatedSprite*>::iterator currentAS;
 
     for (currentAS = this->animatedSprites.begin(); currentAS != this->animatedSprites.end(); ++currentAS)
     {
@@ -19,7 +19,7 @@ ResourceManager::~ResourceManager()
     this->animatedSprites.clear();
     std::cout << "Deallocated all AnimatedSprites." << std::endl;
 
-    std::map<std::string, Assets2D::Sprite*>::iterator currentSprite;
+    std::map<std::string, assets2D::Sprite*>::iterator currentSprite;
 
     for (currentSprite = this->sprites.begin(); currentSprite != this->sprites.end(); ++currentSprite)
     {
@@ -30,7 +30,7 @@ ResourceManager::~ResourceManager()
     std::cout << "Deallocated all Sprites." << std::endl;
 }
 
-std::string ResourceManager::GetWorkingPath()
+std::string ResourceManager::getWorkingPath()
 {
     char currentPath[FILENAME_MAX];
     GetWorkingDir(currentPath, sizeof(currentPath));
@@ -43,7 +43,7 @@ std::string ResourceManager::GetWorkingPath()
  * @param path
  * @return
  */
-std::string ResourceManager::FixPath(std::string path)
+std::string ResourceManager::fixPath(std::string path)
 {
     std::string fixedPath(path);
 
@@ -68,7 +68,7 @@ std::string ResourceManager::FixPath(std::string path)
  * @param path  Relative path inside the application.
  * @return Absolute path to the given directory or file.
  */
-std::string ResourceManager::GetPath(std::string path)
+std::string ResourceManager::getPath(std::string path)
 {
     std::string absolutePath;
 #ifdef _WIN32
@@ -103,14 +103,14 @@ std::string ResourceManager::GetPath(std::string path)
     return absolutePath;
 }
 
-std::string ResourceManager::GetAssetsDir()
+std::string ResourceManager::getAssetsDir()
 {
-    return GetPath("Assets/");
+    return getPath("Assets/");
 }
 
-std::string ResourceManager::GetImagesDir()
+std::string ResourceManager::getImagesDir()
 {
-    return GetPath("Assets/Images/");
+    return getPath("Assets/Images/");
 }
 
 /**
@@ -123,10 +123,10 @@ std::string ResourceManager::GetImagesDir()
  * @param name
  * @return
  */
-Assets2D::AnimatedSprite* ResourceManager::GetAnimatedSprite(std::string name)
+assets2D::AnimatedSprite* ResourceManager::getAnimatedSprite(std::string name)
 {
     // Search the animated sprite in the already loaded assets
-    std::map<std::string, Assets2D::AnimatedSprite*>::iterator found;
+    std::map<std::string, assets2D::AnimatedSprite*>::iterator found;
 
     found = this->animatedSprites.find(name);
     if (found != this->animatedSprites.end())
@@ -138,21 +138,21 @@ Assets2D::AnimatedSprite* ResourceManager::GetAnimatedSprite(std::string name)
         // Create new Animated Sprite and insert it into the mapper
         std::string pathToImage;
 
-        pathToImage.append(GetImagesDir());
-        pathToImage.append(FixPath(name));
+        pathToImage.append(getImagesDir());
+        pathToImage.append(fixPath(name));
 
-        Assets2D::Sprite* sprite;
+        assets2D::Sprite* sprite;
 
-        sprite = new Assets2D::Sprite(name, pathToImage);
+        sprite = new assets2D::Sprite(name, pathToImage);
 
-        std::pair<std::string, Assets2D::Sprite*> mappedSprite(name, sprite);
+        std::pair<std::string, assets2D::Sprite*> mappedSprite(name, sprite);
         this->sprites.insert(mappedSprite);
 
-        Assets2D::AnimatedSprite* animatedSprite;
+        assets2D::AnimatedSprite* animatedSprite;
 
-        animatedSprite = new Assets2D::AnimatedSprite(sprite);
+        animatedSprite = new assets2D::AnimatedSprite(sprite);
 
-        std::pair<std::string, Assets2D::AnimatedSprite*> mappedAnimatedSprite(name, animatedSprite);
+        std::pair<std::string, assets2D::AnimatedSprite*> mappedAnimatedSprite(name, animatedSprite);
         this->animatedSprites.insert(mappedAnimatedSprite);
 
         return animatedSprite;
@@ -164,10 +164,10 @@ Assets2D::AnimatedSprite* ResourceManager::GetAnimatedSprite(std::string name)
  * @param name
  * @return
  */
-Assets2D::Sprite* ResourceManager::GetSprite(std::string name)
+assets2D::Sprite* ResourceManager::getSprite(std::string name)
 {
     // Search the sprite in the already loaded assets
-    std::map<std::string, Assets2D::Sprite*>::iterator found;
+    std::map<std::string, assets2D::Sprite*>::iterator found;
 
     found = this->sprites.find(name);
     if (found != this->sprites.end())
@@ -179,14 +179,14 @@ Assets2D::Sprite* ResourceManager::GetSprite(std::string name)
         // Create new Sprite and insert it into the mapper
         std::string pathToImage;
 
-        pathToImage.append(GetImagesDir());
-        pathToImage.append(FixPath(name));
+        pathToImage.append(getImagesDir());
+        pathToImage.append(fixPath(name));
 
-        Assets2D::Sprite* sprite;
+        assets2D::Sprite* sprite;
 
-        sprite = new Assets2D::Sprite(name, pathToImage);
+        sprite = new assets2D::Sprite(name, pathToImage);
 
-        std::pair<std::string, Assets2D::Sprite*> mappedSprite(name, sprite);
+        std::pair<std::string, assets2D::Sprite*> mappedSprite(name, sprite);
         this->sprites.insert(mappedSprite);
 
         return sprite;

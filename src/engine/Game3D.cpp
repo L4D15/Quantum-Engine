@@ -22,7 +22,7 @@ Game3D::~Game3D()
  * @param height
  * @param fullscreen
  */
-void Game3D::CreateWindow(int width, int height, bool fullscreen)
+void Game3D::createWindow(int width, int height, bool fullscreen)
 {
     if (fullscreen == true)
     {
@@ -33,14 +33,14 @@ void Game3D::CreateWindow(int width, int height, bool fullscreen)
         this->window = new Window(this->name, width, height, Windowed3D);
     }
 
-    SetViewport(width, height);
+    setViewport(width, height);
 }
 
 /**
  * @brief Game3D::createWindow
  * @param fullscreen
  */
-void Game3D::CreateWindow(bool fullscreen)
+void Game3D::createWindow(bool fullscreen)
 {
     if (fullscreen == true)
     {
@@ -51,23 +51,23 @@ void Game3D::CreateWindow(bool fullscreen)
         this->window = new Window(this->name, Windowed3D);
     }
 
-    SetViewport(window->GetWidth(), window->GetHeight());
+    setViewport(window->getWidth(), window->getHeight());
 }
 
-void Game3D::InitializeGL()
+void Game3D::initializeGL()
 {
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
 
-    Color clearColor = this->window->GetBackgroundColor();
+    Color clearColor = this->window->getBackgroundColor();
 
-    glClearColor((float)clearColor.GetRed() / (float)255,
-                 (float)clearColor.GetGreen() / (float)255,
-                 (float)clearColor.GetBlue() / (float)255,
-                 (float)clearColor.GetAlpha() / (float)255);
+    glClearColor((float)clearColor.getRed() / (float)255,
+                 (float)clearColor.getGreen() / (float)255,
+                 (float)clearColor.getBlue() / (float)255,
+                 (float)clearColor.getAlpha() / (float)255);
 }
 
-void Game3D::SetViewport(int width, int height)
+void Game3D::setViewport(int width, int height)
 {
     glViewport(0,0,width, height);
 }

@@ -12,13 +12,13 @@ public:
     SceneManager();
     virtual ~SceneManager();
 
-    void                                OnEvent(SDL_Event* event);
-    void                                OnLoop();
-    void                                OnRender();
+    void                                onEvent(SDL_Event* event);
+    void                                onLoop();
+    void                                onRender();
 
-    Scene*                              ChangeToScene(std::string sceneName);
-    void                                AddScene(Scene* scene);
-    void                                DeleteScene(std::string sceneName);
+    Scene*                              changeToScene(std::string sceneName);
+    void                                addScene(Scene* scene);
+    void                                deleteScene(std::string sceneName);
 
 private:
     Scene*                              currentScene;

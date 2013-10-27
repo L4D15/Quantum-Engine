@@ -19,8 +19,8 @@ Transform2D::~Transform2D()
 
 void Transform2D::SetPosition(float x, float y)
 {
-    this->position.SetX(x);
-    this->position.SetY(y);
+    this->position.setX(x);
+    this->position.setY(y);
 }
 
 void Transform2D::SetPosition(const Vector2D &position)
@@ -30,8 +30,8 @@ void Transform2D::SetPosition(const Vector2D &position)
 
 void Transform2D::SetScale(float x, float y)
 {
-    this->scale.SetX(x);
-    this->scale.SetY(y);
+    this->scale.setX(x);
+    this->scale.setY(y);
 }
 
 void Transform2D::SetScale(const Vector2D &scale)
@@ -56,15 +56,15 @@ Vector2D Transform2D::GetPosition()
     Vector2D globalPosition(this->position);
 
     GameObject* parent;
-    parent = owner.GetParentObject();
+    parent = owner.getParentObject();
 
     while (parent != NULL)
     {
-        Transform2D* parentTransform = (Transform2D*)parent->GetComponent<Transform2D>();
+        Transform2D* parentTransform = (Transform2D*)parent->getComponent<Transform2D>();
         globalPosition = globalPosition + parentTransform->GetPosition();
 
         // Advance up to the parent of the parent
-        parent = parent->GetParentObject();
+        parent = parent->getParentObject();
     }
 
     return globalPosition;
@@ -90,15 +90,15 @@ Vector2D Transform2D::GetScale()
     Vector2D totalScale(this->scale);
 
     GameObject* parent;
-    parent = owner.GetParentObject();
+    parent = owner.getParentObject();
 
     while (parent != NULL)
     {
-        Transform2D* parentTransform = (Transform2D*)parent->GetComponent<Transform2D>();
+        Transform2D* parentTransform = (Transform2D*)parent->getComponent<Transform2D>();
         totalScale = totalScale + parentTransform->GetScale();
 
         // Advance up to the parent of the parent
-        parent = parent->GetParentObject();
+        parent = parent->getParentObject();
     }
     return totalScale;
 }
@@ -124,15 +124,15 @@ float Transform2D::GetRotation()
    totalRotation = this->rotation;
 
    GameObject* parent;
-   parent = owner.GetParentObject();
+   parent = owner.getParentObject();
 
    while (parent != NULL)
    {
-       Transform2D* parentTransform = (Transform2D*)parent->GetComponent<Transform2D>();
+       Transform2D* parentTransform = (Transform2D*)parent->getComponent<Transform2D>();
        totalRotation = totalRotation + parentTransform->GetRotation();
 
        // Advance up to the parent of the parent
-       parent = parent->GetParentObject();
+       parent = parent->getParentObject();
    }
    return totalRotation;
 }

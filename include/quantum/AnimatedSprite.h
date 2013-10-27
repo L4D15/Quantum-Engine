@@ -4,7 +4,7 @@
 #include "quantum/RenderizableAsset.h"
 #include "quantum/Sprite.h"
 
-namespace Assets2D
+namespace assets2D
 {
 
 class AnimatedSprite : public RenderizableAsset
@@ -13,16 +13,16 @@ public:
     AnimatedSprite(Sprite* sprite);
     virtual ~AnimatedSprite();
 
-    void                ChangeAnimation(std::string animationName);
-    void                Update();
+    void                changeAnimation(std::string animationName);
+    void                update();
 
-    int                 GetWidth();
-    int                 GetHeight();
+    int                 getWidth();
+    int                 getHeight();
 
-    void                Render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation);
+    void                render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation);
 
 private:
-    Sprite*        sprite;
+    Sprite*             sprite;
     SpriteSheetAnimation*             currentAnimation;
     int                 currentAnimationFrame;
 
