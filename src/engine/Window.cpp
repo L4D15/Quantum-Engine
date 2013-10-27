@@ -22,7 +22,7 @@ Window::Window(std::string title, WindowMode mode)
 
     SDL_GetCurrentDisplayMode(0, &dMode);
 
-    ShowDisplayModeInfo(dMode);
+    showDisplayModeInfo(dMode);
 
     this->width = dMode.w / 2;
     this->height = dMode.h / 2;
@@ -63,10 +63,10 @@ Window::Window(std::string title, WindowMode mode)
 
     // Set up the background color
     SDL_SetRenderDrawColor(this->renderer,
-                           this->bgColor.GetRed(),
-                           this->bgColor.GetGreen(),
-                           this->bgColor.GetBlue(),
-                           this->bgColor.GetAlpha());
+                           this->bgColor.getRed(),
+                           this->bgColor.getGreen(),
+                           this->bgColor.getBlue(),
+                           this->bgColor.getAlpha());
 }
 
 /**
@@ -117,10 +117,10 @@ Window::Window(std::string title, Uint16 w, Uint16 h, WindowMode mode, Color bg)
 
     // Set up the background color
     SDL_SetRenderDrawColor(this->renderer,
-                           this->bgColor.GetRed(),
-                           this->bgColor.GetGreen(),
-                           this->bgColor.GetBlue(),
-                           this->bgColor.GetAlpha());
+                           this->bgColor.getRed(),
+                           this->bgColor.getGreen(),
+                           this->bgColor.getBlue(),
+                           this->bgColor.getAlpha());
 }
 
 /**
@@ -136,13 +136,13 @@ Window::~Window()
  * @brief Window::showDisplayModeInfo
  * @param mode
  */
-void Window::ShowDisplayModeInfo(SDL_DisplayMode& mode)
+void Window::showDisplayModeInfo(SDL_DisplayMode& mode)
 {
     std::stringstream text;
 
     text << "Display mode: [ Resolution: { " << mode.w << "x" << mode.h <<  " } @ " << mode.refresh_rate << " Hz ];";
 
-    Game::WriteToConsole(text.str());
+    Game::writeToConsole(text.str());
 }
 
 /**
@@ -151,7 +151,7 @@ void Window::ShowDisplayModeInfo(SDL_DisplayMode& mode)
  * In windows for 3D rendering it calls glClear(GL_COLOR_BUFFER_BIT). For windows
  * for 2D rendering SDL_RenderClear(...) is called.
  */
-void Window::Clear()
+void Window::clear()
 {
     if (this->mode == Fullscreen2D || this->mode == Windowed2D)
     {

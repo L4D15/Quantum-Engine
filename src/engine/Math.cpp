@@ -10,7 +10,7 @@
  * @param number    Number to calculate the inverse square root.
  * @return          Inverse square root of the number.
  */
-float Math::InverseSquareRoot(float number)
+float Math::inverseSquareRoot(float number)
 {
     long i;
     float x2, y;
@@ -31,7 +31,7 @@ float Math::InverseSquareRoot(float number)
  @param x   Number to calculate the square root.
  @return    Square root of the number.
  */
-float Math::SquareRoot(float x) {
+float Math::squareRoot(float x) {
     const float xhalf = 0.5f*x;
 
     union // get bits for floating value
@@ -50,7 +50,7 @@ float Math::SquareRoot(float x) {
  * @param b
  * @return
  */
-int Math::Max(int a, int b) {
+int Math::max(int a, int b) {
     if (a > b) {
         return a;
     }
@@ -63,7 +63,7 @@ int Math::Max(int a, int b) {
  * @param b
  * @return
  */
-int Math::Min(int a, int b) {
+int Math::min(int a, int b) {
     if (a < b) {
         return a;
     }
@@ -93,7 +93,7 @@ float Math::Normalize(float start, float end, float current)
  * @param current   Normalized time (commonly currentTime/finalTime)
  * @return
  */
-float Math::Interpolate(Interpolation::Type type, float start, float end, float time)
+float Math::interpolate(Interpolation::Type type, float start, float end, float time)
 {
     if (time > 1.0f)
     {
@@ -107,23 +107,23 @@ float Math::Interpolate(Interpolation::Type type, float start, float end, float 
 
     switch (type) {
     case Interpolation::Linear:
-        return (start + (end - start) * Interpolation::LinearFunction(time));
+        return (start + (end - start) * Interpolation::linearFunction(time));
         break;
 
     case Interpolation::EasyIn:
-        return (start + (end - start) * Interpolation::EasyInFunction(time));
+        return (start + (end - start) * Interpolation::easyInFunction(time));
         break;
 
     case Interpolation::EasyOut:
-        return (start + (end - start) * Interpolation::EasyOutFunction(time));
+        return (start + (end - start) * Interpolation::easyOutFunction(time));
         break;
 
     case Interpolation::EasyInEasyOut:
-        return (start + (end - start) * Interpolation::EasyInEasyOutFunction(time));
+        return (start + (end - start) * Interpolation::easyInEasyOutFunction(time));
         break;
 
     case Interpolation::Boomerang:
-        return (start + (end - start) * Interpolation::BoomerangFunction(time));
+        return (start + (end - start) * Interpolation::boomerangFunction(time));
         break;
 
     default:
@@ -132,27 +132,27 @@ float Math::Interpolate(Interpolation::Type type, float start, float end, float 
     }
 }
 
-float Math::Interpolation::LinearFunction(float x)
+float Math::Interpolation::linearFunction(float x)
 {
     return x;
 }
 
-float Math::Interpolation::EasyInFunction(float x)
+float Math::Interpolation::easyInFunction(float x)
 {
     return x * x;
 }
 
-float Math::Interpolation::EasyOutFunction(float x)
+float Math::Interpolation::easyOutFunction(float x)
 {
     return sin(x * Math::PI / 2.0f);
 }
 
-float Math::Interpolation::EasyInEasyOutFunction(float x)
+float Math::Interpolation::easyInEasyOutFunction(float x)
 {
     return (x * x) / ((x *x) + ((1-x) * (1-x)));
 }
 
-float Math::Interpolation::BoomerangFunction(float x)
+float Math::Interpolation::boomerangFunction(float x)
 {
     return (sin(x * Math::PI));
 }
@@ -165,13 +165,13 @@ float Math::Interpolation::BoomerangFunction(float x)
  * @param time
  * @return
  */
-Vector2D Math::Interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time)
+Vector2D Math::interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time)
 {
     float x;
     float y;
 
-    x = Interpolate(type, start.GetX(), end.GetX(), time);
-    y = Interpolate(type, start.GetY(), end.GetY(), time);
+    x = interpolate(type, start.getX(), end.getX(), time);
+    y = interpolate(type, start.getY(), end.getY(), time);
 
     return Vector2D(x, y);
 }
@@ -184,17 +184,17 @@ Vector2D Math::Interpolate(Interpolation::Type type, Vector2D start, Vector2D en
  * @param time
  * @return
  */
-Color Math::Interpolate(Interpolation::Type type, Color start, Color end, float time)
+Color Math::interpolate(Interpolation::Type type, Color start, Color end, float time)
 {
     float red;
     float green;
     float blue;
     float alpha;
 
-    red = Interpolate(type, start.GetRed(), end.GetRed(), time);
-    green = Interpolate(type, start.GetGreen(), end.GetGreen(), time);
-    blue = Interpolate(type, start.GetBlue(), end.GetBlue(), time);
-    alpha = Interpolate(type, start.GetAlpha(), end.GetAlpha(), time);
+    red = interpolate(type, start.getRed(), end.getRed(), time);
+    green = interpolate(type, start.getGreen(), end.getGreen(), time);
+    blue = interpolate(type, start.getBlue(), end.getBlue(), time);
+    alpha = interpolate(type, start.getAlpha(), end.getAlpha(), time);
 
     return Color(red, green, blue, alpha);
 }

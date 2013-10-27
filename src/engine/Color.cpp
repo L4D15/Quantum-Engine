@@ -62,7 +62,7 @@ Color::Color(const Color & other)
     this->color = other.color;
 }
 
-void Color::SetRed(int value)
+void Color::setRed(int value)
 {
     if (value > 255)
     {
@@ -77,7 +77,7 @@ void Color::SetRed(int value)
     this->color.r = value;
 }
 
-void Color::SetGreen(int value)
+void Color::setGreen(int value)
 {
     if (value > 255)
     {
@@ -92,7 +92,7 @@ void Color::SetGreen(int value)
     this->color.g = value;
 }
 
-void Color::SetBlue(int value)
+void Color::setBlue(int value)
 {
     if (value > 255)
     {
@@ -107,7 +107,7 @@ void Color::SetBlue(int value)
     this->color.b = value;
 }
 
-void Color::SetAlpha(int value)
+void Color::setAlpha(int value)
 {
     if (value > 255)
     {
@@ -121,22 +121,22 @@ void Color::SetAlpha(int value)
     this->color.a = value;
 }
 
-Uint8 Color::GetRed()
+Uint8 Color::getRed()
 {
     return this->color.r;
 }
 
-Uint8 Color::GetGreen()
+Uint8 Color::getGreen()
 {
     return this->color.g;
 }
 
-Uint8 Color::GetBlue()
+Uint8 Color::getBlue()
 {
     return this->color.b;
 }
 
-Uint8 Color::GetAlpha()
+Uint8 Color::getAlpha()
 {
     return this->color.a;
 }
@@ -183,17 +183,17 @@ bool Color::operator ==(const Color& other)
     return true;
 }
 
-SDL_Color Color::ToSDLColor()
+SDL_Color Color::toSDLColor()
 {
     return this->color;
 }
 
-Uint32 Color::ToPixelValue(SDL_PixelFormat* format)
+Uint32 Color::toPixelValue(SDL_PixelFormat* format)
 {
     return SDL_MapRGBA(format, this->color.r, this->color.g, this->color.b, this->color.a);
 }
 
-const std::string Color::ToString()
+const std::string Color::toString()
 {
     std::stringstream stream;
 

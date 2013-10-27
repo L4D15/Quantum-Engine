@@ -21,22 +21,22 @@ public:
     Vector3D                operator*(const float f);
     bool                    operator!=(const Vector3D& other);
     bool                    operator==(const Vector3D& other);
-    float                   DotProduct(const Vector3D& other);
+    float                   dotProduct(const Vector3D& other);
 
-    inline float            GetX() { return x; }
-    inline float            GetY() { return y; }
-    inline float            GetZ() { return z; }
+    inline float            getX() { return x; }
+    inline float            getY() { return y; }
+    inline float            getZ() { return z; }
 
-    float                   GetLengthQuadratic();
-    float                   GetLength();
-    float                   DistanceQuadratic(const Vector3D& other);
-    float                   Distance(const Vector3D& other);
+    float                   getLengthQuadratic();
+    float                   getLength();
+    float                   distanceQuadratic(const Vector3D& other);
+    float                   distance(const Vector3D& other);
 
-    Vector3D                Normalized();
+    Vector3D                normalized();
 
-    Vector2D                ToVector2D();
+    Vector2D                toVector2D();
 
-    std::string             ToString();
+    std::string             toString();
 
 private:
     float                   x;

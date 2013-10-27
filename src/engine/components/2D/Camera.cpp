@@ -24,7 +24,7 @@ Camera::~Camera()
 void Camera::QueueForRender(RenderPackage package)
 {
     // Apply parallax transformation
-    package.position = Game2D::parallaxScrolling.ApplyParallaxScrolling(this->owner.GetPosition2D(), package.position, package.distance);
+    package.position = Game2D::parallaxScrolling.applyParallaxScrolling(this->owner.getPosition2D(), package.position, package.distance);
 
     // Insert into the queue
     if (this->renderingQueue.size() == 0)
@@ -56,7 +56,7 @@ void Camera::RenderScene()
 {
     std::list<RenderPackage>::iterator it;
     for (it = this->renderingQueue.begin(); it != this->renderingQueue.end(); ++it) {
-        (*it).asset->Render(Game::window->GetRenderer(),
+        (*it).asset->render(Game::window->getRenderer(),
                             (*it).position,
                             (*it).scale,
                             (*it).rotation);

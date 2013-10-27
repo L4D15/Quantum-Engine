@@ -24,7 +24,7 @@ AssetRenderer::AssetRenderer(GameObject &owner, GameObject *camera) :
  * @param zIndex
  * @param distance
  */
-AssetRenderer::AssetRenderer(GameObject& owner, GameObject* camera, Assets2D::RenderizableAsset *asset, int zIndex, int distance) :
+AssetRenderer::AssetRenderer(GameObject& owner, GameObject* camera, assets2D::RenderizableAsset *asset, int zIndex, int distance) :
     Component(owner)
 {
     this->camera = camera;
@@ -47,7 +47,7 @@ AssetRenderer::~AssetRenderer() {
 void AssetRenderer::Render(GameObject* camera, Vector2D position, Vector2D scale, float rotation) {
     Components2D::Camera* cameraComponent;
 
-    cameraComponent = (Components2D::Camera*)camera->GetComponent<Components2D::Camera>();
+    cameraComponent = (Components2D::Camera*)camera->getComponent<Components2D::Camera>();
 
     if (cameraComponent != NULL && this->asset != NULL && this->visible == true) {
         RenderPackage package;
@@ -64,7 +64,7 @@ void AssetRenderer::Render(GameObject* camera, Vector2D position, Vector2D scale
     } else {
         std::stringstream text;
 
-        text << "Error - Trying to render to " << camera->GetName() << " object with no camera component attached.";
-        Game::WriteToConsole(text.str());
+        text << "Error - Trying to render to " << camera->getName() << " object with no camera component attached.";
+        Game::writeToConsole(text.str());
     }
 }

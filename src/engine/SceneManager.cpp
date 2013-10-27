@@ -12,31 +12,31 @@ SceneManager::~SceneManager()
 
 }
 
-void SceneManager::OnEvent(SDL_Event* event)
+void SceneManager::onEvent(SDL_Event* event)
 {
-    this->currentScene->OnEvent(event);
+    this->currentScene->onEvent(event);
 }
 
-void SceneManager::OnRender()
+void SceneManager::onRender()
 {
-    this->currentScene->OnRender();
+    this->currentScene->onRender();
 }
 
-void SceneManager::OnLoop()
+void SceneManager::onLoop()
 {
     this->currentScene->world->loopStart();
-    this->currentScene->OnLoop();
+    this->currentScene->onLoop();
 }
 
 /**
  * @brief SceneManager::addScene
  * @param scene
  */
-void SceneManager::AddScene(Scene *scene)
+void SceneManager::addScene(Scene *scene)
 {
     if (scene != NULL)
     {
-        std::pair<std::string, Scene* > mappedObject(scene->GetName(), scene);
+        std::pair<std::string, Scene* > mappedObject(scene->getName(), scene);
 
         this->sceneMapper.insert(mappedObject);
     }
@@ -47,7 +47,7 @@ void SceneManager::AddScene(Scene *scene)
  * @param sceneName
  * @return
  */
-Scene* SceneManager::ChangeToScene(std::string sceneName)
+Scene* SceneManager::changeToScene(std::string sceneName)
 {
     std::map<std::string, Scene* >::iterator mappedScene;
 
@@ -57,12 +57,12 @@ Scene* SceneManager::ChangeToScene(std::string sceneName)
     {
         if (this->currentScene != NULL)
         {
-            this->currentScene->OnDeactivate();
+            this->currentScene->onDeactivate();
         }
 
         this->currentScene = mappedScene->second;
 
-        this->currentScene->OnActivate();
+        this->currentScene->onActivate();
         return this->currentScene;
     }
     else
@@ -75,7 +75,7 @@ Scene* SceneManager::ChangeToScene(std::string sceneName)
  * @brief SceneManager::deleteScene
  * @param sceneName
  */
-void SceneManager::DeleteScene(std::string sceneName)
+void SceneManager::deleteScene(std::string sceneName)
 {
     std::map<std::string, Scene* >::iterator mappedScene;
 

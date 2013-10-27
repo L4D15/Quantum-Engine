@@ -10,10 +10,10 @@ public:
     ParallaxScrolling();
     virtual ~ParallaxScrolling();
 
-    void                                SetBackgroundDistance(int distance);
-    int                                 GetBackgroundDistance();
+    void                                setBackgroundDistance(int distance);
+    int                                 getBackgroundDistance();
 
-    Vector2D                            ApplyParallaxScrolling(Vector2D cameraPosition, Vector2D objectPosition, int objectDistanceFromCamera);
+    Vector2D                            applyParallaxScrolling(Vector2D cameraPosition, Vector2D objectPosition, int objectDistanceFromCamera);
 
 private:
     int                                 backgroundDistance; // Distance of the static background

@@ -4,7 +4,7 @@
 #include "quantum/Sprite.h"
 #include "quantum/Game.h"
 
-using namespace Assets2D;
+using namespace assets2D;
 
 /**
  *
@@ -14,7 +14,7 @@ Sprite::Sprite(std::string name, std::string filePath) :
     RenderizableAsset(name)
 {
     // Open Image file
-    this->spriteSheet = IMG_LoadTexture(Game::window->GetRenderer(), filePath.c_str());
+    this->spriteSheet = IMG_LoadTexture(Game::window->getRenderer(), filePath.c_str());
 
     if (this->spriteSheet == NULL) {
         std::stringstream stream;
@@ -135,7 +135,7 @@ SpriteSheetAnimation * Sprite::operator [](std::string animation) {
  *
  * @return
  */
-SpriteSheetAnimation * Sprite::GetDefaultAnimation() {
+SpriteSheetAnimation * Sprite::getDefaultAnimation() {
     return (this->animations->at(0));
 }
 
@@ -144,7 +144,7 @@ SpriteSheetAnimation * Sprite::GetDefaultAnimation() {
  * @param animation     Name of the animation.
  * @return              Reference to the animation.
  */
-SpriteSheetAnimation * Sprite::GetAnimation(std::string animation) {
+SpriteSheetAnimation * Sprite::getAnimation(std::string animation) {
    std::map<std::string, unsigned int>::iterator animationFound;
 
    if (this->animationsMapper.count(animation) == 0) {
@@ -173,20 +173,20 @@ SpriteSheetAnimation * Sprite::GetAnimation(std::string animation) {
  * @param scale
  * @param rotation
  */
-void Sprite::Render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation) {
+void Sprite::render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation) {
     // TODO: Implement
 
     SDL_Rect geometry;
 
-    geometry.x = position.GetX();
-    geometry.y = position.GetY();
-    geometry.w = this->GetWidth() * scale.GetX();
-    geometry.h = this->GetHeight() * scale.GetY();
+    geometry.x = position.getX();
+    geometry.y = position.getY();
+    geometry.w = this->getWidth() * scale.getX();
+    geometry.h = this->getHeight() * scale.getY();
 
     SDL_Point centerPoint;
 
-    centerPoint.x = position.GetX();
-    centerPoint.y = position.GetY();
+    centerPoint.x = position.getX();
+    centerPoint.y = position.getY();
 
     SDL_RenderCopyEx(renderer, this->spriteSheet, NULL, &geometry, rotation, &centerPoint, SDL_FLIP_NONE);
 }
@@ -196,13 +196,13 @@ void Sprite::Render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, f
  *
  * @return
  */
-std::string Sprite::ToString() {
+std::string Sprite::toString() {
     std::stringstream stream;
 
     stream << "[========================]" << std::endl;
     stream << "-->ANIMATIONS<---" << std::endl;
     for (unsigned int i = 0; i < this->animations->size(); ++i) {
-        stream << "Animations[" << i << "] = " << this->animations->at(i)->GetName() << std::endl;
+        stream << "Animations[" << i << "] = " << this->animations->at(i)->getName() << std::endl;
     }
 
     stream << std::endl;

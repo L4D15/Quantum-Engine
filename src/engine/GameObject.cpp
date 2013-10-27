@@ -21,7 +21,7 @@ GameObject::GameObject(std::string name, artemis::Entity& entity):
  * This is usually used to diferenciate between GameObjects. Common tags are "Player", "Enemy", "UI"...
  * @param tagName   Name of the tag to be applied to the object.
  */
-void GameObject::SetTag(std::string tagName)
+void GameObject::setTag(std::string tagName)
 {
     //this->entity.setTag(tagName);
     this->currentTag = tagName;
@@ -31,7 +31,7 @@ void GameObject::SetTag(std::string tagName)
  * @brief GameObject::GetPosition2D
  * @return
  */
-Vector2D GameObject::GetPosition2D()
+Vector2D GameObject::getPosition2D()
 {
     Components2D::Transform2D* posComponent;
 
@@ -44,7 +44,7 @@ Vector2D GameObject::GetPosition2D()
  * @brief GameObject::GetRelativePosition2D
  * @return
  */
-Vector2D GameObject::GetRelativePosition2D()
+Vector2D GameObject::getRelativePosition2D()
 {
     Components2D::Transform2D* posComponent;
 
@@ -53,7 +53,7 @@ Vector2D GameObject::GetRelativePosition2D()
     return posComponent->GetRelativePosition();
 }
 
-void GameObject::SetPosition(float x, float y)
+void GameObject::setPosition(float x, float y)
 {
     Components2D::Transform2D* posComponent;
 
@@ -62,21 +62,21 @@ void GameObject::SetPosition(float x, float y)
     posComponent->SetPosition(x, y);
 }
 
-void GameObject::MakeChildOfObject(GameObject *parent)
+void GameObject::makeChildOfObject(GameObject *parent)
 {
     this->parent = parent;
 
     // 2D
-    Components2D::Transform2D* transformParent = (Components2D::Transform2D*) parent->GetComponent<Components2D::Transform2D>();
-    Components2D::Transform2D* transform = (Components2D::Transform2D*) GetComponent<Components2D::Transform2D>();
+    Components2D::Transform2D* transformParent = (Components2D::Transform2D*) parent->getComponent<Components2D::Transform2D>();
+    Components2D::Transform2D* transform = (Components2D::Transform2D*) getComponent<Components2D::Transform2D>();
 
     // Check if both objects have the Transform2D component
     if (transformParent != NULL && transform != NULL)
     {
-        Vector2D parentPos = parent->GetPosition2D();
-        Vector2D relativePos = GetRelativePosition2D() - parentPos;
+        Vector2D parentPos = parent->getPosition2D();
+        Vector2D relativePos = getRelativePosition2D() - parentPos;
 
-        SetPosition(relativePos.GetX(), relativePos.GetY());
+        setPosition(relativePos.getX(), relativePos.getY());
 
         float parentRotation = transformParent->GetRotation();
         float relativeRotation = transform->GetRotation() - parentRotation;
@@ -88,16 +88,16 @@ void GameObject::MakeChildOfObject(GameObject *parent)
     // TODO
 }
 
-void GameObject::UnmakeChildOfObject()
+void GameObject::unmakeChildOfObject()
 {
     // 2D
-    Components2D::Transform2D* transform = (Components2D::Transform2D*) GetComponent<Components2D::Transform2D>();
+    Components2D::Transform2D* transform = (Components2D::Transform2D*) getComponent<Components2D::Transform2D>();
 
     if (transform != NULL)
     {
         Vector2D globalPosition;
-        globalPosition = this->GetPosition2D();
-        SetPosition(globalPosition.GetX(), globalPosition.GetY());
+        globalPosition = this->getPosition2D();
+        setPosition(globalPosition.getX(), globalPosition.getY());
     }
 
     // 3D

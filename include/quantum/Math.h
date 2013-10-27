@@ -12,10 +12,10 @@ namespace Math
 
 static double PI = atan(1) * 4;
 
-float InverseSquareRoot(float number);
-float SquareRoot(float x);
-int Max(int a, int b);
-int Min(int a, int b);
+float inverseSquareRoot(float number);
+float squareRoot(float x);
+int max(int a, int b);
+int min(int a, int b);
 
 float Normalize(float start, float end, float current);
 
@@ -34,17 +34,17 @@ typedef enum
     Boomerang
 }Type;
 
-float LinearFunction(float x);
-float EasyInFunction(float x);
-float EasyOutFunction(float x);
-float EasyInEasyOutFunction(float x);
-float BoomerangFunction(float x);
+float linearFunction(float x);
+float easyInFunction(float x);
+float easyOutFunction(float x);
+float easyInEasyOutFunction(float x);
+float boomerangFunction(float x);
 
 }
 
-float Interpolate(Interpolation::Type type, float start, float end, float time);
-Vector2D Interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time);
-Color Interpolate(Interpolation::Type type, Color start, Color end, float time);
+float interpolate(Interpolation::Type type, float start, float end, float time);
+Vector2D interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time);
+Color interpolate(Interpolation::Type type, Color start, Color end, float time);
 
 }
 

@@ -5,17 +5,17 @@
 #include "quantum/Window.h"
 #include "quantum/Vector2D.h"
 
-namespace Assets2D {
+namespace assets2D {
 
 class RenderizableAsset {
 public:
     RenderizableAsset(std::string name);
 
-    virtual void                        Update();
-    virtual void                        Render(SDL_Renderer* renderer, Vector2D position, Vector2D scale, float rotation) = 0;
+    virtual void                        update();
+    virtual void                        render(SDL_Renderer* renderer, Vector2D position, Vector2D scale, float rotation) = 0;
 
-    inline std::string                  GetName() { return name; }
-    inline void                         SetName(std::string name) { this->name = name; }
+    inline std::string                  getName() { return name; }
+    inline void                         setName(std::string name) { this->name = name; }
 
 protected:
     std::string                         name;

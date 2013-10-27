@@ -18,22 +18,22 @@ public:
     Window(std::string title, Uint16 w, Uint16 h, WindowMode mode, Color bg = presetcolors::LightBlue);
     virtual ~Window();
 
-    void                                SetTitle(std::string title);
-    void                                ChangeResolution(Uint16 w, Uint16 h);
-    void                                ChangeMode(WindowMode mode);
+    void                                setTitle(std::string title);
+    void                                changeResolution(Uint16 w, Uint16 h);
+    void                                changeMode(WindowMode mode);
 
-    inline Uint16                       GetWidth() { return width; }
-    inline Uint16                       GetHeight() { return height; }
-    inline WindowMode                   GetMode() { return mode; }
-    inline Color                        GetBackgroundColor() { return bgColor; }
+    inline Uint16                       getWidth() { return width; }
+    inline Uint16                       getHeight() { return height; }
+    inline WindowMode                   getMode() { return mode; }
+    inline Color                        getBackgroundColor() { return bgColor; }
 
-    inline SDL_Renderer*                GetRenderer() { return renderer; }
+    inline SDL_Renderer*                getRenderer() { return renderer; }
 
-    void                                Clear();
-    inline void                         Draw() { SDL_RenderPresent(this->renderer); }
+    void                                clear();
+    inline void                         draw() { SDL_RenderPresent(this->renderer); }
 
 private:
-    void                                ShowDisplayModeInfo(SDL_DisplayMode &mode);
+    void                                showDisplayModeInfo(SDL_DisplayMode &mode);
 
 private:
     std::string                         title;      // Title the window will show

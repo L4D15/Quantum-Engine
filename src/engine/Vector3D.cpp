@@ -165,7 +165,7 @@ bool Vector3D::operator ==(const Vector3D& other)
  * @param other Vector to make the product.
  * @return Result of the dot product (x1 * x2 + y1 * y2 + z1 * z2).
  */
-float Vector3D::DotProduct(const Vector3D &other)
+float Vector3D::dotProduct(const Vector3D &other)
 {
     return ((this->x * other.x) + (this->y * other.y) + (this->z * other.z));
 }
@@ -174,7 +174,7 @@ float Vector3D::DotProduct(const Vector3D &other)
  * @brief Length of the vector without applying the final square root operation.
  * @return  Length of the vector (no square root applied).
  */
-float Vector3D::GetLengthQuadratic()
+float Vector3D::getLengthQuadratic()
 {
     return (this->x * this->x + this->y * this->y + this->z * this->z);
 }
@@ -183,9 +183,9 @@ float Vector3D::GetLengthQuadratic()
  * @brief Length of the vector.
  * @return  Length of the vector.
  */
-float Vector3D::GetLength()
+float Vector3D::getLength()
 {
-    return Math::SquareRoot(x * x + y * y + z * z);
+    return Math::squareRoot(x * x + y * y + z * z);
 }
 
 /**
@@ -193,7 +193,7 @@ float Vector3D::GetLength()
  * @param other Other vector.
  * @return  Distance to another vector (square root not applied).
  */
-float Vector3D::DistanceQuadratic(const Vector3D &other)
+float Vector3D::distanceQuadratic(const Vector3D &other)
 {
     return ((x - other.x) + (y - other.y) + (z - other.z));
 }
@@ -203,16 +203,16 @@ float Vector3D::DistanceQuadratic(const Vector3D &other)
  * @param other Other vector to calculate distance to.
  * @return  Distance to another vector.
  */
-float Vector3D::Distance(const Vector3D &other)
+float Vector3D::distance(const Vector3D &other)
 {
-    return Math::SquareRoot((x - other.x) + (y - other.y) + (z - other.z));
+    return Math::squareRoot((x - other.x) + (y - other.y) + (z - other.z));
 }
 
 /**
  * @brief Normalized the vector values so they range from 0.0f to 1.0f.
  * @return
  */
-Vector3D Vector3D::Normalized()
+Vector3D Vector3D::normalized()
 {
     Vector3D normalized;
     float lengthsq = (x * x + y * y + z * z);
@@ -224,7 +224,7 @@ Vector3D Vector3D::Normalized()
         return normalized;
     }
 
-    float recip = Math::InverseSquareRoot(lengthsq);
+    float recip = Math::inverseSquareRoot(lengthsq);
     normalized.x *= recip;
     normalized.y *= recip;
     normalized.z *= recip;
@@ -236,7 +236,7 @@ Vector3D Vector3D::Normalized()
  * @brief Vector3D::ToVector2D
  * @return
  */
-Vector2D Vector3D::ToVector2D()
+Vector2D Vector3D::toVector2D()
 {
     return Vector2D(this->x, this->y);
 }
@@ -245,7 +245,7 @@ Vector2D Vector3D::ToVector2D()
  * @brief Vector3D::ToString
  * @return
  */
-std::string Vector3D::ToString()
+std::string Vector3D::toString()
 {
     std::stringstream str;
 

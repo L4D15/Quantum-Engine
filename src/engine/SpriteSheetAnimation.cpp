@@ -57,8 +57,8 @@ SDL_Rect SpriteSheetAnimation::operator [](const unsigned int frameIndex) {
                 NULL);
     } else {
         // Everything is fine, so return the data
-        frame.x = (this->frames->at(frameIndex)).GetX();
-        frame.y = (this->frames->at(frameIndex)).GetY();
+        frame.x = (this->frames->at(frameIndex)).getX();
+        frame.y = (this->frames->at(frameIndex)).getY();
         frame.w = this->frameWidth;
         frame.h = this->frameHeight;
     }
@@ -66,7 +66,7 @@ SDL_Rect SpriteSheetAnimation::operator [](const unsigned int frameIndex) {
     return frame;
 }
 
-std::string SpriteSheetAnimation::ToString() {
+std::string SpriteSheetAnimation::toString() {
     std::stringstream stream;
 
     stream << "/******************************/" << std::endl;
@@ -74,7 +74,7 @@ std::string SpriteSheetAnimation::ToString() {
     stream << "Frame Rate: " << this->frameRate << "    Oscillate: " << this->oscillate << std::endl;
 
     for (unsigned int frameIndex = 0; frameIndex < this->frames->size(); ++frameIndex) {
-        stream << this->frames->at(frameIndex).ToString() << " | ";
+        stream << this->frames->at(frameIndex).toString() << " | ";
     }
 
     return stream.str();

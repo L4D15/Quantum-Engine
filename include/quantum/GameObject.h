@@ -13,24 +13,24 @@ class GameObject {
     // We add Scene as a friend class so it can access the constructor and destructor
     friend class Scene;
 public:
-    void                                SetTag(std::string tagName);
-    inline std::string                  GetTag() { return currentTag; }
+    void                                setTag(std::string tagName);
+    inline std::string                  getTag() { return currentTag; }
 
-    inline std::string                  GetName() { return name; }
+    inline std::string                  getName() { return name; }
 
-    void                                MakeChildOfObject(GameObject* parent);
-    void                                UnmakeChildOfObject();
-    inline GameObject*                  GetParentObject() { return this->parent; }
+    void                                makeChildOfObject(GameObject* parent);
+    void                                unmakeChildOfObject();
+    inline GameObject*                  getParentObject() { return this->parent; }
 
-    Vector2D                            GetPosition2D();
-    Vector2D                            GetRelativePosition2D();
+    Vector2D                            getPosition2D();
+    Vector2D                            getRelativePosition2D();
 
-    void                                SetPosition(float x, float y);
+    void                                setPosition(float x, float y);
 
     template<typename c>
-        inline artemis::Component*      GetComponent() { return entity.getComponent<c>(); }
+        inline artemis::Component*      getComponent() { return entity.getComponent<c>(); }
 
-    void                         AddComponent(artemis::Component* component) { entity.addComponent(component); entity.refresh();}
+    void                                addComponent(artemis::Component* component) { entity.addComponent(component); entity.refresh();}
 
 private:
     GameObject(std::string name, artemis::Entity& entity);

@@ -16,29 +16,29 @@ public:
     Game(std::string name);
     virtual ~Game();
 
-    virtual void                        CreateWindow(int width, int height, bool fullscreen) = 0;
-    virtual void                        CreateWindow(bool fullscreen) = 0;
+    virtual void                        createWindow(int width, int height, bool fullscreen) = 0;
+    virtual void                        createWindow(bool fullscreen) = 0;
 
-    virtual void                        Start();
+    virtual void                        start();
 
 protected:
 
 private:
-    void                                MainLoop();
-    void                                Update();
-    void                                Render();
-    void                                HandleEvents();
+    void                                mainLoop();
+    void                                update();
+    void                                render();
+    void                                handleEvents();
 
-    void                                UpdateTime();
-    void                                CountFramesPerSecond();
-    void                                ManageFramesPerSecond();
+    void                                updateTime();
+    void                                countFramesPerSecond();
+    void                                manageFramesPerSecond();
 
     // Static Methods
 public:
-    static void                         WriteToConsole(std::string text);
-    static void                         Terminate();
-    static inline Uint32                GetTime() { return SDL_GetTicks(); }
-    static std::string                  GetName() { return name; }
+    static void                         writeToConsole(std::string text);
+    static void                         terminate();
+    static inline Uint32                getTime() { return SDL_GetTicks(); }
+    static std::string                  getName() { return name; }
 protected:
 
     // Attributes

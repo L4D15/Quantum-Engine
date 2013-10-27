@@ -8,7 +8,7 @@ class Vector3D;
 class Vector2D {
 public:
     Vector2D();
-    Vector2D(float GetX, float GetY);
+    Vector2D(float getX, float getY);
     Vector2D(const Vector2D& orig);
     ~Vector2D();
 
@@ -21,22 +21,22 @@ public:
     float                       dotProduct(const Vector2D& vector);
     Vector2D                    operator*(const Vector2D& vector);
 
-    inline float                GetX() { return x; }
-    inline float                GetY() { return y; }
+    inline float                getX() { return x; }
+    inline float                getY() { return y; }
 
-    inline void                 SetX(float x) { this->x = x; }
-    inline void                 SetY(float y) { this->y = y; }
+    inline void                 setX(float x) { this->x = x; }
+    inline void                 setY(float y) { this->y = y; }
 
-    float                       GetLengthQuadratic();
-    float                       GetLength();
-    float                       DistanceQuadratic(const Vector2D& vector);
-    float                       Distance(const Vector2D& vector);
+    float                       getLengthQuadratic();
+    float                       getLength();
+    float                       distanceQuadratic(const Vector2D& vector);
+    float                       distance(const Vector2D& vector);
 
-    Vector2D                    Normalized();
+    Vector2D                    normalized();
 
-    Vector3D                    ToVector3D();
+    Vector3D                    toVector3D();
 
-    std::string                 ToString();
+    std::string                 toString();
 
 private:
     float                       x;

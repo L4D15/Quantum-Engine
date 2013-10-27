@@ -21,14 +21,14 @@ public:
     
     SDL_Rect                    operator[](const unsigned int frameIndex);
     
-    std::string                 ToString();
+    std::string                 toString();
     
-    inline std::string          GetName() { return name; }
-    inline int                  GetFrameRate() { return frameRate; }
-    inline int                  IsOscillating() { return oscillate; }
-    inline int                  GetNumberOfFrames() { return frames->size(); }
-    inline int                  GetWidth() { return frameWidth; }
-    inline int                  GetHeight() { return frameHeight; }
+    inline std::string          getName() { return name; }
+    inline int                  getFrameRate() { return frameRate; }
+    inline int                  isOscillating() { return oscillate; }
+    inline int                  getNumberOfFrames() { return frames->size(); }
+    inline int                  getWidth() { return frameWidth; }
+    inline int                  getHeight() { return frameHeight; }
     
 private:
     std::string                 name;

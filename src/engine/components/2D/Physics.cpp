@@ -16,8 +16,8 @@ Physics::~Physics()
 
 void Physics::SetVelocity(float x, float y)
 {
-    this->velocity.SetX(x);
-    this->velocity.SetY(y);
+    this->velocity.setX(x);
+    this->velocity.setY(y);
 }
 
 void Physics::SetVelocity(Vector2D &v)
@@ -27,8 +27,8 @@ void Physics::SetVelocity(Vector2D &v)
 
 void Physics::SetAceleration(float x, float y)
 {
-    this->aceleration.SetX(x);
-    this->aceleration.SetY(y);
+    this->aceleration.setX(x);
+    this->aceleration.setY(y);
 }
 
 void Physics::SetAceleration(Vector2D &a)

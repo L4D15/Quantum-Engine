@@ -17,7 +17,7 @@ ParallaxScrolling::~ParallaxScrolling() {
  * will change the behavior of the effect in other objects.
  * @param distance      Distance the static background layer is from the camera.
  */
-void ParallaxScrolling::SetBackgroundDistance(int distance) {
+void ParallaxScrolling::setBackgroundDistance(int distance) {
     this->backgroundDistance = distance;
 }
 
@@ -25,7 +25,7 @@ void ParallaxScrolling::SetBackgroundDistance(int distance) {
  * @brief Distance from the camera of the static background layer.
  * @return  Distance from the camera.
  */
-int ParallaxScrolling::GetBackgroundDistance() {
+int ParallaxScrolling::getBackgroundDistance() {
     return this->backgroundDistance;
 }
 
@@ -36,7 +36,7 @@ int ParallaxScrolling::GetBackgroundDistance() {
  * @param objectDistanceFromCamera      Distance of the object from the camera.
  * @return Perspective position of the object after applying the parallax scrolling effect.
  */
-Vector2D ParallaxScrolling::ApplyParallaxScrolling(Vector2D cameraPosition, Vector2D objectPosition, int objectDistanceFromCamera) {
+Vector2D ParallaxScrolling::applyParallaxScrolling(Vector2D cameraPosition, Vector2D objectPosition, int objectDistanceFromCamera) {
 
     int distance;
 
@@ -45,8 +45,8 @@ Vector2D ParallaxScrolling::ApplyParallaxScrolling(Vector2D cameraPosition, Vect
     // Calculate the offset if the object were in the reference layer (the one at backgroundDistance distance)
     float alphaX;   // Angle between the center axis (the camera) and the object in the reference layer
     float alphaY;
-    alphaX = atan((cameraPosition.GetX() - objectPosition.GetX()) / backgroundDistance);
-    alphaY = atan((cameraPosition.GetY() - objectPosition.GetY()) / backgroundDistance);
+    alphaX = atan((cameraPosition.getX() - objectPosition.getX()) / backgroundDistance);
+    alphaY = atan((cameraPosition.getY() - objectPosition.getY()) / backgroundDistance);
 
     // Now we interpolate the value to a layer that has a different distance to the background
     float offsetX = distance * tan(alphaX);

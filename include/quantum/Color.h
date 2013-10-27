@@ -9,26 +9,26 @@ class Color{
 public:
     Color();
     Color(int r, int g, int b, int a);
-    Color(const char* hexString, const Uint8 GetAlpha = 255);
+    Color(const char* hexString, const Uint8 alpha = 255);
     Color(const Color & other);
 
-    void                        SetRed(int value);
-    void                        SetGreen(int value);
-    void                        SetBlue(int value);
-    void                        SetAlpha(int value);
+    void                        setRed(int value);
+    void                        setGreen(int value);
+    void                        setBlue(int value);
+    void                        setAlpha(int value);
 
-    Uint8                       GetRed();
-    Uint8                       GetGreen();
-    Uint8                       GetBlue();
-    Uint8                       GetAlpha();
+    Uint8                       getRed();
+    Uint8                       getGreen();
+    Uint8                       getBlue();
+    Uint8                       getAlpha();
 
     bool                        operator !=(const Color& other);
     bool                        operator ==(const Color& other);
 
-    SDL_Color                   ToSDLColor();
-    Uint32                      ToPixelValue(SDL_PixelFormat* format);
+    SDL_Color                   toSDLColor();
+    Uint32                      toPixelValue(SDL_PixelFormat* format);
 
-    const std::string           ToString();
+    const std::string           toString();
 
 private:
     SDL_Color                   color;

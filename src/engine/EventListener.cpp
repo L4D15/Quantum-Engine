@@ -10,7 +10,7 @@ EventListener::~EventListener()
 
 }
 
-void EventListener::OnEvent(SDL_Event * event)
+void EventListener::onEvent(SDL_Event * event)
 {
     switch (event->type)
     {
@@ -18,29 +18,29 @@ void EventListener::OnEvent(SDL_Event * event)
             switch (event->window.type)
             {
                 case SDL_WINDOWEVENT_FOCUS_GAINED:
-                    OnInputFocus();
+                    onInputFocus();
                     break;
                 case SDL_WINDOWEVENT_FOCUS_LOST:
-                    OnInputBlur();
+                    onInputBlur();
                     break;
                 case SDL_WINDOWEVENT_ENTER:
-                    OnMouseFocus();
+                    onMouseFocus();
                     break;
                 case SDL_WINDOWEVENT_LEAVE:
-                    OnMouseBlur();
+                    onMouseBlur();
                     break;
             }
 
         case SDL_KEYDOWN:
-            OnKeyDown(event->key.keysym.sym, event->key.keysym.mod);
+            onKeyDown(event->key.keysym.sym, event->key.keysym.mod);
             break;
 
         case SDL_KEYUP:
-            OnKeyUp(event->key.keysym.sym, event->key.keysym.mod);
+            onKeyUp(event->key.keysym.sym, event->key.keysym.mod);
             break;
 
         case SDL_MOUSEMOTION:
-            OnMouseMove(event->motion.x,
+            onMouseMove(event->motion.x,
                     event->motion.y,
                     event->motion.xrel,
                     event->motion.yrel,
@@ -53,15 +53,15 @@ void EventListener::OnEvent(SDL_Event * event)
             switch (event->button.button)
             {
                 case SDL_BUTTON_LEFT:
-                    OnLeftButtonDown(event->button.x, event->button.y);
+                    onLeftButtonDown(event->button.x, event->button.y);
                     break;
 
                 case SDL_BUTTON_RIGHT:
-                    OnRightButtonDown(event->button.x, event->button.y);
+                    onRightButtonDown(event->button.x, event->button.y);
                     break;
 
                 case SDL_BUTTON_MIDDLE:
-                    OnMiddleButtonDown(event->button.x, event->button.y);
+                    onMiddleButtonDown(event->button.x, event->button.y);
                     break;
             }
             break;
@@ -70,40 +70,40 @@ void EventListener::OnEvent(SDL_Event * event)
             switch (event->button.button)
             {
                 case SDL_BUTTON_LEFT:
-                    OnLeftButtonUp(event->button.x, event->button.y);
+                    onLeftButtonUp(event->button.x, event->button.y);
                     break;
 
                 case SDL_BUTTON_RIGHT:
-                    OnRightButtonUp(event->button.x, event->button.y);
+                    onRightButtonUp(event->button.x, event->button.y);
                     break;
 
                 case SDL_BUTTON_MIDDLE:
-                    OnMiddleButtonUp(event->button.x, event->button.y);
+                    onMiddleButtonUp(event->button.x, event->button.y);
                     break;
             }
 
         case SDL_JOYAXISMOTION:
-            OnJoyAxis(event->jaxis.which, event->jaxis.axis, event->jaxis.value);
+            onJoyAxis(event->jaxis.which, event->jaxis.axis, event->jaxis.value);
             break;
 
         case SDL_JOYBALLMOTION:
-            OnJoyBall(event->jball.which, event->jball.ball, event->jball.xrel, event->jball.yrel);
+            onJoyBall(event->jball.which, event->jball.ball, event->jball.xrel, event->jball.yrel);
             break;
 
         case SDL_JOYHATMOTION:
-            OnJoyHat(event->jhat.which, event->jhat.hat, event->jhat.value);
+            onJoyHat(event->jhat.which, event->jhat.hat, event->jhat.value);
             break;
 
         case SDL_JOYBUTTONDOWN:
-            OnJoyButtonDown(event->jbutton.which, event->jbutton.button);
+            onJoyButtonDown(event->jbutton.which, event->jbutton.button);
             break;
 
         case SDL_JOYBUTTONUP:
-            OnJoyButtonUp(event->jbutton.which, event->jbutton.button);
+            onJoyButtonUp(event->jbutton.which, event->jbutton.button);
             break;
 
         case SDL_QUIT:
-            OnExit();
+            onExit();
             break;
 
         case SDL_SYSWMEVENT:
@@ -111,140 +111,140 @@ void EventListener::OnEvent(SDL_Event * event)
             break;
 
         case SDL_WINDOWEVENT_RESIZED:
-            OnResize(event->window.data1, event->window.data2); // TODO: Check this is right
+            onResize(event->window.data1, event->window.data2); // TODO: Check this is right
             break;
 
         case SDL_WINDOWEVENT_EXPOSED:
-            OnExpose();
+            onExpose();
             break;
 
         default:
-            OnUser(event->user.type, event->user.code, event->user.data1, event->user.data2);
+            onUser(event->user.type, event->user.code, event->user.data1, event->user.data2);
             break;
     }
 }
 
-void EventListener::OnInputBlur()
+void EventListener::onInputBlur()
 {
     // Pure virtual
 }
 
-void EventListener::OnInputFocus()
+void EventListener::onInputFocus()
 {
     // Pure Virtual
 }
 
-void EventListener::OnKeyDown(SDL_Keycode key, Uint16 mod)
+void EventListener::onKeyDown(SDL_Keycode key, Uint16 mod)
 {
     // Pure Virtual
 }
 
-void EventListener::OnKeyUp(SDL_Keycode key, Uint16 mod)
+void EventListener::onKeyUp(SDL_Keycode key, Uint16 mod)
 {
     // Pure virtual
 }
 
-void EventListener::OnMouseFocus()
+void EventListener::onMouseFocus()
 {
     // Pure virtual
 }
 
-void EventListener::OnMouseBlur()
+void EventListener::onMouseBlur()
 {
     // Pure virtual
 }
 
-void EventListener::OnMouseMove(int mouseX, int mouseY, int relX, int relY, bool left, bool right, bool middle)
+void EventListener::onMouseMove(int mouseX, int mouseY, int relX, int relY, bool left, bool right, bool middle)
 {
     // Pure virtual
 }
 
-void EventListener::OnMouseWheel(bool up, bool down)
+void EventListener::onMouseWheel(bool up, bool down)
 {
     // Pure virtual
 }
 
-void EventListener::OnLeftButtonDown(int mouseX, int mouseY)
+void EventListener::onLeftButtonDown(int mouseX, int mouseY)
 {
     // Pure virtual
 }
 
-void EventListener::OnLeftButtonUp(int mouseX, int mouseY)
+void EventListener::onLeftButtonUp(int mouseX, int mouseY)
 {
     // Pure virtual
 }
 
-void EventListener::OnRightButtonDown(int mouseX, int mouseY)
+void EventListener::onRightButtonDown(int mouseX, int mouseY)
 {
     // Pure virtual
 }
 
-void EventListener::OnRightButtonUp(int mouseX, int mouseY)
+void EventListener::onRightButtonUp(int mouseX, int mouseY)
 {
     // Pure virtual
 }
 
-void EventListener::OnMiddleButtonDown(int mouseX, int mouseY)
+void EventListener::onMiddleButtonDown(int mouseX, int mouseY)
 {
     // Pure virtual
 }
 
-void EventListener::OnMiddleButtonUp(int mouseX, int mouseY)
+void EventListener::onMiddleButtonUp(int mouseX, int mouseY)
 {
     // Pure virtual
 }
 
-void EventListener::OnJoyAxis(Uint8 which, Uint8 axis, Sint16 value)
+void EventListener::onJoyAxis(Uint8 which, Uint8 axis, Sint16 value)
 {
     // Pure virtual
 }
 
-void EventListener::OnJoyButtonDown(Uint8 which, Uint8 button)
+void EventListener::onJoyButtonDown(Uint8 which, Uint8 button)
 {
     // Pure virtual
 }
 
-void EventListener::OnJoyButtonUp(Uint8 which, Uint8 button)
+void EventListener::onJoyButtonUp(Uint8 which, Uint8 button)
 {
     // Pure virtual
 }
 
-void EventListener::OnJoyHat(Uint8 which, Uint8 hat, Uint8 value)
+void EventListener::onJoyHat(Uint8 which, Uint8 hat, Uint8 value)
 {
     // Pure virtual
 }
 
-void EventListener::OnJoyBall(Uint8 which, Uint8 ball, Sint16 xrel, Sint16 yrel)
+void EventListener::onJoyBall(Uint8 which, Uint8 ball, Sint16 xrel, Sint16 yrel)
 {
     // Pure virtual
 }
 
-void EventListener::OnMinimize()
+void EventListener::onMinimize()
 {
     // Pure virtual
 }
 
-void EventListener::OnRestore()
+void EventListener::onRestore()
 {
     // Pure virtual
 }
 
-void EventListener::OnResize(int w, int h)
+void EventListener::onResize(int w, int h)
 {
     // Pure virtual
 }
 
-void EventListener::OnExpose()
+void EventListener::onExpose()
 {
     // Pure virtual
 }
 
-void EventListener::OnExit()
+void EventListener::onExit()
 {
     // Pure virtual
 }
 
-void EventListener::OnUser(Uint8 type, int code, void* data1, void* data2)
+void EventListener::onUser(Uint8 type, int code, void* data1, void* data2)
 {
     // Pure virtual
 }
