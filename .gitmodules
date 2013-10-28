@@ -4,3 +4,6 @@
 [submodule "lib/JsonCpp"]
 	path = lib/JsonCpp
 	url = https://github.com/L4D15/jsoncpp.git
+[submodule "lib/Lua"]
+	path = lib/Lua
+	url = https://github.com/L4D15/lua.git
