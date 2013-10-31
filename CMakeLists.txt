@@ -10,7 +10,6 @@ message("====================================")
 message("Source Dir: ${CMAKE_CURRENT_SOURCE_DIR}")
 message("Binary Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Lua")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp")
 
@@ -59,19 +58,12 @@ file(GLOB_RECURSE HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 # =================================================================
 set(EXTRA_LIBS "")
 # Artemis-Cpp
-#find_library(ARTEMIS_LIB NAMES artemis HINTS "/usr/local/lib")
 set(EXTRA_LIBS ${EXTRA_LIBS} ArtemisCpp)
 set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp/include")
 
 # JsonCpp
-#find_library(JSON_LIB NAMES json HINTS "/usr/local/lib")
 set(EXTRA_LIBS ${EXTRA_LIBS} JsonCpp)
 set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp/include")
-
-# Lua
-set(EXTRA_LIBS ${EXTRA_LIBS} liblua)
-set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/Lua/src")
-set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_BINARY_DIR}") # Because luaconf.h is generated when building
 
 # OpenGL
 if(APPLE)
@@ -145,6 +137,16 @@ if(WIN32)
     set(EXTRA_LIBS ${EXTRA_LIBS} ${SDL2_MAIN_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
 endif(WIN32)
 
+# Lua
+if(WIN32)
+    find_library(LUA_LIB NAMES lua HINTS "C:/Program Files (x86)/lua/lib")
+    if(NOT LUA_LIB)
+        message(FATAL_ERROR "Failed to find lua library")
+    endif(NOT LUA_LIB)
+    set(EXTRA_LIBS ${EXTRA_LIBS} "C:/Program Files (x86)/lua/lib/liblua.dll.a")
+    set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "C:/Program Files (x86)/lua/include")
+endif(WIN32)
+
 # Additional step for Mac OS X
 if(APPLE)
     mark_as_advanced(OPENGL_LIB SDL2_LIB SDL2_IMAGE_LIB SDL2_TTF_LIB)
@@ -163,18 +165,21 @@ endforeach(dir)
 # Create the library
 add_library(QuantumEngine STATIC ${SOURCE_FILES} ${HEADER_FILES})
 
+    message("Linking libraries:")
+    foreach(lib ${EXTRA_LIBS})
+        message("    ${lib}")
+    endforeach(lib)
+
 # Artemis-Cpp and JsonCpp are in the scope of CMake from the subdirs
 if(APPLE)
     target_link_libraries(QuantumEngine ${OPENGL_LIB} ${ARTEMIS_LIB} ${JSON_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB} ${EXTRA_LIBS})
 endif(APPLE)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    message("Linking libraries : ${EXTRA_LIBS}")
     target_link_libraries(QuantumEngine ${EXTRA_LIBS})
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(WIN32)
-    message("Linking libraries : ${EXTRA_LIBS}")
     target_link_libraries(QuantumEngine ${EXTRA_LIBS})
 endif(WIN32)
 
