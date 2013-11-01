@@ -26,11 +26,11 @@ public:
     Camera(GameObject& owner);
     virtual ~Camera();
 
-    void                SetIndex(int index);
-    inline int          GetIndex() { return index; }
+    void                setIndex(int index);
+    inline int          getIndex() { return index; }
 
-    void                QueueForRender(RenderPackage package);
-    void                RenderScene();
+    void                queueForRender(RenderPackage package);
+    void                renderScene();
 
 private:
     int                 index;

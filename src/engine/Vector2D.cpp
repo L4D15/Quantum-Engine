@@ -125,7 +125,7 @@ float Vector2D::getLengthQuadratic() {
  */
 
 float Vector2D::getLength() {
-    return Math::squareRoot(x * x + y * y);
+    return math::squareRoot(x * x + y * y);
 }
 
 /**
@@ -153,7 +153,7 @@ float Vector2D::distance(const Vector2D& vector) {
     Ax = x - vector.x;
     Ay = y - vector.y;
 
-    return Math::squareRoot(Ax*Ax + Ay*Ay);
+    return math::squareRoot(Ax*Ax + Ay*Ay);
 }
 
 /**
@@ -169,7 +169,7 @@ Vector2D Vector2D::normalized() {
         return normalized;
     }
 
-    float recip = Math::inverseSquareRoot(lengthsq);
+    float recip = math::inverseSquareRoot(lengthsq);
     normalized.x *= recip;
     normalized.y *= recip;
 

@@ -14,53 +14,53 @@ Physics::~Physics()
 
 }
 
-void Physics::SetVelocity(float x, float y)
+void Physics::setVelocity(float x, float y)
 {
     this->velocity.setX(x);
     this->velocity.setY(y);
 }
 
-void Physics::SetVelocity(Vector2D &v)
+void Physics::setVelocity(Vector2D &v)
 {
     this->velocity = v;
 }
 
-void Physics::SetAceleration(float x, float y)
+void Physics::setAceleration(float x, float y)
 {
     this->aceleration.setX(x);
     this->aceleration.setY(y);
 }
 
-void Physics::SetAceleration(Vector2D &a)
+void Physics::setAceleration(Vector2D &a)
 {
     this->aceleration = a;
 }
 
-void Physics::AddVelocity(float x, float y)
+void Physics::addVelocity(float x, float y)
 {
     Vector2D v(x, y);
 
     this->velocity = this->velocity + v;
 }
 
-void Physics::AddVelocity(Vector2D &v)
+void Physics::addVelocity(Vector2D &v)
 {
     this->velocity = this->velocity + v;
 }
 
-void Physics::AddAceleration(float x, float y)
+void Physics::addAceleration(float x, float y)
 {
     Vector2D a(x, y);
 
     this->aceleration = this->aceleration + a;
 }
 
-void Physics::AddAceleration(Vector2D &a)
+void Physics::addAceleration(Vector2D &a)
 {
     this->aceleration = this->aceleration + a;
 }
 
-void Physics::Update()
+void Physics::update()
 {
     this->velocity = this->velocity + (this->aceleration * Game::deltaTime);
 }

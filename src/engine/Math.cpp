@@ -10,7 +10,7 @@
  * @param number    Number to calculate the inverse square root.
  * @return          Inverse square root of the number.
  */
-float Math::inverseSquareRoot(float number)
+float math::inverseSquareRoot(float number)
 {
     long i;
     float x2, y;
@@ -31,7 +31,7 @@ float Math::inverseSquareRoot(float number)
  @param x   Number to calculate the square root.
  @return    Square root of the number.
  */
-float Math::squareRoot(float x) {
+float math::squareRoot(float x) {
     const float xhalf = 0.5f*x;
 
     union // get bits for floating value
@@ -50,7 +50,7 @@ float Math::squareRoot(float x) {
  * @param b
  * @return
  */
-int Math::max(int a, int b) {
+int math::max(int a, int b) {
     if (a > b) {
         return a;
     }
@@ -63,7 +63,7 @@ int Math::max(int a, int b) {
  * @param b
  * @return
  */
-int Math::min(int a, int b) {
+int math::min(int a, int b) {
     if (a < b) {
         return a;
     }
@@ -77,7 +77,7 @@ int Math::min(int a, int b) {
  * @param current
  * @return
  */
-float Math::Normalize(float start, float end, float current)
+float math::Normalize(float start, float end, float current)
 {
     return (current - start) / (end - start);
 }
@@ -93,7 +93,7 @@ float Math::Normalize(float start, float end, float current)
  * @param current   Normalized time (commonly currentTime/finalTime)
  * @return
  */
-float Math::interpolate(Interpolation::Type type, float start, float end, float time)
+float math::interpolate(interpolation::Type type, float start, float end, float time)
 {
     if (time > 1.0f)
     {
@@ -106,24 +106,24 @@ float Math::interpolate(Interpolation::Type type, float start, float end, float 
     }
 
     switch (type) {
-    case Interpolation::Linear:
-        return (start + (end - start) * Interpolation::linearFunction(time));
+    case interpolation::Linear:
+        return (start + (end - start) * interpolation::linearFunction(time));
         break;
 
-    case Interpolation::EasyIn:
-        return (start + (end - start) * Interpolation::easyInFunction(time));
+    case interpolation::EasyIn:
+        return (start + (end - start) * interpolation::easyInFunction(time));
         break;
 
-    case Interpolation::EasyOut:
-        return (start + (end - start) * Interpolation::easyOutFunction(time));
+    case interpolation::EasyOut:
+        return (start + (end - start) * interpolation::easyOutFunction(time));
         break;
 
-    case Interpolation::EasyInEasyOut:
-        return (start + (end - start) * Interpolation::easyInEasyOutFunction(time));
+    case interpolation::EasyInEasyOut:
+        return (start + (end - start) * interpolation::easyInEasyOutFunction(time));
         break;
 
-    case Interpolation::Boomerang:
-        return (start + (end - start) * Interpolation::boomerangFunction(time));
+    case interpolation::Boomerang:
+        return (start + (end - start) * interpolation::boomerangFunction(time));
         break;
 
     default:
@@ -132,29 +132,29 @@ float Math::interpolate(Interpolation::Type type, float start, float end, float 
     }
 }
 
-float Math::Interpolation::linearFunction(float x)
+float math::interpolation::linearFunction(float x)
 {
     return x;
 }
 
-float Math::Interpolation::easyInFunction(float x)
+float math::interpolation::easyInFunction(float x)
 {
     return x * x;
 }
 
-float Math::Interpolation::easyOutFunction(float x)
+float math::interpolation::easyOutFunction(float x)
 {
-    return sin(x * Math::PI / 2.0f);
+    return sin(x * math::PI / 2.0f);
 }
 
-float Math::Interpolation::easyInEasyOutFunction(float x)
+float math::interpolation::easyInEasyOutFunction(float x)
 {
     return (x * x) / ((x *x) + ((1-x) * (1-x)));
 }
 
-float Math::Interpolation::boomerangFunction(float x)
+float math::interpolation::boomerangFunction(float x)
 {
-    return (sin(x * Math::PI));
+    return (sin(x * math::PI));
 }
 
 /**
@@ -165,7 +165,7 @@ float Math::Interpolation::boomerangFunction(float x)
  * @param time
  * @return
  */
-Vector2D Math::interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time)
+Vector2D math::interpolate(interpolation::Type type, Vector2D start, Vector2D end, float time)
 {
     float x;
     float y;
@@ -184,7 +184,7 @@ Vector2D Math::interpolate(Interpolation::Type type, Vector2D start, Vector2D en
  * @param time
  * @return
  */
-Color Math::interpolate(Interpolation::Type type, Color start, Color end, float time)
+Color math::interpolate(interpolation::Type type, Color start, Color end, float time)
 {
     float red;
     float green;

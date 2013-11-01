@@ -13,24 +13,24 @@ public:
     Transform2D(GameObject& owner);
     ~Transform2D();
 
-    void                SetPosition(float x, float y);
-    void                SetPosition(const Vector2D& position);
-    void                SetScale(float x, float y);
-    void                SetScale(const Vector2D& scale);
-    void                SetRotation(float angle);
+    void                setPosition(float x, float y);
+    void                setPosition(const Vector2D& position);
+    void                setScale(float x, float y);
+    void                setScale(const Vector2D& scale);
+    void                setRotation(float angle);
 
-    Vector2D            GetPosition();
-    Vector2D            GetRelativePosition();
+    Vector2D            getPosition();
+    Vector2D            getRelativePosition();
 
-    Vector2D            GetScale();
-    Vector2D            GetRelativeScale();
+    Vector2D            getScale();
+    Vector2D            getRelativeScale();
 
-    float               GetRotation();
-    float               GetRelativeRotation();
+    float               getRotation();
+    float               getRelativeRotation();
 
-    void                Move(const Vector2D& movement);
-    void                Scale(const Vector2D& scaleFactor);
-    void                Rotate(float angle);
+    void                move(const Vector2D& movement);
+    void                rescale(const Vector2D& scaleFactor);
+    void                rotate(float angle);
 
 private:
     Vector2D            position;

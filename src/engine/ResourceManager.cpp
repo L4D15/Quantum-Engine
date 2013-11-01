@@ -1,6 +1,7 @@
 #include "quantum/ResourceManager.h"
 #include <cstdlib>
 #include "quantum/Game.h"
+#include "sstream"
 
 ResourceManager::ResourceManager()
 {
@@ -199,4 +200,18 @@ assets2D::Sprite* ResourceManager::getSprite(std::string name)
 
         return sprite;
     }
+}
+
+/**
+ * @brief Path to the script inside the assets folder.
+ * @param name
+ * @return
+ */
+std::string ResourceManager::getScript(std::string name)
+{
+    std::stringstream stream;
+
+    stream << getPath("assets/scripts/") << name;
+
+    return stream.str();
 }

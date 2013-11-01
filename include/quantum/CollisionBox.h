@@ -12,7 +12,7 @@ public:
     bool                collides(Vector2D objectPosition, CollisionBox& other, Vector2D otherGlobalPosition);
     void                render(components2D::Camera * cameraToRender, Vector2D position, Color color = presetcolors::Green);
 
-private:
+public:
     Vector2D            position;   // Relative position from the object
     float               width;
     float               height;

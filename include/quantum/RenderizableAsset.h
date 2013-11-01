@@ -14,6 +14,11 @@ public:
     virtual void                        update();
     virtual void                        render(SDL_Renderer* renderer, Vector2D position, Vector2D scale, float rotation) = 0;
 
+    virtual int                         getWidth() = 0;
+    virtual int                         getHeight() = 0;
+
+    virtual SDL_Surface*                getAssetSurface(std::string animation = "None", unsigned int frame = 0) = 0;
+
     inline std::string                  getName() { return name; }
     inline void                         setName(std::string name) { this->name = name; }
 

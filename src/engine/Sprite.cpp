@@ -191,6 +191,32 @@ void Sprite::render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, f
     SDL_RenderCopyEx(renderer, this->spriteSheet, NULL, &geometry, rotation, &centerPoint, SDL_FLIP_NONE);
 }
 
+SDL_Surface* Sprite::getAssetSurface(std::string animation, unsigned int frame)
+{
+    SDL_Surface* surface = SDL_CreateRGBSurface(SDL_PIXELFORMAT_ARGB8888,
+                             this->getIndividualFrameWidth(),
+                             this->getIndividualFrameHeight(),
+                             32,
+                             0x00ff0000,
+                             0x0000ff00,
+                             0x000000ff,
+                             0xff000000);
+
+    SDL_Renderer* softwareRenderer = SDL_CreateSoftwareRenderer(surface);
+
+    SpriteSheetAnimation* currentAnimation;
+    currentAnimation = this->getAnimation(animation);
+
+    SDL_Rect spriteFrame;
+    spriteFrame = currentAnimation->getFrameRect(frame);
+
+    SDL_RenderCopy(softwareRenderer, this->spriteSheet, & spriteFrame, NULL);
+
+    SDL_DestroyRenderer(softwareRenderer);
+
+    return surface;
+}
+
 
 /**
  *

@@ -37,7 +37,7 @@ Vector2D GameObject::getPosition2D()
 
     posComponent = (components2D::Transform2D*)this->entity.getComponent<components2D::Transform2D>();
 
-    return posComponent->GetPosition();
+    return posComponent->getPosition();
 }
 
 /**
@@ -50,7 +50,7 @@ Vector2D GameObject::getRelativePosition2D()
 
     posComponent = (components2D::Transform2D*)this->entity.getComponent<components2D::Transform2D>();
 
-    return posComponent->GetRelativePosition();
+    return posComponent->getRelativePosition();
 }
 
 void GameObject::setPosition(float x, float y)
@@ -59,7 +59,7 @@ void GameObject::setPosition(float x, float y)
 
     posComponent = (components2D::Transform2D*)this->entity.getComponent<components2D::Transform2D>();
 
-    posComponent->SetPosition(x, y);
+    posComponent->setPosition(x, y);
 }
 
 void GameObject::makeChildOfObject(GameObject *parent)
@@ -78,10 +78,10 @@ void GameObject::makeChildOfObject(GameObject *parent)
 
         setPosition(relativePos.getX(), relativePos.getY());
 
-        float parentRotation = transformParent->GetRotation();
-        float relativeRotation = transform->GetRotation() - parentRotation;
+        float parentRotation = transformParent->getRotation();
+        float relativeRotation = transform->getRotation() - parentRotation;
 
-        transform->SetRotation(relativeRotation);
+        transform->setRotation(relativeRotation);
     }
 
     // 3D

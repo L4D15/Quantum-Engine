@@ -28,6 +28,8 @@ public:
 
     void                                render(SDL_Renderer* renderer, Vector2D position, Vector2D scale, float rotation);
 
+    SDL_Surface*                        getAssetSurface(std::string animation = "None", unsigned int frame = 0);
+
     std::string                         toString();
 private:
     SDL_Texture *                       spriteSheet;

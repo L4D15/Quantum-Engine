@@ -185,7 +185,7 @@ float Vector3D::getLengthQuadratic()
  */
 float Vector3D::getLength()
 {
-    return Math::squareRoot(x * x + y * y + z * z);
+    return math::squareRoot(x * x + y * y + z * z);
 }
 
 /**
@@ -205,7 +205,7 @@ float Vector3D::distanceQuadratic(const Vector3D &other)
  */
 float Vector3D::distance(const Vector3D &other)
 {
-    return Math::squareRoot((x - other.x) + (y - other.y) + (z - other.z));
+    return math::squareRoot((x - other.x) + (y - other.y) + (z - other.z));
 }
 
 /**
@@ -224,7 +224,7 @@ Vector3D Vector3D::normalized()
         return normalized;
     }
 
-    float recip = Math::inverseSquareRoot(lengthsq);
+    float recip = math::inverseSquareRoot(lengthsq);
     normalized.x *= recip;
     normalized.y *= recip;
     normalized.z *= recip;

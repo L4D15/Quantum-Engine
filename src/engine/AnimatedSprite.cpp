@@ -81,3 +81,33 @@ void AnimatedSprite::update()
         }
     }
 }
+
+int AnimatedSprite::getWidth()
+{
+    return this->currentAnimation->getWidth();
+}
+
+int AnimatedSprite::getHeight()
+{
+    return this->currentAnimation->getHeight();
+}
+
+/**
+ * @brief Access to pixel matrix surface.
+ *
+ * If the animation indicated is "Current", the current animation will be used. If the frame is not indicated, the current frame will be used.
+ * @param animation
+ * @param frame
+ * @return
+ */
+SDL_Surface* AnimatedSprite::getAssetSurface(std::string animation, unsigned int frame)
+{
+    if (animation == "Current")
+    {
+        return this->getAssetSurface(this->currentAnimation->getName(), this->currentAnimationFrame);
+    }
+    else
+    {
+        return this->getAssetSurface(animation, frame);
+    }
+}

@@ -13,20 +13,20 @@ public:
     Physics(GameObject& owner);
     ~Physics();
 
-    void                    SetVelocity(float x, float y);
-    void                    SetVelocity(Vector2D& v);
-    void                    SetAceleration(float x, float y);
-    void                    SetAceleration(Vector2D& a);
+    void                    setVelocity(float x, float y);
+    void                    setVelocity(Vector2D& v);
+    void                    setAceleration(float x, float y);
+    void                    setAceleration(Vector2D& a);
 
-    inline Vector2D         GetVelocity() { return velocity; }
-    inline Vector2D         GetAceleration() { return aceleration; }
+    inline Vector2D         getVelocity() { return velocity; }
+    inline Vector2D         getAceleration() { return aceleration; }
 
-    void                    AddVelocity(float x, float y);
-    void                    AddVelocity(Vector2D& v);
-    void                    AddAceleration(float x, float y);
-    void                    AddAceleration(Vector2D& a);
+    void                    addVelocity(float x, float y);
+    void                    addVelocity(Vector2D& v);
+    void                    addAceleration(float x, float y);
+    void                    addAceleration(Vector2D& a);
 
-    void                    Update();
+    void                    update();
 
 private:
     Vector2D                velocity;

@@ -66,6 +66,31 @@ SDL_Rect SpriteSheetAnimation::operator [](const unsigned int frameIndex) {
     return frame;
 }
 
+SDL_Rect SpriteSheetAnimation::getFrameRect(const unsigned int frameIndex)
+{
+    SDL_Rect frame;
+
+    if (frameIndex >= this->frames->size()) {
+        // Error
+        std::stringstream stream;
+        stream << "Frame index " << frameIndex << " out of range [0~" << this->frames->size()-1 << "]";
+
+        SDL_ShowSimpleMessageBox(
+                SDL_MESSAGEBOX_ERROR,
+                this->name.c_str(),
+                stream.str().c_str(),
+                NULL);
+    } else {
+        // Everything is fine, so return the data
+        frame.x = (this->frames->at(frameIndex)).getX();
+        frame.y = (this->frames->at(frameIndex)).getY();
+        frame.w = this->frameWidth;
+        frame.h = this->frameHeight;
+    }
+
+    return frame;
+}
+
 std::string SpriteSheetAnimation::toString() {
     std::stringstream stream;
 

@@ -17,29 +17,29 @@ Transform2D::~Transform2D()
 
 }
 
-void Transform2D::SetPosition(float x, float y)
+void Transform2D::setPosition(float x, float y)
 {
     this->position.setX(x);
     this->position.setY(y);
 }
 
-void Transform2D::SetPosition(const Vector2D &position)
+void Transform2D::setPosition(const Vector2D &position)
 {
     this->position = position;
 }
 
-void Transform2D::SetScale(float x, float y)
+void Transform2D::setScale(float x, float y)
 {
     this->scale.setX(x);
     this->scale.setY(y);
 }
 
-void Transform2D::SetScale(const Vector2D &scale)
+void Transform2D::setScale(const Vector2D &scale)
 {
     this->scale = scale;
 }
 
-void Transform2D::SetRotation(float angle)
+void Transform2D::setRotation(float angle)
 {
     this->rotation = angle;
 }
@@ -51,7 +51,7 @@ void Transform2D::SetRotation(float angle)
  * has no parent then this will return the same result as GetRelativePosition().
  * @return  Global position on the screen.
  */
-Vector2D Transform2D::GetPosition()
+Vector2D Transform2D::getPosition()
 {
     Vector2D globalPosition(this->position);
 
@@ -61,7 +61,7 @@ Vector2D Transform2D::GetPosition()
     while (parent != NULL)
     {
         Transform2D* parentTransform = (Transform2D*)parent->getComponent<Transform2D>();
-        globalPosition = globalPosition + parentTransform->GetPosition();
+        globalPosition = globalPosition + parentTransform->getPosition();
 
         // Advance up to the parent of the parent
         parent = parent->getParentObject();
@@ -74,7 +74,7 @@ Vector2D Transform2D::GetPosition()
  * @brief Relative position. If the object does not have a parent this is the global position.
  * @return  Relative position to the parent (the Window if no parent is set for the object).
  */
-Vector2D Transform2D::GetRelativePosition()
+Vector2D Transform2D::getRelativePosition()
 {
     return this->position;
 }
@@ -85,7 +85,7 @@ Vector2D Transform2D::GetRelativePosition()
  * This applies any scale from the parent objects.
  * @return
  */
-Vector2D Transform2D::GetScale()
+Vector2D Transform2D::getScale()
 {
     Vector2D totalScale(this->scale);
 
@@ -95,7 +95,7 @@ Vector2D Transform2D::GetScale()
     while (parent != NULL)
     {
         Transform2D* parentTransform = (Transform2D*)parent->getComponent<Transform2D>();
-        totalScale = totalScale + parentTransform->GetScale();
+        totalScale = totalScale + parentTransform->getScale();
 
         // Advance up to the parent of the parent
         parent = parent->getParentObject();
@@ -109,7 +109,7 @@ Vector2D Transform2D::GetScale()
  * If the object does not have a parent this is equal to GetScale().
  * @return  Relative scale of the object.
  */
-Vector2D Transform2D::GetRelativeScale()
+Vector2D Transform2D::getRelativeScale()
 {
     return this->scale;
 }
@@ -118,7 +118,7 @@ Vector2D Transform2D::GetRelativeScale()
  * @brief Transform2D::GetRotation
  * @return
  */
-float Transform2D::GetRotation()
+float Transform2D::getRotation()
 {
    float totalRotation;
    totalRotation = this->rotation;
@@ -129,7 +129,7 @@ float Transform2D::GetRotation()
    while (parent != NULL)
    {
        Transform2D* parentTransform = (Transform2D*)parent->getComponent<Transform2D>();
-       totalRotation = totalRotation + parentTransform->GetRotation();
+       totalRotation = totalRotation + parentTransform->getRotation();
 
        // Advance up to the parent of the parent
        parent = parent->getParentObject();
@@ -141,7 +141,7 @@ float Transform2D::GetRotation()
  * @brief Transform2D::GetRelativeRotation
  * @return
  */
-float Transform2D::GetRelativeRotation()
+float Transform2D::getRelativeRotation()
 {
     return this->rotation;
 }
@@ -150,7 +150,7 @@ float Transform2D::GetRelativeRotation()
  * @brief Updates the objects position.
  * @param movement  Vector that will be added to the position vector.
  */
-void Transform2D::Move(const Vector2D &movement)
+void Transform2D::move(const Vector2D &movement)
 {
     this->position = this->position + movement;
 }
@@ -159,7 +159,7 @@ void Transform2D::Move(const Vector2D &movement)
  * @brief Transform2D::Scale
  * @param scaleFactor
  */
-void Transform2D::Scale(const Vector2D& scaleFactor)
+void Transform2D::rescale(const Vector2D& scaleFactor)
 {
    this->scale = this->scale + scaleFactor;
 }
@@ -168,7 +168,7 @@ void Transform2D::Scale(const Vector2D& scaleFactor)
  * @brief Transform2D::Rotate
  * @param angle
  */
-void Transform2D::Rotate(float angle)
+void Transform2D::rotate(float angle)
 {
     this->rotation = this->rotation + angle;
 }

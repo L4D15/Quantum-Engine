@@ -21,6 +21,8 @@ public:
 
     void                render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation);
 
+    SDL_Surface*        getAssetSurface(std::string animation = "Current", unsigned int frame = 0);
+
 private:
     Sprite*             sprite;
     SpriteSheetAnimation*             currentAnimation;

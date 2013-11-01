@@ -20,6 +20,7 @@ public:
     virtual ~SpriteSheetAnimation();
     
     SDL_Rect                    operator[](const unsigned int frameIndex);
+    SDL_Rect                    getFrameRect(const unsigned int frameIndex);
     
     std::string                 toString();
     

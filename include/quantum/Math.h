@@ -7,7 +7,7 @@ class Vector2D;
 class Vector3D;
 class Color;
 
-namespace Math
+namespace math
 {
 
 static double PI = atan(1) * 4;
@@ -23,7 +23,7 @@ float Normalize(float start, float end, float current);
 // Interpolation
 // ===========================================================================
 // Interpolation functions
-namespace Interpolation
+namespace interpolation
 {
 typedef enum
 {
@@ -42,9 +42,9 @@ float boomerangFunction(float x);
 
 }
 
-float interpolate(Interpolation::Type type, float start, float end, float time);
-Vector2D interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time);
-Color interpolate(Interpolation::Type type, Color start, Color end, float time);
+float interpolate(interpolation::Type type, float start, float end, float time);
+Vector2D interpolate(interpolation::Type type, Vector2D start, Vector2D end, float time);
+Color interpolate(interpolation::Type type, Color start, Color end, float time);
 
 }
 

@@ -17,15 +17,16 @@ public:
     AssetRenderer(GameObject& owner, GameObject* camera, assets2D::RenderizableAsset* asset, int zIndex = 0, int distance = 0);
     virtual ~AssetRenderer();
 
-    void                                Render(GameObject* camera, Vector2D position, Vector2D scale, float rotation);
+    void                                render(GameObject* camera, Vector2D position, Vector2D scale, float rotation);
 
-    inline void                         SetVisible(bool visible) { this->visible = visible; }
-    inline bool                         IsVisible() { return this->visible; }
+    inline void                         setVisible(bool visible) { this->visible = visible; }
+    inline bool                         isVisible() { return this->visible; }
 
-    inline GameObject*                  GetCamera() { return camera; }
-    inline void                         SetCamera(GameObject* camera) { this->camera = camera; }
+    inline GameObject*                  getCamera() { return camera; }
+    inline void                         setCamera(GameObject* camera) { this->camera = camera; }
+    inline assets2D::RenderizableAsset* getRenderizableAsset() { return this->asset; }
 
-    inline void                         Update() { asset->update(); }
+    inline void                         update() { asset->update(); }
 private:
     int                                 zIndex;
     int                                 distance;

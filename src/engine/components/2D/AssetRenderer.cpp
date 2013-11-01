@@ -44,7 +44,7 @@ AssetRenderer::~AssetRenderer() {
  * @param position      Screen position where the asset will be rendered (center point, not the upper left corner).
  * @param angle         Rotation angle from the center point
  */
-void AssetRenderer::Render(GameObject* camera, Vector2D position, Vector2D scale, float rotation) {
+void AssetRenderer::render(GameObject* camera, Vector2D position, Vector2D scale, float rotation) {
     components2D::Camera* cameraComponent;
 
     cameraComponent = (components2D::Camera*)camera->getComponent<components2D::Camera>();
@@ -60,7 +60,7 @@ void AssetRenderer::Render(GameObject* camera, Vector2D position, Vector2D scale
         package.zIndex = this->zIndex;
 
         // Add to the camera rendering queue
-        cameraComponent->QueueForRender(package);
+        cameraComponent->queueForRender(package);
     } else {
         std::stringstream text;
 
