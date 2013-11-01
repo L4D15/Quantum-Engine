@@ -10,6 +10,7 @@ message("====================================")
 message("Source Dir: ${CMAKE_CURRENT_SOURCE_DIR}")
 message("Binary Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/lua")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp")
 
@@ -138,14 +139,8 @@ if(WIN32)
 endif(WIN32)
 
 # Lua
-if(WIN32)
-    find_library(LUA_LIB NAMES lua HINTS "C:/Program Files (x86)/lua/lib")
-    if(NOT LUA_LIB)
-        message(FATAL_ERROR "Failed to find lua library")
-    endif(NOT LUA_LIB)
-    set(EXTRA_LIBS ${EXTRA_LIBS} "C:/Program Files (x86)/lua/lib/liblua.dll.a")
-    set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "C:/Program Files (x86)/lua/include")
-endif(WIN32)
+set(EXTRA_LIBS ${EXTRA_LIBS} liblua)
+set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/lua/src" "${CMAKE_CURRENT_BINARY_DIR}")
 
 # Additional step for Mac OS X
 if(APPLE)
