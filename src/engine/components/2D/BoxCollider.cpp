@@ -15,10 +15,21 @@ BoxCollider::BoxCollider(GameObject& owner) :
     {
         this->width = rendererComp->getRenderizableAsset()->getWidth();
         this->height = rendererComp->getRenderizableAsset()->getHeight();
-    } else
+    }
+    else
     {
         // If no asset attached, make the box 1x1
         this->width = 1.0f;
         this->height = 1.0f;
+    }
+
+    // Check owner has a Collisions component. If not, add it
+    Collisions* collisionsComp;
+
+    collisionsComp = (Collisions*) owner.getComponent<Collisions>();
+
+    if (collisionsComp == NULL)
+    {
+        owner.addComponent(new Collisions(owner));
     }
 }
