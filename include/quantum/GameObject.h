@@ -15,6 +15,7 @@ class GameObject {
 public:
     void                                setTag(std::string tagName);
     inline std::string                  getTag() { return currentTag; }
+    inline artemis::Entity&             getEntity() { return entity; }
 
     inline std::string                  getName() { return name; }
 
