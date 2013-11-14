@@ -5,7 +5,7 @@ using namespace systems2D;
 Collisions::Collisions()
 {
     addComponentType<components2D::Transform2D>();
-    //addComponentType<components2D::Collisions>();
+    addComponentType<components2D::Collisions>();
 }
 
 Collisions::~Collisions()
@@ -16,7 +16,7 @@ Collisions::~Collisions()
 void Collisions::initialize()
 {
     transformMapper.init(* world);
-    //collisionsMapper.init(* world);
+    collisionsMapper.init(* world);
 }
 
 void Collisions::processEntity(artemis::Entity &e)
