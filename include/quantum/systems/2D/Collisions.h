@@ -18,7 +18,7 @@ public:
 
 private:
     artemis::ComponentMapper<components2D::Transform2D> transformMapper;
-    artemis::ComponentMapper<components2D::Collisions>  collisionsMapper;
+    //artemis::ComponentMapper<components2D::Collisions>  collisionsMapper;
 };
 
 }

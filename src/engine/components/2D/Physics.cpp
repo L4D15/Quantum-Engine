@@ -6,7 +6,12 @@ using namespace components2D;
 Physics::Physics(GameObject &owner) :
     Component(owner)
 {
+    this->mass = 1.0f;
 
+    this->linearDrag = 0.0f;
+    this->angularDrag = 0.0f;
+    this->gravityScale = 1.0f;
+    this->isKinematic = false;
 }
 
 Physics::~Physics()

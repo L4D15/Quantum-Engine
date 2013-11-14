@@ -5,6 +5,5 @@
 #include "quantum/components/2D/Physics.h"
 #include "quantum/components/2D/Camera.h"
 #include "quantum/components/2D/AssetRenderer.h"
-#include "quantum/components/2D/Collisions.h"
 
 #endif // QUANTUM_COMPONENTSLIST_H
