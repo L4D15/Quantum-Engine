@@ -121,3 +121,4 @@ artemis::EntitySystem* Scene::addSystem(artemis::EntitySystem *system)
 
     return sys;
 }
+

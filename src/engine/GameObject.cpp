@@ -1,6 +1,7 @@
 #include "quantum/GameObject.h"
 #include "quantum/Scene.h"
 #include "quantum/components/ComponentsList.h"
+#include "quantum/Game2D.h"
 
 
 /**
@@ -51,6 +52,66 @@ Vector2D GameObject::getRelativePosition2D()
     posComponent = (components2D::Transform2D*)this->entity.getComponent<components2D::Transform2D>();
 
     return posComponent->getRelativePosition();
+}
+
+/**
+ * @brief GameObject::getRealPosition2D
+ * @return
+ */
+Vector2D GameObject::getRealPosition2D()
+{
+    Vector2D position;
+    Vector2D cameraPosition;
+    int distance;
+
+    position = this->getPosition2D();
+
+    components2D::AssetRenderer* rendererComp;
+
+    rendererComp = (components2D::AssetRenderer*) getComponent<components2D::AssetRenderer>();
+
+    if (rendererComp != NULL)
+    {
+        cameraPosition = rendererComp->getCamera()->getPosition2D();
+        distance = rendererComp->getDistance();
+    }
+    else
+    {
+        distance = Game2D::parallaxScrolling.getBackgroundDistance();
+    }
+
+    return Game2D::parallaxScrolling.applyParallaxScrolling(cameraPosition, position, distance);
+}
+
+/**
+ * @brief GameObject::getRealPosition2D
+ * @param offsetX
+ * @param offsetY
+ * @return
+ */
+Vector2D GameObject::getRealPosition2D(float offsetX, float offsetY)
+{
+    Vector2D position;
+    Vector2D cameraPosition;
+    int distance;
+
+    position = this->getPosition2D() + Vector2D(offsetX, offsetY);
+
+    components2D::AssetRenderer* rendererComp;
+
+    rendererComp = (components2D::AssetRenderer*) getComponent<components2D::AssetRenderer>();
+
+    if (rendererComp != NULL)
+    {
+        cameraPosition = rendererComp->getCamera()->getPosition2D();
+        distance = rendererComp->getDistance();
+    }
+    else
+    {
+        distance = Game2D::parallaxScrolling.getBackgroundDistance();
+    }
+
+    return Game2D::parallaxScrolling.applyParallaxScrolling(cameraPosition, position, distance);
 }
 
 void GameObject::setPosition(float x, float y)

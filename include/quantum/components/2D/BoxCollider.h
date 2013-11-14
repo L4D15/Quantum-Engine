@@ -2,6 +2,8 @@
 #define QUANTUM_2D_BOXCOLLIDER_H
 
 #include "quantum/components/2D/Collisions.h"
+#include "quantum/components/2D/Camera.h"
+#include "quantum/Color.h"
 
 namespace components2D
 {
@@ -16,6 +18,10 @@ public:
 
     inline float getWidth() { return width; }
     inline float getHeight() { return height; }
+
+    std::string toString();
+
+    void render(Color color);
 
 protected:
     float width;

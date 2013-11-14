@@ -7,7 +7,7 @@
 namespace systems2D
 {
 
-class Collisions : artemis::EntityProcessingSystem
+class Collisions : public artemis::EntityProcessingSystem
 {
 public:
     Collisions();
@@ -15,6 +15,9 @@ public:
 
     void initialize();
     void processEntity(artemis::Entity &e);
+
+private:
+    bool collides(artemis::Entity& A, artemis::Entity& B);
 
 private:
     artemis::ComponentMapper<components2D::Transform2D> transformMapper;

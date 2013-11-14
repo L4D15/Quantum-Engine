@@ -25,6 +25,9 @@ public:
 
     Vector2D                            getPosition2D();
     Vector2D                            getRelativePosition2D();
+    Vector2D                            getRealPosition2D();
+    Vector2D                            getRealPosition2D(float offsetX, float offsetY);
+    inline Vector2D                     getRealPosition2D(Vector2D& offset) { return getRealPosition2D(offset.getX(), offset.getY()); }
 
     void                                setPosition(float x, float y);
 

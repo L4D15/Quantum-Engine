@@ -26,6 +26,8 @@ public:
     inline void                         setCamera(GameObject* camera) { this->camera = camera; }
     inline assets2D::RenderizableAsset* getRenderizableAsset() { return this->asset; }
 
+    inline int                          getDistance() { return distance; }
+
     inline void                         update() { asset->update(); }
 private:
     int                                 zIndex;
