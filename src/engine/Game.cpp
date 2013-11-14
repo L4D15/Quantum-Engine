@@ -12,6 +12,7 @@ float Game::deltaTime = 1.0f;
 
 bool Game::run = false;
 std::string Game::name;
+Vector3D Game::gravity;
 
 // =====================================
 
@@ -39,6 +40,9 @@ Game::Game(std::string name)
     this->frameSkipCurrentTime = SDL_GetTicks();
     this->frameSkipOldTime = 0;
     this->timePerFrame = (Uint32) ((1000.0 / (double)QUANTUM_MAX_FPS));
+
+    // Set Gravity Force
+    gravity = Vector3D(0.0f, 9.8f, 0.0f);
 }
 
 /**
