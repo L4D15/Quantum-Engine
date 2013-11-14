@@ -178,8 +178,8 @@ void Sprite::render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, f
 
     SDL_Rect geometry;
 
-    geometry.x = position.getX();
-    geometry.y = position.getY();
+    geometry.x = position.getX() - this->getWidth() / 2.0f;
+    geometry.y = position.getY() - this->getHeight() / 2.0f;
     geometry.w = this->getWidth() * scale.getX();
     geometry.h = this->getHeight() * scale.getY();
 

@@ -58,8 +58,8 @@ void BoxCollider::render(Color color)
 
     SDL_Rect box;
 
-    box.x = realPosition.getX();
-    box.y = realPosition.getY();
+    box.x = realPosition.getX() - width / 2.0f;
+    box.y = realPosition.getY() - height / 2.0f;
     box.w = width;
     box.h = height;
 

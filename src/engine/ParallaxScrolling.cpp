@@ -1,5 +1,7 @@
 #include "quantum/ParallaxScrolling.h"
 #include <cmath>
+#include "quantum/Game.h"
+
 using namespace systems2D;
 
 ParallaxScrolling::ParallaxScrolling() {
@@ -53,6 +55,6 @@ Vector2D ParallaxScrolling::applyParallaxScrolling(Vector2D cameraPosition, Vect
     float offsetY = distance * tan(alphaY);
 
     // We have the offset of the displaced position, so we add it to the objects position
-    return objectPosition + Vector2D(offsetX, offsetY);
+    return objectPosition + Vector2D(offsetX, offsetY) + Vector2D(Game::window->getWidth() / 2.0f, Game::window->getHeight() / 2.0f);
 }
 

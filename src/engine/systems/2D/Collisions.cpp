@@ -110,15 +110,14 @@ bool Collisions::collides(artemis::Entity &A, artemis::Entity &B)
         Vector2D centerA;
         Vector2D centerB;
 
-        centerA = ACircle->GetOwner().getPosition2D() + Vector2D(ACircle->getOffsetX(), ACircle->getOffsetY());
-        centerB = BCircle->GetOwner().getPosition2D() + Vector2D(BCircle->getOffsetX(), BCircle->getOffsetY());
+        centerA = ACircle->GetOwner().getRealPosition2D(ACircle->getOffsetX(), ACircle->getOffsetY());
+        centerB = BCircle->GetOwner().getRealPosition2D(BCircle->getOffsetX(), BCircle->getOffsetY());
 
         float distanceQuadratic;
         distanceQuadratic = centerA.distanceQuadratic(centerB);
 
         float dangerDistance;
-        dangerDistance = ACircle->getRadius() + BCircle->getRadius();
-        dangerDistance = dangerDistance * dangerDistance;
+        dangerDistance = ACircle->getRadius() * ACircle->getRadius() + BCircle->getRadius() * BCircle->getRadius();
 
         if (distanceQuadratic <= dangerDistance)
         {
