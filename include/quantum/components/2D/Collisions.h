@@ -10,7 +10,7 @@ namespace components2D
 class Collisions : public components::Component
 {
 public:
-    Collisions(GameObject& owner) : Component(owner) { }
+    Collisions(GameObject& owner) : Component(owner) { offsetX = 0.0f; offsetY = 0.0f; }
 
     inline float getOffsetX() { return offsetX; }
     inline float getOffsetY() { return offsetY; }
