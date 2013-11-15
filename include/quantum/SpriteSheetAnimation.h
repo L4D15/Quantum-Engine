@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "quantum/Libraries.h"
-#include "Vector2D.h"
+#include "Vector2.h"
 
 class SpriteSheetAnimation {
 public:
@@ -37,7 +37,7 @@ private:
     unsigned int                frameWidth;
     unsigned int                frameHeight;
     
-    std::vector<Vector2D> *     frames;
+    std::vector<Vector2> *     frames;
     
     unsigned int                frameRate;
     bool                        oscillate;

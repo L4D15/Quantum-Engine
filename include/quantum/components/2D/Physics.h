@@ -2,7 +2,7 @@
 #define QUANTUM_PHYSICS_COMPONENT_H
 
 #include "quantum/components/Component.h"
-#include "quantum/Vector2D.h"
+#include "quantum/Vector2.h"
 
 namespace components2D
 {
@@ -14,45 +14,45 @@ public:
     ~Physics();
 
     void                    setVelocity(float x, float y);
-    void                    setVelocity(Vector2D& v);
+    void                    setVelocity(Vector2& v);
     void                    setAceleration(float x, float y);
-    void                    setAceleration(Vector2D& a);
+    void                    setAceleration(Vector2& a);
     void                    setRotationVelocity(float x, float y);
-    void                    setRotationVelocity(Vector2D& v);
+    void                    setRotationVelocity(Vector2& v);
     void                    setRotationAceleration(float x, float y);
-    void                    setRotationAceleration(Vector2D& v);
+    void                    setRotationAceleration(Vector2& v);
     void                    setMass(float value);
     void                    setLinearDrag(float value);
     void                    setAngularDrag(float value);
     void                    setGravityScale(float value);
     void                    setKinematic(bool value);
 
-    inline Vector2D         getVelocity() { return velocity; }
-    inline Vector2D         getAceleration() { return aceleration; }
-    inline Vector2D         getRotationVelocity() { return rotationVelocity; }
-    inline Vector2D         getRotationAceleration() { return rotationAceleration; }
+    inline Vector2          getVelocity() { return velocity; }
+    inline Vector2          getAceleration() { return aceleration; }
+    inline Vector2          getRotationVelocity() { return rotationVelocity; }
+    inline Vector2          getRotationAceleration() { return rotationAceleration; }
     inline float            getMass() { return mass; }
     inline float            getLinearDrag() { return linearDrag; }
     inline float            getAngularDrag() { return angularDrag; }
     inline float            getGravityScale() { return gravityScale; }
 
     void                    addVelocity(float x, float y);
-    void                    addVelocity(Vector2D& v);
+    void                    addVelocity(Vector2& v);
     void                    addAceleration(float x, float y);
-    void                    addAceleration(Vector2D& a);
+    void                    addAceleration(Vector2& a);
     void                    addRotationVelocity(float x, float y);
-    void                    addRotationVelocity(Vector2D& v);
+    void                    addRotationVelocity(Vector2& v);
     void                    addRotationAceleration(float x, float y);
-    void                    addRotationAceleration(Vector2D& v);
+    void                    addRotationAceleration(Vector2& v);
 
     void                    update();
 
 private:
-    Vector2D                velocity;
-    Vector2D                aceleration;
+    Vector2                 velocity;
+    Vector2                 aceleration;
 
-    Vector2D                rotationVelocity;
-    Vector2D                rotationAceleration;
+    Vector2                 rotationVelocity;
+    Vector2                 rotationAceleration;
 
     float                   mass;           // Mass that will be used for gravity
     float                   linearDrag;     // Resistance to linear forces

@@ -32,7 +32,7 @@ void GameObject::setTag(std::string tagName)
  * @brief GameObject::GetPosition2D
  * @return
  */
-Vector2D GameObject::getPosition2D()
+Vector2 GameObject::getPosition2D()
 {
     components2D::Transform2D* posComponent;
 
@@ -45,7 +45,7 @@ Vector2D GameObject::getPosition2D()
  * @brief GameObject::GetRelativePosition2D
  * @return
  */
-Vector2D GameObject::getRelativePosition2D()
+Vector2 GameObject::getRelativePosition2D()
 {
     components2D::Transform2D* posComponent;
 
@@ -58,10 +58,10 @@ Vector2D GameObject::getRelativePosition2D()
  * @brief GameObject::getRealPosition2D
  * @return
  */
-Vector2D GameObject::getRealPosition2D()
+Vector2 GameObject::getRealPosition2D()
 {
-    Vector2D position;
-    Vector2D cameraPosition;
+    Vector2 position;
+    Vector2 cameraPosition;
     int distance;
 
     position = this->getPosition2D();
@@ -89,13 +89,13 @@ Vector2D GameObject::getRealPosition2D()
  * @param offsetY
  * @return
  */
-Vector2D GameObject::getRealPosition2D(float offsetX, float offsetY)
+Vector2 GameObject::getRealPosition2D(float offsetX, float offsetY)
 {
-    Vector2D position;
-    Vector2D cameraPosition;
+    Vector2 position;
+    Vector2 cameraPosition;
     int distance;
 
-    position = this->getPosition2D() + Vector2D(offsetX, offsetY);
+    position = this->getPosition2D() + Vector2(offsetX, offsetY);
 
     components2D::AssetRenderer* rendererComp;
 
@@ -134,8 +134,8 @@ void GameObject::makeChildOfObject(GameObject *parent)
     // Check if both objects have the Transform2D component
     if (transformParent != NULL && transform != NULL)
     {
-        Vector2D parentPos = parent->getPosition2D();
-        Vector2D relativePos = getRelativePosition2D() - parentPos;
+        Vector2 parentPos = parent->getPosition2D();
+        Vector2 relativePos = getRelativePosition2D() - parentPos;
 
         setPosition(relativePos.getX(), relativePos.getY());
 
@@ -156,7 +156,7 @@ void GameObject::unmakeChildOfObject()
 
     if (transform != NULL)
     {
-        Vector2D globalPosition;
+        Vector2 globalPosition;
         globalPosition = this->getPosition2D();
         setPosition(globalPosition.getX(), globalPosition.getY());
     }

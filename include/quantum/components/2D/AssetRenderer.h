@@ -17,7 +17,7 @@ public:
     AssetRenderer(GameObject& owner, GameObject* camera, assets2D::RenderizableAsset* asset, int zIndex = 0, int distance = 0);
     virtual ~AssetRenderer();
 
-    void                                render(GameObject* camera, Vector2D position, Vector2D scale, float rotation);
+    void                                render(GameObject* camera, Vector2 position, Vector2 scale, float rotation);
 
     inline void                         setVisible(bool visible) { this->visible = visible; }
     inline bool                         isVisible() { return this->visible; }

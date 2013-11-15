@@ -19,13 +19,13 @@ SpriteSheetAnimation::SpriteSheetAnimation(
     this->frameWidth = widthPerFrame;
     this->frameHeight = heightPerFrame;
 
-    this->frames = new std::vector<Vector2D>(numberOfFrames);
+    this->frames = new std::vector<Vector2>(numberOfFrames);
 
     unsigned int x = 0;
     unsigned int y = animationIndex * heightPerFrame;
     for (unsigned int i = 0; i < numberOfFrames; ++i) {
         x = widthPerFrame * i;
-        this->frames->at(i) = Vector2D(x,y);
+        this->frames->at(i) = Vector2(x,y);
     }
 
     this->oscillate = oscillate;

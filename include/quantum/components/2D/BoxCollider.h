@@ -13,19 +13,19 @@ class BoxCollider : public Collisions
 public:
     BoxCollider(GameObject& owner);
 
-    inline void setWidth(const float w) { width = w; }
-    inline void setHeight(const float h) { height = h; }
+    inline void             setWidth(const float w) { width = w; }
+    inline void             setHeight(const float h) { height = h; }
 
-    inline float getWidth() { return width; }
-    inline float getHeight() { return height; }
+    inline float            getWidth() { return width; }
+    inline float            getHeight() { return height; }
 
-    std::string toString();
+    std::string             toString();
 
-    void render(Color color);
+    void                    render(Color color);
 
 protected:
-    float width;
-    float height;
+    float                   width;
+    float                   height;
 };
 
 }

@@ -13,11 +13,11 @@ public:
     Collisions();
     virtual ~Collisions();
 
-    void initialize();
-    void processEntity(artemis::Entity &e);
+    void            initialize();
+    void            processEntity(artemis::Entity &e);
 
 private:
-    bool collides(artemis::Entity& A, artemis::Entity& B);
+    bool            collides(artemis::Entity& A, artemis::Entity& B);
 
 private:
     artemis::ComponentMapper<components2D::Transform2D> transformMapper;

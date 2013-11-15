@@ -12,8 +12,8 @@ namespace components2D
 // ==================================================== //
 typedef struct {
     assets2D::RenderizableAsset*        asset;
-    Vector2D                            position;
-    Vector2D                            scale;
+    Vector2                            position;
+    Vector2                            scale;
     float                               rotation;
     int                                 zIndex;
     int                                 distance;

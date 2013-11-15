@@ -38,7 +38,7 @@ int ParallaxScrolling::getBackgroundDistance() {
  * @param objectDistanceFromCamera      Distance of the object from the camera.
  * @return Perspective position of the object after applying the parallax scrolling effect.
  */
-Vector2D ParallaxScrolling::applyParallaxScrolling(Vector2D cameraPosition, Vector2D objectPosition, int objectDistanceFromCamera) {
+Vector2 ParallaxScrolling::applyParallaxScrolling(Vector2 cameraPosition, Vector2 objectPosition, int objectDistanceFromCamera) {
 
     int distance;
 
@@ -55,6 +55,6 @@ Vector2D ParallaxScrolling::applyParallaxScrolling(Vector2D cameraPosition, Vect
     float offsetY = distance * tan(alphaY);
 
     // We have the offset of the displaced position, so we add it to the objects position
-    return objectPosition + Vector2D(offsetX, offsetY) + Vector2D(Game::window->getWidth() / 2.0f, Game::window->getHeight() / 2.0f);
+    return objectPosition + Vector2(offsetX, offsetY) + Vector2(Game::window->getWidth() / 2.0f, Game::window->getHeight() / 2.0f);
 }
 

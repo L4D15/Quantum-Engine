@@ -24,8 +24,8 @@ Window::Window(std::string title, WindowMode mode)
 
     showDisplayModeInfo(dMode);
 
-    this->width = dMode.w / 2;
-    this->height = dMode.h / 2;
+    this->width = dMode.w;
+    this->height = dMode.h;
 
     this->mode = mode;
 

@@ -173,7 +173,7 @@ SpriteSheetAnimation * Sprite::getAnimation(std::string animation) {
  * @param scale
  * @param rotation
  */
-void Sprite::render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation) {
+void Sprite::render(SDL_Renderer *renderer, Vector2 position, Vector2 scale, float rotation) {
     // TODO: Implement
 
     SDL_Rect geometry;

@@ -3,8 +3,8 @@
 
 #include <cmath>
 
-class Vector2D;
-class Vector3D;
+class Vector2;
+class Vector3;
 class Color;
 
 namespace math
@@ -43,7 +43,7 @@ float boomerangFunction(float x);
 }
 
 float interpolate(interpolation::Type type, float start, float end, float time);
-Vector2D interpolate(interpolation::Type type, Vector2D start, Vector2D end, float time);
+Vector2 interpolate(interpolation::Type type, Vector2 start, Vector2 end, float time);
 Color interpolate(interpolation::Type type, Color start, Color end, float time);
 
 }

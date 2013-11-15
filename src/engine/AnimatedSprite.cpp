@@ -26,7 +26,7 @@ void AnimatedSprite::changeAnimation(std::string animationName)
     this->timeLastUpdate = Game::getTime();
 }
 
-void AnimatedSprite::render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation)
+void AnimatedSprite::render(SDL_Renderer *renderer, Vector2 position, Vector2 scale, float rotation)
 {
     SDL_Rect spriteFrame = (* this->currentAnimation)[currentAnimationFrame];
     SDL_Rect renderFrame;

@@ -12,7 +12,7 @@ float Game::deltaTime = 1.0f;
 
 bool Game::run = false;
 std::string Game::name;
-Vector3D Game::gravity;
+Vector3 Game::gravity;
 
 // =====================================
 
@@ -42,7 +42,7 @@ Game::Game(std::string name)
     this->timePerFrame = (Uint32) ((1000.0 / (double)QUANTUM_MAX_FPS));
 
     // Set Gravity Force
-    gravity = Vector3D(0.0f, 9.8f, 0.0f);
+    gravity = Vector3(0.0f, 9.8f, 0.0f);
 }
 
 /**

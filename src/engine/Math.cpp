@@ -1,6 +1,6 @@
 #include "quantum/Math.h"
-#include "quantum/Vector2D.h"
-#include "quantum/Vector3D.h"
+#include "quantum/Vector2.h"
+#include "quantum/Vector3.h"
 #include "quantum/Color.h"
 #include <cmath>
 #include <iostream>
@@ -165,7 +165,7 @@ float math::interpolation::boomerangFunction(float x)
  * @param time
  * @return
  */
-Vector2D math::interpolate(interpolation::Type type, Vector2D start, Vector2D end, float time)
+Vector2 math::interpolate(interpolation::Type type, Vector2 start, Vector2 end, float time)
 {
     float x;
     float y;
@@ -173,7 +173,7 @@ Vector2D math::interpolate(interpolation::Type type, Vector2D start, Vector2D en
     x = interpolate(type, start.getX(), end.getX(), time);
     y = interpolate(type, start.getY(), end.getY(), time);
 
-    return Vector2D(x, y);
+    return Vector2(x, y);
 }
 
 /**

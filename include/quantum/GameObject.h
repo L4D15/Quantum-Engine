@@ -3,8 +3,8 @@
 
 #include <string>
 #include "quantum/Libraries.h"
-#include "quantum/Vector2D.h"
-#include "quantum/Vector3D.h"
+#include "quantum/Vector2.h"
+#include "quantum/Vector3.h"
 
 // Prototype
 class Scene;
@@ -23,11 +23,11 @@ public:
     void                                unmakeChildOfObject();
     inline GameObject*                  getParentObject() { return this->parent; }
 
-    Vector2D                            getPosition2D();
-    Vector2D                            getRelativePosition2D();
-    Vector2D                            getRealPosition2D();
-    Vector2D                            getRealPosition2D(float offsetX, float offsetY);
-    inline Vector2D                     getRealPosition2D(Vector2D& offset) { return getRealPosition2D(offset.getX(), offset.getY()); }
+    Vector2                             getPosition2D();
+    Vector2                             getRelativePosition2D();
+    Vector2                             getRealPosition2D();
+    Vector2                             getRealPosition2D(float offsetX, float offsetY);
+    inline Vector2                      getRealPosition2D(Vector2& offset) { return getRealPosition2D(offset.getX(), offset.getY()); }
 
     void                                setPosition(float x, float y);
 

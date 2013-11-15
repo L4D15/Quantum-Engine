@@ -2,7 +2,7 @@
 #define QUANTUM_TRANSFORM2D_H
 
 #include "quantum/components/Component.h"
-#include "quantum/Vector2D.h"
+#include "quantum/Vector2.h"
 
 namespace components2D
 {
@@ -14,27 +14,27 @@ public:
     ~Transform2D();
 
     void                setPosition(float x, float y);
-    void                setPosition(const Vector2D& position);
+    void                setPosition(const Vector2& position);
     void                setScale(float x, float y);
-    void                setScale(const Vector2D& scale);
+    void                setScale(const Vector2& scale);
     void                setRotation(float angle);
 
-    Vector2D            getPosition();
-    Vector2D            getRelativePosition();
+    Vector2             getPosition();
+    Vector2             getRelativePosition();
 
-    Vector2D            getScale();
-    Vector2D            getRelativeScale();
+    Vector2             getScale();
+    Vector2             getRelativeScale();
 
     float               getRotation();
     float               getRelativeRotation();
 
-    void                move(const Vector2D& movement);
-    void                rescale(const Vector2D& scaleFactor);
+    void                move(const Vector2& movement);
+    void                rescale(const Vector2& scaleFactor);
     void                rotate(float angle);
 
 private:
-    Vector2D            position;
-    Vector2D            scale;
+    Vector2             position;
+    Vector2             scale;
     float               rotation;
 
 };

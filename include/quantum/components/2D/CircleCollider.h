@@ -11,12 +11,12 @@ class CircleCollider : public Collisions
 public:
     CircleCollider(GameObject& owner);
 
-    inline void setRadius(const float r) { radius = r; }
+    inline void             setRadius(const float r) { radius = r; }
 
-    inline float getRadius() { return radius; }
+    inline float            getRadius() { return radius; }
 
 protected:
-    float radius;
+    float                   radius;
 };
 
 }

@@ -39,7 +39,7 @@ BoxCollider::BoxCollider(GameObject& owner) :
 std::string BoxCollider::toString()
 {
     std::stringstream stream;
-    Vector2D globalPosition;
+    Vector2 globalPosition;
 
     globalPosition = this->owner.getRealPosition2D(offsetX, offsetY);
 
@@ -54,7 +54,7 @@ std::string BoxCollider::toString()
  */
 void BoxCollider::render(Color color)
 {
-    Vector2D realPosition = this->owner.getRealPosition2D(offsetX, offsetY);
+    Vector2 realPosition = this->owner.getRealPosition2D(offsetX, offsetY);
 
     SDL_Rect box;
 

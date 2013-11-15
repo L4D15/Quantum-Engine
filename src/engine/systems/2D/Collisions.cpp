@@ -70,11 +70,11 @@ bool Collisions::collides(artemis::Entity &A, artemis::Entity &B)
     // Boxes collision
     if (ABox != NULL && BBox != NULL)
     {
-        Vector2D AOffset(ABox->getOffsetX() - ABox->getWidth() / 2.0f, ABox->getOffsetY());
-        Vector2D BOffset(BBox->getOffsetX() - BBox->getWidth() / 2.0f, BBox->getOffsetY());
+        Vector2 AOffset(ABox->getOffsetX() - ABox->getWidth() / 2.0f, ABox->getOffsetY());
+        Vector2 BOffset(BBox->getOffsetX() - BBox->getWidth() / 2.0f, BBox->getOffsetY());
 
-        Vector2D AUpperLeft = ABox->GetOwner().getRealPosition2D(AOffset);
-        Vector2D BUpperLeft = BBox->GetOwner().getRealPosition2D(BOffset);
+        Vector2 AUpperLeft = ABox->GetOwner().getRealPosition2D(AOffset);
+        Vector2 BUpperLeft = BBox->GetOwner().getRealPosition2D(BOffset);
 
         SDL_Rect a;
         a.x = AUpperLeft.getX();
@@ -107,8 +107,8 @@ bool Collisions::collides(artemis::Entity &A, artemis::Entity &B)
     // Circles collision
     if (ACircle != NULL && BCircle != NULL)
     {
-        Vector2D centerA;
-        Vector2D centerB;
+        Vector2 centerA;
+        Vector2 centerB;
 
         centerA = ACircle->GetOwner().getRealPosition2D(ACircle->getOffsetX(), ACircle->getOffsetY());
         centerB = BCircle->GetOwner().getRealPosition2D(BCircle->getOffsetX(), BCircle->getOffsetY());

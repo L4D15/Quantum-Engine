@@ -23,7 +23,7 @@ void Transform2D::setPosition(float x, float y)
     this->position.setY(y);
 }
 
-void Transform2D::setPosition(const Vector2D &position)
+void Transform2D::setPosition(const Vector2 &position)
 {
     this->position = position;
 }
@@ -34,7 +34,7 @@ void Transform2D::setScale(float x, float y)
     this->scale.setY(y);
 }
 
-void Transform2D::setScale(const Vector2D &scale)
+void Transform2D::setScale(const Vector2 &scale)
 {
     this->scale = scale;
 }
@@ -51,9 +51,9 @@ void Transform2D::setRotation(float angle)
  * has no parent then this will return the same result as GetRelativePosition().
  * @return  Global position on the screen.
  */
-Vector2D Transform2D::getPosition()
+Vector2 Transform2D::getPosition()
 {
-    Vector2D globalPosition(this->position);
+    Vector2 globalPosition(this->position);
 
     GameObject* parent;
     parent = owner.getParentObject();
@@ -74,7 +74,7 @@ Vector2D Transform2D::getPosition()
  * @brief Relative position. If the object does not have a parent this is the global position.
  * @return  Relative position to the parent (the Window if no parent is set for the object).
  */
-Vector2D Transform2D::getRelativePosition()
+Vector2 Transform2D::getRelativePosition()
 {
     return this->position;
 }
@@ -85,9 +85,9 @@ Vector2D Transform2D::getRelativePosition()
  * This applies any scale from the parent objects.
  * @return
  */
-Vector2D Transform2D::getScale()
+Vector2 Transform2D::getScale()
 {
-    Vector2D totalScale(this->scale);
+    Vector2 totalScale(this->scale);
 
     GameObject* parent;
     parent = owner.getParentObject();
@@ -109,7 +109,7 @@ Vector2D Transform2D::getScale()
  * If the object does not have a parent this is equal to GetScale().
  * @return  Relative scale of the object.
  */
-Vector2D Transform2D::getRelativeScale()
+Vector2 Transform2D::getRelativeScale()
 {
     return this->scale;
 }
@@ -150,7 +150,7 @@ float Transform2D::getRelativeRotation()
  * @brief Updates the objects position.
  * @param movement  Vector that will be added to the position vector.
  */
-void Transform2D::move(const Vector2D &movement)
+void Transform2D::move(const Vector2 &movement)
 {
     this->position = this->position + movement;
 }
@@ -159,7 +159,7 @@ void Transform2D::move(const Vector2D &movement)
  * @brief Transform2D::Scale
  * @param scaleFactor
  */
-void Transform2D::rescale(const Vector2D& scaleFactor)
+void Transform2D::rescale(const Vector2& scaleFactor)
 {
    this->scale = this->scale + scaleFactor;
 }

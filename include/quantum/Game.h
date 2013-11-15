@@ -70,7 +70,7 @@ public:
 
     static float                        deltaTime;      // Delta Time
 
-    static Vector3D                     gravity;
+    static Vector3                      gravity;
 
     static systems2D::SceneManager      sceneManager;
     static ResourceManager              resourceManager;

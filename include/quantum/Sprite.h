@@ -4,7 +4,7 @@
 #include "quantum/Libraries.h"
 #include <map>
 #include <vector>
-#include "Vector2D.h"
+#include "Vector2.h"
 #include "quantum/SpriteSheetAnimation.h"
 #include "quantum/RenderizableAsset.h"
 
@@ -26,7 +26,7 @@ public:
 
     inline SDL_Texture *                getTexture() { return spriteSheet; }
 
-    void                                render(SDL_Renderer* renderer, Vector2D position, Vector2D scale, float rotation);
+    void                                render(SDL_Renderer* renderer, Vector2 position, Vector2 scale, float rotation);
 
     SDL_Surface*                        getAssetSurface(std::string animation = "None", unsigned int frame = 0);
 
