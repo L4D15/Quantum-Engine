@@ -46,7 +46,10 @@ void Collisions::processEntity(artemis::Entity &e)
 
             if (isColliding == true)
             {
-                std::cout << "COLLISION!" << std::endl;
+                if ((collisionsMapper.get(e))->isTrigger() == true)
+                {
+                    Game::runScript(collisionsMapper.get(e)->getScriptToTrigger());
+                }
             }
             else
             {

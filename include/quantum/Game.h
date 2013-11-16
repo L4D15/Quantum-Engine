@@ -7,6 +7,8 @@
 #include "quantum/SceneManager.h"
 #include "quantum/ResourceManager.h"
 
+#include "lua.hpp"
+
 #define QUANTUM_MAX_FPS 60
 
 class Game
@@ -39,6 +41,7 @@ public:
     static void                         terminate();
     static inline Uint32                getTime() { return SDL_GetTicks(); }
     static std::string                  getName() { return name; }
+    static void                         runScript(std::string script);
 protected:
 
     // Attributes
@@ -74,6 +77,8 @@ public:
 
     static systems2D::SceneManager      sceneManager;
     static ResourceManager              resourceManager;
+
+    static lua_State*                   luaState;
 
 protected:
     static bool                         run;

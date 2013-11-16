@@ -1,5 +1,5 @@
 #include "quantum/Game.h"
-//#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 
 // =====================================
 // Static Variables
@@ -13,6 +13,7 @@ float Game::deltaTime = 1.0f;
 bool Game::run = false;
 std::string Game::name;
 Vector3 Game::gravity;
+lua_State* Game::luaState = NULL;
 
 // =====================================
 
@@ -26,7 +27,7 @@ Game::Game(std::string name)
 
     // Initialize SDL and TTF
     SDL_Init(SDL_INIT_EVERYTHING);
-    //TTF_Init();
+    TTF_Init();
 
     this->currentTime = SDL_GetTicks();
     this->oldTime = 0;
@@ -43,6 +44,9 @@ Game::Game(std::string name)
 
     // Set Gravity Force
     gravity = Vector3(0.0f, 9.8f, 0.0f);
+
+    // Initialize Lua
+    luaState = luaL_newstate();
 }
 
 /**
@@ -52,7 +56,8 @@ Game::~Game()
 {
     delete window;
     SDL_Quit();
-    //TTF_Quit();
+    TTF_Quit();
+    lua_close(luaState);
 }
 
 /**
@@ -189,5 +194,15 @@ void Game::manageFramesPerSecond()
 void Game::writeToConsole(std::string text)
 {
     std::cout << text << std::endl;
+}
+
+
+void Game::runScript(std::string script)
+{
+    std::string scriptPath;
+
+    scriptPath = Game::resourceManager.getScript(script);
+
+    luaL_dofile(luaState, scriptPath.c_str());
 }
 
