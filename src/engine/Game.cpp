@@ -203,6 +203,8 @@ void Game::runScript(std::string script)
 
     scriptPath = Game::resourceManager.getScript(script);
 
+    std::cout << "Running script "  <<scriptPath << std::endl;
+
     luaL_dofile(luaState, scriptPath.c_str());
 }
 

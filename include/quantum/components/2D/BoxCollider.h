@@ -8,22 +8,28 @@
 namespace components2D
 {
 
-class BoxCollider : public Collisions
+class BoxCollider : public components::Component
 {
 public:
     BoxCollider(GameObject& owner);
 
-    inline void             setWidth(const float w) { width = w; }
-    inline void             setHeight(const float h) { height = h; }
-
+    inline void             setOffsetX(const float x) { offsetX = x; }
+    inline void             setOffsetY(const float y) { offsetY = y; }
+    inline float            getOffsetX() { return offsetX; }
+    inline float            getOffsetY() { return offsetY; }
     inline float            getWidth() { return width; }
     inline float            getHeight() { return height; }
+
+    inline void             setWidth(const float w) { width = w; }
+    inline void             setHeight(const float h) { height = h; }
 
     std::string             toString();
 
     void                    render(Color color);
 
 protected:
+    float                   offsetX;
+    float                   offsetY;
     float                   width;
     float                   height;
 };

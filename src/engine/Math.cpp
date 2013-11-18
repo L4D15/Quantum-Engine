@@ -71,6 +71,34 @@ int math::min(int a, int b) {
 }
 
 /**
+ * @brief math::max
+ * @param a
+ * @param b
+ * @return
+ */
+float math::max(float a, float b)
+{
+    if (a > b) {
+        return a;
+    }
+    return b;
+}
+
+/**
+ * @brief math::min
+ * @param a
+ * @param b
+ * @return
+ */
+float math::min(float a, float b)
+{
+    if (a < b) {
+        return a;
+    }
+    return b;
+}
+
+/**
  * @brief Math::Normalize
  * @param start
  * @param end

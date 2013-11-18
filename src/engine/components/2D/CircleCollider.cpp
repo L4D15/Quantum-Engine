@@ -5,8 +5,10 @@
 using namespace components2D;
 
 CircleCollider::CircleCollider(GameObject &owner) :
-    Collisions(owner)
+    Component(owner)
 {
+    this->offsetX = 0.0f;
+    this->offsetY = 0.0f;
     // Check if there is an Asset attached to calculate the radius automatically
     AssetRenderer* rendererComp;
 

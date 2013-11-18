@@ -10,7 +10,7 @@ EventListener::~EventListener()
 
 }
 
-void EventListener::onEvent(SDL_Event * event)
+void EventListener::onEvent(SDL_Event* event)
 {
     switch (event->type)
     {

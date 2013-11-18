@@ -10,21 +10,18 @@ namespace components2D
 class Collisions : public components::Component
 {
 public:
-    Collisions(GameObject& owner) : Component(owner) { offsetX = 0.0f; offsetY = 0.0f; }
+    Collisions(GameObject& owner) : Component(owner) { trigger = false; }
 
-    inline float        getOffsetX() { return offsetX; }
-    inline float        getOffsetY() { return offsetY; }
+
     inline bool         isTrigger() { return trigger; }
     inline std::string  getScriptToTrigger() { return script; }
 
-    inline void         setOffsetX(const float x) { offsetX = x; }
-    inline void         setOffsetY(const float y) { offsetY = y; }
     inline void         setIsTrigger(const bool t) { trigger = t; }
-    inline void         setScriptToTrigger(const std::string s) { script = s; }
+    inline void         setScriptToTrigger(const std::string s){ this->script = s; }
+
+    virtual std::string toString() { }
 
 protected:
-    float               offsetX;
-    float               offsetY;
     bool                trigger;
     std::string         script;
 };

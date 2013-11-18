@@ -1,5 +1,6 @@
 #include "quantum/systems/2D/Collisions.h"
 #include "quantum/Game.h"
+#include "quantum/Math.h"
 
 using namespace systems2D;
 
@@ -32,13 +33,11 @@ void Collisions::processEntity(artemis::Entity &e)
     {
         artemis::Entity& other = currentObject->second->getEntity();
 
-        //********//
         long id;
         long otherId;
 
         id = e.getUniqueId();
         otherId = other.getUniqueId();
-        //********//
 
         if (e.getUniqueId() != other.getUniqueId())
         {
@@ -46,10 +45,7 @@ void Collisions::processEntity(artemis::Entity &e)
 
             if (isColliding == true)
             {
-                if ((collisionsMapper.get(e))->isTrigger() == true)
-                {
-                    Game::runScript(collisionsMapper.get(e)->getScriptToTrigger());
-                }
+
             }
             else
             {
@@ -66,30 +62,40 @@ bool Collisions::collides(artemis::Entity &A, artemis::Entity &B)
     components2D::BoxCollider* BBox;
     components2D::CircleCollider* ACircle;
     components2D::CircleCollider* BCircle;
+    components2D::Transform2D* ATransform;
+    components2D::Transform2D* BTransform;
 
     ABox = (components2D::BoxCollider*) A.getComponent<components2D::BoxCollider>();
     BBox = (components2D::BoxCollider*) B.getComponent<components2D::BoxCollider>();
+    ATransform = (components2D::Transform2D*) A.getComponent<components2D::Transform2D>();
+    BTransform = (components2D::Transform2D*) B.getComponent<components2D::Transform2D>();
 
     // Boxes collision
     if (ABox != NULL && BBox != NULL)
     {
-        Vector2 AOffset(ABox->getOffsetX() - ABox->getWidth() / 2.0f, ABox->getOffsetY());
-        Vector2 BOffset(BBox->getOffsetX() - BBox->getWidth() / 2.0f, BBox->getOffsetY());
+        Vector2 AOffset(ABox->getOffsetX(), ABox->getOffsetY());
+        Vector2 BOffset(BBox->getOffsetX(), BBox->getOffsetY());
 
         Vector2 AUpperLeft = ABox->GetOwner().getRealPosition2D(AOffset);
         Vector2 BUpperLeft = BBox->GetOwner().getRealPosition2D(BOffset);
 
+        AUpperLeft = AUpperLeft - Vector2((ABox->getWidth() * ATransform->getScale().getX()) / 2.0f,
+                                          (ABox->getHeight() * ATransform->getScale().getY()) / 2.0f);
+
+        BUpperLeft = BUpperLeft - Vector2((BBox->getWidth() * BTransform->getScale().getX()) / 2.0f,
+                                          (BBox->getHeight() * BTransform->getScale().getY()) / 2.0f);
+
         SDL_Rect a;
         a.x = AUpperLeft.getX();
         a.y = AUpperLeft.getY();
-        a.w = ABox->getWidth();
-        a.h = ABox->getHeight();
+        a.w = ABox->getWidth() * ATransform->getScale().getX();
+        a.h = ABox->getHeight() * ATransform->getScale().getY();
 
         SDL_Rect b;
         b.x = BUpperLeft.getX();
         b.y = BUpperLeft.getY();
-        b.w = BBox->getWidth();
-        b.h = BBox->getHeight();
+        b.w = BBox->getWidth() * BTransform->getScale().getX();
+        b.h = BBox->getHeight() * BTransform->getScale().getY();
 
         if ((a.x + a.w) < (b.x) || a.x > (b.x + b.w))
         {
@@ -120,7 +126,13 @@ bool Collisions::collides(artemis::Entity &A, artemis::Entity &B)
         distanceQuadratic = centerA.distanceQuadratic(centerB);
 
         float dangerDistance;
-        dangerDistance = ACircle->getRadius() * ACircle->getRadius() + BCircle->getRadius() * BCircle->getRadius();
+        float ARadius;
+        float BRadius;
+
+        ARadius = ACircle->getRadius() * math::max(ATransform->getScale().getX(), ATransform->getScale().getY());
+        BRadius = BCircle->getRadius() * math::max(BTransform->getScale().getX(), BTransform->getScale().getY());
+
+        dangerDistance = ARadius * ARadius + BRadius * BRadius;
 
         if (distanceQuadratic <= dangerDistance)
         {

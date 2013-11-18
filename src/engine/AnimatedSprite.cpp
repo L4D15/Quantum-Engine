@@ -31,8 +31,8 @@ void AnimatedSprite::render(SDL_Renderer *renderer, Vector2 position, Vector2 sc
     SDL_Rect spriteFrame = (* this->currentAnimation)[currentAnimationFrame];
     SDL_Rect renderFrame;
 
-    renderFrame.x = position.getX() - (this->currentAnimation->getWidth() / 2.0f);
-    renderFrame.y = position.getY() - (this->currentAnimation->getHeight() / 2.0f);
+    renderFrame.x = position.getX() - ((this->currentAnimation->getWidth() * scale.getX()) / 2.0f);
+    renderFrame.y = position.getY() - ((this->currentAnimation->getHeight() * scale.getY()) / 2.0f);
     renderFrame.w = this->currentAnimation->getWidth() * scale.getX();
     renderFrame.h = this->currentAnimation->getHeight() * scale.getY();
 

@@ -1,5 +1,5 @@
-#ifndef QUANTUM_SYSTEMS_COLLISIONS_H
-#define QUANTUM_SYSTEMS_COLLISIONS_H
+#ifndef QUANTUM_SYSTEMS_2D_COLLISIONS_H
+#define QUANTUM_SYSTEMS_2D_COLLISIONS_H
 
 #include "quantum/Libraries.h"
 #include "quantum/components/ComponentsList.h"
@@ -26,4 +26,4 @@ private:
 
 }
 
-#endif // QUANTUM_SYSTEMS_COLLISIONS_H
+#endif // QUANTUM_SYSTEMS_2D_COLLISIONS_H

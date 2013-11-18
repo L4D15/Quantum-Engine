@@ -20,6 +20,8 @@ public:
 
     GameObject&             GetOwner();
 
+    virtual std::string     toString() { }
+
 protected:
     GameObject&             owner;
 };
