@@ -18,6 +18,7 @@ public:
 
 private:
     bool            collides(artemis::Entity& A, artemis::Entity& B);
+    void            makeCollide(components2D::Physics* APhysics, components2D::Physics* BPhysics);
 
 private:
     artemis::ComponentMapper<components2D::Transform2D> transformMapper;

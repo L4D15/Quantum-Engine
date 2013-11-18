@@ -17,7 +17,7 @@ CircleCollider::CircleCollider(GameObject &owner) :
     if (rendererComp != NULL)
     {
         this->radius = math::max(rendererComp->getRenderizableAsset()->getWidth(),
-                                 rendererComp->getRenderizableAsset()->getHeight());
+                                 rendererComp->getRenderizableAsset()->getHeight()) / 2.0f;
     }
     else
     {

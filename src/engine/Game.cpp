@@ -26,8 +26,28 @@ Game::Game(std::string name)
     Game::name = name;
 
     // Initialize SDL and TTF
-    SDL_Init(SDL_INIT_EVERYTHING);
-    TTF_Init();
+    std::cout << "Initializing SDL2...";
+    int error;
+    error = SDL_Init(SDL_INIT_EVERYTHING);
+    if (error == 0)
+    {
+        std::cout << "Ok" << std::endl;
+    }
+    else
+    {
+        std::cout << "Error - " << SDL_GetError() << std::endl;
+    }
+
+    std::cout << "Initializing SDL_TTF...";
+    error = TTF_Init();
+    if (error == 0)
+    {
+        std::cout << "Ok" << std::endl;
+    }
+    else
+    {
+        std::cout << "Error - " << TTF_GetError() << std::endl;
+    }
 
     this->currentTime = SDL_GetTicks();
     this->oldTime = 0;
@@ -46,7 +66,18 @@ Game::Game(std::string name)
     gravity = Vector3(0.0f, 9.8f, 0.0f);
 
     // Initialize Lua
+    std::cout << "Initializing lua...";
     luaState = luaL_newstate();
+    luaL_openlibs(luaState);
+
+    if (luaState != NULL)
+    {
+        std::cout << "Ok" << std::endl;
+    }
+    else
+    {
+        std::cout << "Error" << std::endl;
+    }
 }
 
 /**
@@ -202,8 +233,6 @@ void Game::runScript(std::string script)
     std::string scriptPath;
 
     scriptPath = Game::resourceManager.getScript(script);
-
-    std::cout << "Running script "  <<scriptPath << std::endl;
 
     luaL_dofile(luaState, scriptPath.c_str());
 }

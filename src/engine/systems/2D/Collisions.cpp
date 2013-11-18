@@ -45,7 +45,32 @@ void Collisions::processEntity(artemis::Entity &e)
 
             if (isColliding == true)
             {
+                components2D::Collisions* collisionsComp;
+                collisionsComp = (components2D::Collisions*) e.getComponent<components2D::Collisions>();
 
+                if (collisionsComp != NULL)
+                {
+                    if (collisionsComp->isTrigger() == true)
+                    {
+                        Game::runScript(collisionsComp->getScriptToTrigger());
+                    }
+
+                    // If both systems have a Physics component, they will physically collide
+                    components2D::Physics* physicsComp;
+                    components2D::Physics* otherPhysicsComp;
+
+                    physicsComp = (components2D::Physics*) e.getComponent<components2D::Physics>();
+                    otherPhysicsComp = (components2D::Physics*) e.getComponent<components2D::Physics>();
+
+                    if (physicsComp != NULL && otherPhysicsComp != NULL)
+                    {
+                        makeCollide(physicsComp, otherPhysicsComp);
+                    }
+                }
+                else
+                {
+                    std::cout << "ERROR - Collisions detected but no Collisions component attached." << std::endl;
+                }
             }
             else
             {
@@ -156,4 +181,9 @@ bool Collisions::collides(artemis::Entity &A, artemis::Entity &B)
     }
 
     return false;
+}
+
+void Collisions::makeCollide(components2D::Physics *APhysics, components2D::Physics *BPhysics)
+{
+
 }
