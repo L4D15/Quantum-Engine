@@ -171,7 +171,23 @@ bool Collisions::collides(artemis::Entity &A, artemis::Entity &B)
     // Box vs Circle
     if (ABox != NULL && BCircle != NULL)
     {
+        Vector2 APos;
+        Vector2 BPos;
+        components2D::Transform2D* ATransform;
+        components2D::Transform2D* BTransform;
 
+        ATransform = transformMapper.get(A);
+        BTransform = transformMapper.get(B);
+
+        APos = ((ATransform->GetOwner().getRealPosition2D(ABox->getOffsetX() - ((ABox->getWidth() * ATransform->getScale().getX()) / 2.0f),
+                                                          ABox->getOffsetY() - ((ABox->getHeight() * ATransform->getScale().getY()) / 2.0f))));
+        BPos = ((BTransform->GetOwner().getRealPosition2D(BCircle->getOffsetX() - ((BBox->getWidth() * BTransform->getScale().getX()) / 2.0f),
+                                                          BCircle->getOffsetY() - ((BBox->getHeight() * BTransform->getScale().getY()) / 2.0f))));
+
+        float xExtent;
+        float yExtent;
+
+        xExtent = ((APos.getX() + ABox->getWidth() * ATransform->getScale().getX()) - (APos.getX())) / 2.0f;
     }
 
     // Circle vs Box
