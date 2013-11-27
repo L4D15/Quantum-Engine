@@ -12,8 +12,8 @@ namespace components2D
 // ==================================================== //
 typedef struct {
     assets2D::RenderizableAsset*        asset;
-    Vector2D                            position;
-    Vector2D                            scale;
+    Vector2                            position;
+    Vector2                            scale;
     float                               rotation;
     int                                 zIndex;
     int                                 distance;
@@ -26,11 +26,11 @@ public:
     Camera(GameObject& owner);
     virtual ~Camera();
 
-    void                SetIndex(int index);
-    inline int          GetIndex() { return index; }
+    void                setIndex(int index);
+    inline int          getIndex() { return index; }
 
-    void                QueueForRender(RenderPackage package);
-    void                RenderScene();
+    void                queueForRender(RenderPackage package);
+    void                renderScene();
 
 private:
     int                 index;

@@ -19,13 +19,13 @@ SpriteSheetAnimation::SpriteSheetAnimation(
     this->frameWidth = widthPerFrame;
     this->frameHeight = heightPerFrame;
 
-    this->frames = new std::vector<Vector2D>(numberOfFrames);
+    this->frames = new std::vector<Vector2>(numberOfFrames);
 
     unsigned int x = 0;
     unsigned int y = animationIndex * heightPerFrame;
     for (unsigned int i = 0; i < numberOfFrames; ++i) {
         x = widthPerFrame * i;
-        this->frames->at(i) = Vector2D(x,y);
+        this->frames->at(i) = Vector2(x,y);
     }
 
     this->oscillate = oscillate;
@@ -43,6 +43,31 @@ SpriteSheetAnimation::~SpriteSheetAnimation() {
  * @return              SDL_Rect representing the area to be cropped from the texture to obtain the current frame of the animation.
  */
 SDL_Rect SpriteSheetAnimation::operator [](const unsigned int frameIndex) {
+    SDL_Rect frame;
+
+    if (frameIndex >= this->frames->size()) {
+        // Error
+        std::stringstream stream;
+        stream << "Frame index " << frameIndex << " out of range [0~" << this->frames->size()-1 << "]";
+
+        SDL_ShowSimpleMessageBox(
+                SDL_MESSAGEBOX_ERROR,
+                this->name.c_str(),
+                stream.str().c_str(),
+                NULL);
+    } else {
+        // Everything is fine, so return the data
+        frame.x = (this->frames->at(frameIndex)).getX();
+        frame.y = (this->frames->at(frameIndex)).getY();
+        frame.w = this->frameWidth;
+        frame.h = this->frameHeight;
+    }
+
+    return frame;
+}
+
+SDL_Rect SpriteSheetAnimation::getFrameRect(const unsigned int frameIndex)
+{
     SDL_Rect frame;
 
     if (frameIndex >= this->frames->size()) {

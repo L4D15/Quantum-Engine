@@ -1,7 +1,7 @@
 #ifndef PARALLAXLAYERS_H
 #define PARALLAXLAYERS_H
 
-#include "quantum/Vector2D.h"
+#include "quantum/Vector2.h"
 
 namespace systems2D {
 
@@ -13,7 +13,7 @@ public:
     void                                setBackgroundDistance(int distance);
     int                                 getBackgroundDistance();
 
-    Vector2D                            applyParallaxScrolling(Vector2D cameraPosition, Vector2D objectPosition, int objectDistanceFromCamera);
+    Vector2                             applyParallaxScrolling(Vector2 cameraPosition, Vector2 objectPosition, int objectDistanceFromCamera);
 
 private:
     int                                 backgroundDistance; // Distance of the static background

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "quantum/Libraries.h"
-#include "Vector2D.h"
+#include "Vector2.h"
 
 class SpriteSheetAnimation {
 public:
@@ -20,6 +20,7 @@ public:
     virtual ~SpriteSheetAnimation();
     
     SDL_Rect                    operator[](const unsigned int frameIndex);
+    SDL_Rect                    getFrameRect(const unsigned int frameIndex);
     
     std::string                 toString();
     
@@ -36,7 +37,7 @@ private:
     unsigned int                frameWidth;
     unsigned int                frameHeight;
     
-    std::vector<Vector2D> *     frames;
+    std::vector<Vector2> *     frames;
     
     unsigned int                frameRate;
     bool                        oscillate;

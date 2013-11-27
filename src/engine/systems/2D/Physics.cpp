@@ -22,8 +22,8 @@ void Physics::initialize()
 void Physics::processEntity(artemis::Entity& e)
 {
     // Update the physics component (adding the aceleration to the velocity)
-    physicsMapper.get(e)->Update();
+    physicsMapper.get(e)->update();
 
     // Add the velocity to the position
-    transformMapper.get(e)->Move(physicsMapper.get(e)->GetVelocity() * world->getDelta());
+    transformMapper.get(e)->move(physicsMapper.get(e)->getVelocity() * world->getDelta());
 }

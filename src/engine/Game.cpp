@@ -1,5 +1,5 @@
 #include "quantum/Game.h"
-//#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 
 // =====================================
 // Static Variables
@@ -12,6 +12,8 @@ float Game::deltaTime = 1.0f;
 
 bool Game::run = false;
 std::string Game::name;
+Vector3 Game::gravity;
+lua_State* Game::luaState = NULL;
 
 // =====================================
 
@@ -24,8 +26,28 @@ Game::Game(std::string name)
     Game::name = name;
 
     // Initialize SDL and TTF
-    SDL_Init(SDL_INIT_EVERYTHING);
-    //TTF_Init();
+    std::cout << "Initializing SDL2...";
+    int error;
+    error = SDL_Init(SDL_INIT_EVERYTHING);
+    if (error == 0)
+    {
+        std::cout << "Ok" << std::endl;
+    }
+    else
+    {
+        std::cout << "Error - " << SDL_GetError() << std::endl;
+    }
+
+    std::cout << "Initializing SDL_TTF...";
+    error = TTF_Init();
+    if (error == 0)
+    {
+        std::cout << "Ok" << std::endl;
+    }
+    else
+    {
+        std::cout << "Error - " << TTF_GetError() << std::endl;
+    }
 
     this->currentTime = SDL_GetTicks();
     this->oldTime = 0;
@@ -39,6 +61,23 @@ Game::Game(std::string name)
     this->frameSkipCurrentTime = SDL_GetTicks();
     this->frameSkipOldTime = 0;
     this->timePerFrame = (Uint32) ((1000.0 / (double)QUANTUM_MAX_FPS));
+
+    // Set Gravity Force
+    gravity = Vector3(0.0f, 9.8f, 0.0f);
+
+    // Initialize Lua
+    std::cout << "Initializing lua...";
+    luaState = luaL_newstate();
+    luaL_openlibs(luaState);
+
+    if (luaState != NULL)
+    {
+        std::cout << "Ok" << std::endl;
+    }
+    else
+    {
+        std::cout << "Error" << std::endl;
+    }
 }
 
 /**
@@ -48,7 +87,8 @@ Game::~Game()
 {
     delete window;
     SDL_Quit();
-    //TTF_Quit();
+    TTF_Quit();
+    lua_close(luaState);
 }
 
 /**
@@ -185,5 +225,15 @@ void Game::manageFramesPerSecond()
 void Game::writeToConsole(std::string text)
 {
     std::cout << text << std::endl;
+}
+
+
+void Game::runScript(std::string script)
+{
+    std::string scriptPath;
+
+    scriptPath = Game::resourceManager.getScript(script);
+
+    luaL_dofile(luaState, scriptPath.c_str());
 }
 

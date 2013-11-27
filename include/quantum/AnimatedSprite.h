@@ -19,7 +19,9 @@ public:
     int                 getWidth();
     int                 getHeight();
 
-    void                render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation);
+    void                render(SDL_Renderer *renderer, Vector2 position, Vector2 scale, float rotation);
+
+    SDL_Surface*        getAssetSurface(std::string animation = "Current", unsigned int frame = 0);
 
 private:
     Sprite*             sprite;

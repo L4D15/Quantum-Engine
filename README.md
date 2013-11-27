@@ -16,6 +16,7 @@ Quantum Engine uses multiple libraries that need to be present in the system bef
 * [SDL2_ttf](http://www.libsdl.org/projects/SDL_ttf/)
 * [Artemis-Cpp](https://github.com/L4D15/Artemis-Cpp)
 * [JsonCpp](https://github.com/L4D15/jsoncpp)
+* [lua](https://github.com/LuaDist/lua)
 
 After cloning the repository you need to initialize its submodules running the following commands:
 

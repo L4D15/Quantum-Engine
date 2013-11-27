@@ -3,11 +3,11 @@
 
 #include <cmath>
 
-class Vector2D;
-class Vector3D;
+class Vector2;
+class Vector3;
 class Color;
 
-namespace Math
+namespace math
 {
 
 static double PI = atan(1) * 4;
@@ -16,6 +16,8 @@ float inverseSquareRoot(float number);
 float squareRoot(float x);
 int max(int a, int b);
 int min(int a, int b);
+float max(float a, float b);
+float min(float a, float b);
 
 float Normalize(float start, float end, float current);
 
@@ -23,7 +25,7 @@ float Normalize(float start, float end, float current);
 // Interpolation
 // ===========================================================================
 // Interpolation functions
-namespace Interpolation
+namespace interpolation
 {
 typedef enum
 {
@@ -42,9 +44,9 @@ float boomerangFunction(float x);
 
 }
 
-float interpolate(Interpolation::Type type, float start, float end, float time);
-Vector2D interpolate(Interpolation::Type type, Vector2D start, Vector2D end, float time);
-Color interpolate(Interpolation::Type type, Color start, Color end, float time);
+float interpolate(interpolation::Type type, float start, float end, float time);
+Vector2 interpolate(interpolation::Type type, Vector2 start, Vector2 end, float time);
+Color interpolate(interpolation::Type type, Color start, Color end, float time);
 
 }
 

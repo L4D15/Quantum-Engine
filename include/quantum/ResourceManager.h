@@ -32,6 +32,7 @@ public:
     // Resource management
     assets2D::AnimatedSprite*       getAnimatedSprite(std::string name);
     assets2D::Sprite*               getSprite(std::string name);
+    std::string                     getScript(std::string name);
 
     // Path management
     std::string                     getWorkingPath();

@@ -1,5 +1,5 @@
-#include "quantum/Vector3D.h"
-#include "quantum/Vector2D.h"
+#include "quantum/Vector3.h"
+#include "quantum/Vector2.h"
 #include "quantum/Math.h"
 #include <sstream>
 
@@ -8,7 +8,7 @@
  *
  * It doesn't initialize variables to any value for efficiency.
  */
-Vector3D::Vector3D()
+Vector3::Vector3()
 {
 
 }
@@ -18,7 +18,7 @@ Vector3D::Vector3D()
  * @param x Horizontal coordinate.
  * @param y Vertical coordinate.
  */
-Vector3D::Vector3D(float x, float y) :
+Vector3::Vector3(float x, float y) :
     x(x),
     y(y),
     z(0.0f)
@@ -32,7 +32,7 @@ Vector3D::Vector3D(float x, float y) :
  * @param y Vertical coordinate.
  * @param z Depth coordinate.
  */
-Vector3D::Vector3D(float x, float y, float z) :
+Vector3::Vector3(float x, float y, float z) :
     x(x),
     y(y),
     z(z)
@@ -44,7 +44,7 @@ Vector3D::Vector3D(float x, float y, float z) :
  * @brief Copy constructor.
  * @param Reference vector to copy.
  */
-Vector3D::Vector3D(const Vector3D &other) :
+Vector3::Vector3(const Vector3 &other) :
     x(other.x),
     y(other.y),
     z(other.z)
@@ -55,7 +55,7 @@ Vector3D::Vector3D(const Vector3D &other) :
 /**
  * @brief Destructor.
  */
-Vector3D::~Vector3D()
+Vector3::~Vector3()
 {
 
 }
@@ -65,7 +65,7 @@ Vector3D::~Vector3D()
  * @param other Vector from which assignate values.
  * @return Reference to modified vector.
  */
-Vector3D& Vector3D::operator =(const Vector3D& other)
+Vector3& Vector3::operator =(const Vector3& other)
 {
     this->x = other.x;
     this->y = other.y;
@@ -79,9 +79,9 @@ Vector3D& Vector3D::operator =(const Vector3D& other)
  * @param other Vector to sum with.
  * @return  New vector with the sum's operation result.
  */
-Vector3D Vector3D::operator +(const Vector3D& other)
+Vector3 Vector3::operator +(const Vector3& other)
 {
-    return Vector3D(this->x + other.x, this->y + other.y, this->z + other.z);
+    return Vector3(this->x + other.x, this->y + other.y, this->z + other.z);
 }
 
 /**
@@ -89,9 +89,9 @@ Vector3D Vector3D::operator +(const Vector3D& other)
  * @param other Vector to substract from.
  * @return      Resulting vector.
  */
-Vector3D Vector3D::operator -(const Vector3D& other)
+Vector3 Vector3::operator -(const Vector3& other)
 {
-    return Vector3D(this->x - other.x, this->y - other.y, this->z - other.z);
+    return Vector3(this->x - other.x, this->y - other.y, this->z - other.z);
 }
 
 /**
@@ -99,9 +99,9 @@ Vector3D Vector3D::operator -(const Vector3D& other)
  * @param f Scale factor.
  * @return  Result of the scaling.
  */
-Vector3D Vector3D::operator *(const float f)
+Vector3 Vector3::operator *(const float f)
 {
-    return Vector3D(this->x * f, this->y * f, this->z * f);
+    return Vector3(this->x * f, this->y * f, this->z * f);
 }
 
 /**
@@ -111,9 +111,9 @@ Vector3D Vector3D::operator *(const float f)
  * @param other Other vector to multiplie with.
  * @return  Resulting vector.
  */
-Vector3D Vector3D::operator *(const Vector3D& other)
+Vector3 Vector3::operator *(const Vector3& other)
 {
-    return Vector3D(this->x * other.x, this->y * other.y, this->z * other.z);
+    return Vector3(this->x * other.x, this->y * other.y, this->z * other.z);
 }
 
 /**
@@ -121,7 +121,7 @@ Vector3D Vector3D::operator *(const Vector3D& other)
  * @param other Vector to compare with.
  * @return  True if the vectors and different, false if they are equal.
  */
-bool Vector3D::operator !=(const Vector3D& other)
+bool Vector3::operator !=(const Vector3& other)
 {
     if (this->x != other.x)
     {
@@ -143,7 +143,7 @@ bool Vector3D::operator !=(const Vector3D& other)
  * @param other Vector to compare with.
  * @return  Trie of vectors are equal, false otherwise.
  */
-bool Vector3D::operator ==(const Vector3D& other)
+bool Vector3::operator ==(const Vector3& other)
 {
     if (this->x != other.x)
     {
@@ -165,7 +165,7 @@ bool Vector3D::operator ==(const Vector3D& other)
  * @param other Vector to make the product.
  * @return Result of the dot product (x1 * x2 + y1 * y2 + z1 * z2).
  */
-float Vector3D::dotProduct(const Vector3D &other)
+float Vector3::dotProduct(const Vector3 &other)
 {
     return ((this->x * other.x) + (this->y * other.y) + (this->z * other.z));
 }
@@ -174,7 +174,7 @@ float Vector3D::dotProduct(const Vector3D &other)
  * @brief Length of the vector without applying the final square root operation.
  * @return  Length of the vector (no square root applied).
  */
-float Vector3D::getLengthQuadratic()
+float Vector3::getLengthQuadratic()
 {
     return (this->x * this->x + this->y * this->y + this->z * this->z);
 }
@@ -183,9 +183,9 @@ float Vector3D::getLengthQuadratic()
  * @brief Length of the vector.
  * @return  Length of the vector.
  */
-float Vector3D::getLength()
+float Vector3::getLength()
 {
-    return Math::squareRoot(x * x + y * y + z * z);
+    return math::squareRoot(x * x + y * y + z * z);
 }
 
 /**
@@ -193,7 +193,7 @@ float Vector3D::getLength()
  * @param other Other vector.
  * @return  Distance to another vector (square root not applied).
  */
-float Vector3D::distanceQuadratic(const Vector3D &other)
+float Vector3::distanceQuadratic(const Vector3 &other)
 {
     return ((x - other.x) + (y - other.y) + (z - other.z));
 }
@@ -203,18 +203,18 @@ float Vector3D::distanceQuadratic(const Vector3D &other)
  * @param other Other vector to calculate distance to.
  * @return  Distance to another vector.
  */
-float Vector3D::distance(const Vector3D &other)
+float Vector3::distance(const Vector3 &other)
 {
-    return Math::squareRoot((x - other.x) + (y - other.y) + (z - other.z));
+    return math::squareRoot((x - other.x) + (y - other.y) + (z - other.z));
 }
 
 /**
  * @brief Normalized the vector values so they range from 0.0f to 1.0f.
  * @return
  */
-Vector3D Vector3D::normalized()
+Vector3 Vector3::normalized()
 {
-    Vector3D normalized;
+    Vector3 normalized;
     float lengthsq = (x * x + y * y + z * z);
 
     if(lengthsq == 0) {
@@ -224,7 +224,7 @@ Vector3D Vector3D::normalized()
         return normalized;
     }
 
-    float recip = Math::inverseSquareRoot(lengthsq);
+    float recip = math::inverseSquareRoot(lengthsq);
     normalized.x *= recip;
     normalized.y *= recip;
     normalized.z *= recip;
@@ -236,16 +236,16 @@ Vector3D Vector3D::normalized()
  * @brief Vector3D::ToVector2D
  * @return
  */
-Vector2D Vector3D::toVector2D()
+Vector2 Vector3::toVector2D()
 {
-    return Vector2D(this->x, this->y);
+    return Vector2(this->x, this->y);
 }
 
 /**
  * @brief Vector3D::ToString
  * @return
  */
-std::string Vector3D::toString()
+std::string Vector3::toString()
 {
     std::stringstream str;
 

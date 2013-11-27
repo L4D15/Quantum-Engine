@@ -21,7 +21,7 @@ Camera::~Camera()
  * The position on the screen will be affected by parallax effect relative to this camera.
  * @param package   Render Package to insert in the queue.
  */
-void Camera::QueueForRender(RenderPackage package)
+void Camera::queueForRender(RenderPackage package)
 {
     // Apply parallax transformation
     package.position = Game2D::parallaxScrolling.applyParallaxScrolling(this->owner.getPosition2D(), package.position, package.distance);
@@ -52,7 +52,7 @@ void Camera::QueueForRender(RenderPackage package)
     }
 }
 
-void Camera::RenderScene()
+void Camera::renderScene()
 {
     std::list<RenderPackage>::iterator it;
     for (it = this->renderingQueue.begin(); it != this->renderingQueue.end(); ++it) {

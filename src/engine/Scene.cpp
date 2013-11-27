@@ -57,7 +57,7 @@ void Scene::renderScene()
 
     cameraComp = (components2D::Camera*) mainCamera->getComponent<components2D::Camera>();
 
-    cameraComp->RenderScene();
+    cameraComp->renderScene();
 }
 
 /**
@@ -121,3 +121,4 @@ artemis::EntitySystem* Scene::addSystem(artemis::EntitySystem *system)
 
     return sys;
 }
+

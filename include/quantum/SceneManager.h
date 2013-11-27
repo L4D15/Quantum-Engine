@@ -12,17 +12,21 @@ public:
     SceneManager();
     virtual ~SceneManager();
 
-    void                                onEvent(SDL_Event* event);
-    void                                onLoop();
-    void                                onRender();
+    void                onEvent(SDL_Event* event);
+    void                onLoop();
+    void                onRender();
 
-    Scene*                              changeToScene(std::string sceneName);
-    void                                addScene(Scene* scene);
-    void                                deleteScene(std::string sceneName);
+    Scene*              changeToScene(std::string sceneName);
+    void                addScene(Scene* scene);
+    void                deleteScene(std::string sceneName);
+
+    inline Scene*       getCurrentScene() { return currentScene; }
 
 private:
-    Scene*                              currentScene;
-    std::map<std::string, Scene* >      sceneMapper;
+    Scene*              currentScene;
+    std::map<
+        std::string,
+        Scene* >        sceneMapper;
 };
 }
 

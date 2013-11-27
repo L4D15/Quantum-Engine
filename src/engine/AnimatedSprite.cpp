@@ -26,13 +26,13 @@ void AnimatedSprite::changeAnimation(std::string animationName)
     this->timeLastUpdate = Game::getTime();
 }
 
-void AnimatedSprite::render(SDL_Renderer *renderer, Vector2D position, Vector2D scale, float rotation)
+void AnimatedSprite::render(SDL_Renderer *renderer, Vector2 position, Vector2 scale, float rotation)
 {
     SDL_Rect spriteFrame = (* this->currentAnimation)[currentAnimationFrame];
     SDL_Rect renderFrame;
 
-    renderFrame.x = position.getX() - (this->currentAnimation->getWidth() / 2);
-    renderFrame.y = position.getY() - (this->currentAnimation->getHeight() / 2);
+    renderFrame.x = position.getX() - ((this->currentAnimation->getWidth() * scale.getX()) / 2.0f);
+    renderFrame.y = position.getY() - ((this->currentAnimation->getHeight() * scale.getY()) / 2.0f);
     renderFrame.w = this->currentAnimation->getWidth() * scale.getX();
     renderFrame.h = this->currentAnimation->getHeight() * scale.getY();
 
@@ -79,5 +79,35 @@ void AnimatedSprite::update()
                 this->currentAnimationFrame = 0;
             }
         }
+    }
+}
+
+int AnimatedSprite::getWidth()
+{
+    return this->currentAnimation->getWidth();
+}
+
+int AnimatedSprite::getHeight()
+{
+    return this->currentAnimation->getHeight();
+}
+
+/**
+ * @brief Access to pixel matrix surface.
+ *
+ * If the animation indicated is "Current", the current animation will be used. If the frame is not indicated, the current frame will be used.
+ * @param animation
+ * @param frame
+ * @return
+ */
+SDL_Surface* AnimatedSprite::getAssetSurface(std::string animation, unsigned int frame)
+{
+    if (animation == "Current")
+    {
+        return this->getAssetSurface(this->currentAnimation->getName(), this->currentAnimationFrame);
+    }
+    else
+    {
+        return this->getAssetSurface(animation, frame);
     }
 }

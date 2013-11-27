@@ -28,6 +28,6 @@ void AssetRendering::processEntity(artemis::Entity &e)
     transform = transformMapper.get(e);
     renderer = rendererMapper.get(e);
 
-    renderer->Render(renderer->GetCamera(), transform->GetOwner().getPosition2D(), transform->GetScale(), transform->GetRotation());
-    renderer->Update();
+    renderer->render(renderer->getCamera(), transform->GetOwner().getPosition2D(), transform->getScale(), transform->getRotation());
+    renderer->update();
 }

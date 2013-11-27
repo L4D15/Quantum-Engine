@@ -1,12 +1,12 @@
-#include "quantum/Vector2D.h"
+#include "quantum/Vector2.h"
 #include <sstream>
 #include "quantum/Math.h"
-#include "quantum/Vector3D.h"
+#include "quantum/Vector3.h"
 
 /**
  Default constructor. Coordinates are set to 0.
  */
-Vector2D::Vector2D() {
+Vector2::Vector2() {
     x = 0.0f;
     y = 0.0f;
 }
@@ -16,7 +16,7 @@ Vector2D::Vector2D() {
  @param x     X coordinate.
  @param y     Y coordinate.
  */
-Vector2D::Vector2D(float x, float y)
+Vector2::Vector2(float x, float y)
 : x(x), y(y) {
 
 }
@@ -25,7 +25,7 @@ Vector2D::Vector2D(float x, float y)
  Copy constructor.
  @param orig  Vector to copy.
  */
-Vector2D::Vector2D(const Vector2D& orig) {
+Vector2::Vector2(const Vector2& orig) {
     x = orig.x;
     y = orig.y;
 }
@@ -33,7 +33,7 @@ Vector2D::Vector2D(const Vector2D& orig) {
 /**
  Destructor.
  */
-Vector2D::~Vector2D() {
+Vector2::~Vector2() {
 
 }
 
@@ -42,7 +42,7 @@ Vector2D::~Vector2D() {
  @param vector  Vector to copy values from.
  @return        Final vector.
  */
-Vector2D& Vector2D::operator =(const Vector2D& vector) {
+Vector2& Vector2::operator =(const Vector2& vector) {
     x = vector.x;
     y = vector.y;
     return *this;
@@ -53,8 +53,8 @@ Vector2D& Vector2D::operator =(const Vector2D& vector) {
  @param vector  Vector to sum with this one.
  @return        Final vector.
  */
-Vector2D Vector2D::operator +(const Vector2D& vector) {
-    return Vector2D(x + vector.x, y + vector.y);
+Vector2 Vector2::operator +(const Vector2& vector) {
+    return Vector2(x + vector.x, y + vector.y);
 }
 
 /**
@@ -62,8 +62,8 @@ Vector2D Vector2D::operator +(const Vector2D& vector) {
  @param f   Resize factor.
  @return    Vector resized.
  */
-Vector2D Vector2D::operator *(float f) {
-    return Vector2D(x * f,y * f);
+Vector2 Vector2::operator *(float f) {
+    return Vector2(x * f,y * f);
 }
 
 /**
@@ -71,8 +71,8 @@ Vector2D Vector2D::operator *(float f) {
  @param vector  Vector to subtrate from.
  @return        Final vector.
  */
-Vector2D Vector2D::operator -(const Vector2D& vector) {
-    return Vector2D(x - vector.x, y - vector.y);
+Vector2 Vector2::operator -(const Vector2& vector) {
+    return Vector2(x - vector.x, y - vector.y);
 }
 
 /**
@@ -80,7 +80,7 @@ Vector2D Vector2D::operator -(const Vector2D& vector) {
  @param vector  Vector to compare with.
  @return        true if the vector aren't equal, false otherwise.
  */
-bool Vector2D::operator !=(const Vector2D &vector) {
+bool Vector2::operator !=(const Vector2 &vector) {
     return x - vector.x != 0.0f || y - vector.y != 0.0f;
 }
 
@@ -89,7 +89,7 @@ bool Vector2D::operator !=(const Vector2D &vector) {
  @param vector  Vector to compare with.
  @return        true if they are equal, false otherwise.
  */
-bool Vector2D::operator ==(const Vector2D &vector) {
+bool Vector2::operator ==(const Vector2 &vector) {
     return x - vector.x == 0.0f && y - vector.y == 0.0f;
 }
 
@@ -98,7 +98,7 @@ bool Vector2D::operator ==(const Vector2D &vector) {
  @param vector  The other vector to operate with.
  @return        Value resulting of the operation.
  */
-float Vector2D::dotProduct(const Vector2D &vector) {
+float Vector2::dotProduct(const Vector2 &vector) {
     float result = 0.0;
 
     result += this->x * vector.x;
@@ -107,15 +107,15 @@ float Vector2D::dotProduct(const Vector2D &vector) {
     return result;
 }
 
-Vector2D Vector2D::operator *(const Vector2D& vector) {
-    return Vector2D(this->x + vector.x, this->y + vector.y);
+Vector2 Vector2::operator *(const Vector2& vector) {
+    return Vector2(this->x + vector.x, this->y + vector.y);
 }
 
 /**
  Length of the vector (without applying the square root to the result).
  @return    Quadratic length.
  */
-float Vector2D::getLengthQuadratic() {
+float Vector2::getLengthQuadratic() {
     return (x * x + y * y);
 }
 
@@ -124,8 +124,8 @@ float Vector2D::getLengthQuadratic() {
  @return    Length.
  */
 
-float Vector2D::getLength() {
-    return Math::squareRoot(x * x + y * y);
+float Vector2::getLength() {
+    return math::squareRoot(x * x + y * y);
 }
 
 /**
@@ -133,7 +133,7 @@ float Vector2D::getLength() {
  @param vector    The other vector.
  @return          Quadratic distance.
  */
-float Vector2D::distanceQuadratic(const Vector2D& vector) {
+float Vector2::distanceQuadratic(const Vector2& vector) {
     float Ax,Ay;
 
     Ax = x - vector.x;
@@ -147,20 +147,20 @@ float Vector2D::distanceQuadratic(const Vector2D& vector) {
  @param vector      The other vector.
  @return            Distante to the other vector.
  */
-float Vector2D::distance(const Vector2D& vector) {
+float Vector2::distance(const Vector2& vector) {
     float Ax,Ay;
 
     Ax = x - vector.x;
     Ay = y - vector.y;
 
-    return Math::squareRoot(Ax*Ax + Ay*Ay);
+    return math::squareRoot(Ax*Ax + Ay*Ay);
 }
 
 /**
  Normalizes the vector to values between 0 and 1.
  */
-Vector2D Vector2D::normalized() {
-    Vector2D normalized;
+Vector2 Vector2::normalized() {
+    Vector2 normalized;
     float lengthsq = (x * x + y * y);
 
     if(lengthsq == 0) {
@@ -169,23 +169,23 @@ Vector2D Vector2D::normalized() {
         return normalized;
     }
 
-    float recip = Math::inverseSquareRoot(lengthsq);
+    float recip = math::inverseSquareRoot(lengthsq);
     normalized.x *= recip;
     normalized.y *= recip;
 
     return normalized;
 }
 
-Vector3D Vector2D::toVector3D()
+Vector3 Vector2::toVector3D()
 {
-    return Vector3D(this->x, this->y, 0.0f);
+    return Vector3(this->x, this->y, 0.0f);
 }
 
 /**
  Format the values of the vector to represent it as a string.
  @return    String with the forma (x,y).
  */
-std::string Vector2D::toString() {
+std::string Vector2::toString() {
     std::stringstream str;
 
     str << "(" << x << "," << y << ")";
