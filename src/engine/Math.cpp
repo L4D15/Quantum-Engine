@@ -105,7 +105,7 @@ float math::min(float a, float b)
  * @param current
  * @return
  */
-float math::Normalize(float start, float end, float current)
+float math::normalize(float start, float end, float current)
 {
     return (current - start) / (end - start);
 }

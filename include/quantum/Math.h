@@ -19,7 +19,7 @@ int min(int a, int b);
 float max(float a, float b);
 float min(float a, float b);
 
-float Normalize(float start, float end, float current);
+float normalize(float start, float end, float current);
 
 // ===========================================================================
 // Interpolation
