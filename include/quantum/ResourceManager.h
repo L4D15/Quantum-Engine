@@ -8,19 +8,19 @@
 
 #ifdef __APPLE__
     #include <unistd.h>
-    #define GetWorkingDir getcwd
+    #define getWorkingDir getcwd
 
 #elif __linux
     #include <unistd.h>
-    #define GetWorkingDir getcwd
+    #define getWorkingDir getcwd
 
 #elif _WIN32
     #include <dirent.h>
-    #define GetWorkingDir _getcwd
+    #define getWorkingDir _getcwd
 
 #elif _WIN64
     #include <unistd.h>
-    #define GetWorkingDir __getcwd
+    #define getWorkingDir __getcwd
 #endif
 
 class ResourceManager

@@ -34,7 +34,7 @@ ResourceManager::~ResourceManager()
 std::string ResourceManager::getWorkingPath()
 {
     char currentPath[FILENAME_MAX];
-    GetWorkingDir(currentPath, sizeof(currentPath));
+    getWorkingDir(currentPath, sizeof(currentPath));
 
     return std::string(currentPath);
 }
@@ -87,7 +87,7 @@ std::string ResourceManager::getPath(std::string path)
 #ifdef __APPLE__
     absolutePath = path;
     absolutePath.insert(0, ".app/Contents/Resources/");
-    absolutePath.insert(0, Game::GetName());
+    absolutePath.insert(0, Game::getName());
     absolutePath.insert(0, "/");
 #endif
 
@@ -97,7 +97,7 @@ std::string ResourceManager::getPath(std::string path)
 #endif
 
     char currentPath[FILENAME_MAX];
-    GetWorkingDir(currentPath, sizeof(currentPath));
+    getWorkingDir(currentPath, sizeof(currentPath));
 
     absolutePath.insert(0, currentPath);
 

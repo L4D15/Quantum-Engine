@@ -1,5 +1,5 @@
 #include "quantum/Game.h"
-#include <SDL2/SDL_ttf.h>
+#include "quantum/Libraries.h"
 
 // =====================================
 // Static Variables
