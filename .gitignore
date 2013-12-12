@@ -12,3 +12,8 @@ build/
 # Qt Creator
 #
 CMakeLists.txt.user
+
+####
+# Editor's Cache
+#
+*.~
