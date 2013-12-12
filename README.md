@@ -31,13 +31,13 @@ In the case of SDL2 libraries, install the development libraries available in th
 Artemis-Cpp and JsonCpp are added to the CMake project as subdirectories, so they will be compiled and linked alongside Quantum-Engine when you call the `make` command.
 
 ### Linux
-OpenGL should be present in the systems but the development libraries may be missing, so make sure the package _mesa-common-dev_ is installed.
+OpenGL should be present in the systems but the development libraries may be missing, so make sure the packages _mesa-common-dev_ and _libgl1-mesa-dev_ is installed.
 
 For SDL2 libraries (SDL2, SDL2_image and SDL2_ttf) the best option is to download the source code from their respective websites and compile it yourself. It's a very straight forward process since you only need to run these three commands inside the folder of each library:
 
 1. `./configure`
 2. `make`
-3. `make install`
+3. `sudo make install`
 
 This will install the libraries into `/usr/local/lib` and the header files in `/usr/local/include`.
 
@@ -84,6 +84,20 @@ target_link_libraries(nameOfYourApp QuantumEngine)
 ````
 
 You can take a look at [this CMakeLists.txt](https://github.com/L4D15/Quantum/blob/master/Source%20Code/CMakeLists.txt) for some example code on the subject.
+
+## Troubleshoot
+
+### SDL can't initialize video driver
+
+If you get a message error like "No available video device" in Linux you are probably missing the required 32bits libraries, so install the package _ia32-libs_. If the problem persists, make sure you have compiled all the SDL2 libraries __after__ installing the required OpenGL libraries.
+
+### SDL_ttf complains about missing Freetype library
+
+Just install the development library of Freetype for your system's OS and try again. You can find it [here](http://freetype.org/) or using your system's repository manager if you are using Linux (_libfreetype6-dev_).
+
+### Problem loading .png images
+
+You are probably missing the required PNG library (this is more likely to happen in fresh installs of Linux). Install _libpng-12-dev_ through your package manager.
 
 ## Need more information?
 Refer to the [Wiki](https://github.com/L4D15/Quantum-Engine/wiki) page for further instructions and tutorials on how to use Quantum Engine.
