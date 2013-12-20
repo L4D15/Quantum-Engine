@@ -7,3 +7,6 @@
 [submodule "lib/lua"]
 	path = lib/lua
 	url = https://github.com/LuaDist/lua.git
+[submodule "lib/json-spirit"]
+	path = lib/json-spirit
+	url = https://github.com/L4D15/json-spirit.git
