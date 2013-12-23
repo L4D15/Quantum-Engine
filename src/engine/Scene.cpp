@@ -122,3 +122,7 @@ artemis::EntitySystem* Scene::addSystem(artemis::EntitySystem *system)
     return sys;
 }
 
+GameObject* Scene::getObject(const std::string objectName)
+{
+    return this->objectsMapping[objectName];
+}

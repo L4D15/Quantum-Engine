@@ -22,8 +22,22 @@ public:
     GameObject*             createGameObject(std::string name);
     void                    destroyGameObject(GameObject*& object);
     void                    destroyGameObject(std::string name);
+    GameObject*             getObject(const std::string objectName);
 
     artemis::EntitySystem*  addSystem(artemis::EntitySystem* system);
+
+    template<class T> T*    addSystem()
+                            {
+                                T* newSystem;
+
+                                newSystem = new T();
+
+                                artemis::EntitySystem* sys;
+                                sys = this->world->getSystemManager()->setSystem(newSystem);
+                                sys->initialize();
+
+                                return (T*) sys;
+                            }
 
     inline std::string      getName() { return name; }
     inline GameObject*      getMainCamera() { return mainCamera; }

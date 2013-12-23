@@ -31,8 +31,9 @@ public:
 
     void                                setPosition(float x, float y);
 
-    template<typename c>
-        inline artemis::Component*      getComponent() { return entity.getComponent<c>(); }
+    //template<typename c>
+        //inline artemis::Component*      getComponent() { return entity.getComponent<c>(); }
+    template<class T> inline T*         getComponent() { return (T*) entity.getComponent<T>(); }
 
     void                                addComponent(artemis::Component* component) { entity.addComponent(component); entity.refresh();}
 
