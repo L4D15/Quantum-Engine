@@ -30,22 +30,25 @@ Sprite::Sprite(std::string name, std::string filePath) :
 
     SDL_QueryTexture(this->spriteSheet, NULL, NULL, & this->totalWidth, & this->totalHeight);
 
-    // Open JSON file
-    Json::Value root;
-    Json::Reader reader;
+    std::ifstream file;
+    std::string jsonFilePath;
+    json_spirit::Value root;
 
-    // Find the JSON file (it will have the same name but with the .json extension)
-    std::string jsonFilePath(filePath);
-    unsigned int lastDotPosition = jsonFilePath.find_last_of(".");
+    jsonFilePath = filePath;
+
+    unsigned int lastDotPosition;
+
+    lastDotPosition = jsonFilePath.find_last_of(".");
     jsonFilePath = jsonFilePath.substr(0, lastDotPosition);
     jsonFilePath.append(".json");
 
     bool parsingSuccessful;
-    std::ifstream jsonStream(jsonFilePath.c_str(), std::ifstream::binary);
+    file.open(jsonFilePath.c_str());
 
-    parsingSuccessful = reader.parse(jsonStream, root, false);
+    parsingSuccessful = json_spirit::read(file, root);
 
-    if (parsingSuccessful == false) {
+    if (parsingSuccessful == false)
+    {
         std::stringstream stream;
 
         stream << "Missing file or parsing error for JSON " << jsonFilePath;
@@ -56,53 +59,68 @@ Sprite::Sprite(std::string name, std::string filePath) :
                 stream.str().c_str(),
                 NULL);
     }
+    else
+    {
+        json_spirit::Array animations;
 
-    Json::Value animations = root["animations"];
-    unsigned int numberOfAnimations = animations.size();
+        animations = root.getObject().at("animations").getArray();
 
-    // Reserve memory for all the animations
-    this->animations = new std::vector<SpriteSheetAnimation *>(numberOfAnimations);
+        // Reserve memory for all the animations
+        unsigned int numberOfAnimations;
+        unsigned int maxNumberOfFrames;
+        unsigned int currentNumberOfFrames;
 
-    unsigned int maxNumberOfFrames = 0; // We will need it later
-    unsigned int currentNumberOfFrames;
-    for (unsigned int currentAnimation = 0; currentAnimation < numberOfAnimations; ++currentAnimation) {
-        currentNumberOfFrames = animations[currentAnimation]["frames"].asUInt();
+        numberOfAnimations = animations.size();
+        maxNumberOfFrames = 0;
+        this->animations = new std::vector<SpriteSheetAnimation* >(animations.size());
 
-        if (currentNumberOfFrames > maxNumberOfFrames) {
-            maxNumberOfFrames = currentNumberOfFrames;
+        for (unsigned int currentAnimation = 0; currentAnimation < numberOfAnimations; ++currentAnimation)
+        {
+            currentNumberOfFrames = animations[currentAnimation].getObject().at("frames").getInt();
+
+            if (currentNumberOfFrames > maxNumberOfFrames)
+            {
+                maxNumberOfFrames = currentNumberOfFrames;
+            }
+        }
+
+        // Now we can calculate the width and height of each animation frame
+        this->frameWidth = this->totalWidth / maxNumberOfFrames;
+        this->frameHeight = this->totalHeight / numberOfAnimations;
+
+        // Iterate over the animation information creating SpriteAnimation data
+        json_spirit::Value currentAnimation;
+        for (unsigned int currentAnimationIndex = 0; currentAnimationIndex < numberOfAnimations; ++currentAnimationIndex)
+        {
+            currentAnimation = animations[currentAnimationIndex];
+
+            std::string name;
+            int frames;
+            bool oscillate;
+            int frameRate;
+
+            name = currentAnimation.get("name").getString();
+            frames = currentAnimation.get("frames").getInt();
+            oscillate = currentAnimation.get("oscillate").getBool();
+            frameRate = currentAnimation.get("frame-rate").getInt();
+
+            this->animations->at(currentAnimationIndex) = new SpriteSheetAnimation(
+                        name,
+                        currentAnimationIndex,
+                        this->frameWidth,
+                        this->frameHeight,
+                        frames,
+                        frameRate,
+                        oscillate);
+
+            this->animationsMapper.insert(
+                        std::pair<std::string, unsigned int>(
+                            currentAnimation.get("name").getString(),
+                            currentAnimationIndex));
         }
     }
 
-    // Now we can calculate the width and height of each animation frame
-    this->frameWidth = this->totalWidth / maxNumberOfFrames;
-    this->frameHeight = this->totalHeight / numberOfAnimations;
-
-    // Iterate over the animation information creating SpriteAnimation data
-    Json::Value currentAnimation;
-    for (unsigned int currentAnimationIndex = 0; currentAnimationIndex < numberOfAnimations; ++currentAnimationIndex) {
-        currentAnimation = animations[currentAnimationIndex];
-
-        std::string name = currentAnimation["name"].asString();
-        int frames = currentAnimation["frames"].asInt();
-        bool oscillate = currentAnimation["oscillate"].asBool();
-        int frameRate = currentAnimation["frame-rate"].asInt();
-
-        this->animations->at(currentAnimationIndex)
-                =
-                new SpriteSheetAnimation(
-                name,
-                currentAnimationIndex,
-                this->frameWidth,
-                this->frameHeight,
-                frames,
-                frameRate,
-                oscillate);
-
-        this->animationsMapper.insert(
-                std::pair<std::string, unsigned int>(
-                        currentAnimation["name"].asString(),
-                        currentAnimationIndex));
-    }
+    file.close();
 }
 
 /**

@@ -10,9 +10,14 @@ message("====================================")
 message("Source Dir: ${CMAKE_CURRENT_SOURCE_DIR}")
 message("Binary Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
+# json-spirit build variables
+set(JSON_SPIRIT_LIBRARY_TYPE STATIC)
+set(JSON_SPIRIT_BUILD_DEMOS FALSE)
+set(JSON_SPIRIT_BUILD_TESTS FALSE)
+
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/lua")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp")
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/json-spirit/build")
 
 # =================================================================
 # Project properties
@@ -62,9 +67,9 @@ set(EXTRA_LIBS "")
 set(EXTRA_LIBS ${EXTRA_LIBS} ArtemisCpp)
 set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp/include")
 
-# JsonCpp
-set(EXTRA_LIBS ${EXTRA_LIBS} JsonCpp)
-set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/JsonCpp/include")
+# json-spirit
+set(EXTRA_LIBS ${EXTRA_LIBS} json_spirit)
+set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/json-spirit/include")
 
 # OpenGL
 if(APPLE)

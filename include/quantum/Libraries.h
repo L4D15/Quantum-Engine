@@ -8,7 +8,7 @@
 // Common
 #include <SDL2/SDL.h>
 #include <Artemis/Artemis.h>
-#include <json/json.h>
+#include <json_spirit/json_spirit.h>
 
 #ifdef __APPLE__
 // Mac OS X
