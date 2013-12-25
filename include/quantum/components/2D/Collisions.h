@@ -19,7 +19,25 @@ public:
     inline void         setIsTrigger(const bool t) { trigger = t; }
     inline void         setScriptToTrigger(const std::string s){ this->script = s; }
 
-    virtual std::string toString() { }
+    virtual std::string toString()
+    {
+        std::stringstream str;
+
+        str << "trigger: ";
+        if (trigger)
+        {
+            str << "yes";
+        }
+        else
+        {
+            str << "no";
+        }
+        str << std::endl;
+
+        str << "script: " << script;
+
+        return str.str();
+    }
 
 protected:
     bool                trigger;

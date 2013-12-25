@@ -31,6 +31,8 @@ public:
     void                move(const Vector2& movement);
     void                rescale(const Vector2& scaleFactor);
     void                rotate(float angle);
+    void                lookAt(const float x, const float y);
+    void inline         lookAt(Vector2& point) { return lookAt(point.getX(), point.getY()); }
 
 private:
     Vector2             position;

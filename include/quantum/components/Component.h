@@ -20,7 +20,7 @@ public:
 
     GameObject&             GetOwner();
 
-    virtual std::string     toString() { }
+    virtual std::string     toString() { return "No information defined."; }
 
 protected:
     GameObject&             owner;
