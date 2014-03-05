@@ -51,8 +51,6 @@ protected:
     static std::string                  name;
 
 private:
-    // Delta time
-    Uint32                              currentTime;    // Measures the number of ticks since the start of SDL
     Uint32                              oldTime;        // Number of ticks on last update
 
     // Frames Per Second
@@ -71,6 +69,7 @@ private:
 public:
     static Window*                      window;
 
+    Uint32                              currentTime;    // Measures the number of ticks since the start of SDL
     static float                        deltaTime;      // Delta Time
 
     static Vector3                      gravity;
