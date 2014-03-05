@@ -15,6 +15,12 @@ set(JSON_SPIRIT_LIBRARY_TYPE STATIC)
 set(JSON_SPIRIT_BUILD_DEMOS FALSE)
 set(JSON_SPIRIT_BUILD_TESTS FALSE)
 
+# Weird Boost Library requisites (damn you json-spirit)
+set(Boots_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_STATIC_RUNTIME OFF)
+set(Boost_DEBUG ON)
+
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/lua")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/json-spirit/build")
