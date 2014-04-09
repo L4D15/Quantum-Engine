@@ -6,23 +6,6 @@
 #include "quantum/Sprite.h"
 #include <map>
 
-#ifdef __APPLE__
-    #include <unistd.h>
-    #define getWorkingDir getcwd
-
-#elif __linux
-    #include <unistd.h>
-    #define getWorkingDir getcwd
-
-#elif _WIN32
-    #include <dirent.h>
-    #define getWorkingDir _getcwd
-
-#elif _WIN64
-    #include <unistd.h>
-    #define getWorkingDir __getcwd
-#endif
-
 class ResourceManager
 {
 public:
@@ -36,7 +19,7 @@ public:
 
     // Path management
     std::string                     getWorkingPath();
-    std::string                     getPath(std::string path);
+    std::string                     getPath(std::string pathToFile);
     std::string                     getAssetsDir();
     std::string                     getImagesDir();
     std::string                     fixPath(std::string path);
