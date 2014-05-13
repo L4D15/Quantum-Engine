@@ -96,16 +96,16 @@ std::string ResourceManager::getPath(std::string pathToFile)
 
     // Take just the part we need
     absolutePath = absolutePath.substr(0, absolutePath.find("/MacOS/") + 1);
-    absolutePath.append("/Resources/");
+    absolutePath.append("Resources/");
 
 #elif __linux
 
 #elif _WIN32
-
+  STUBBED("ResourceManage::getPath - Missing code for this platform.");
 #elif _WIN64
-
+  STUBBED("ResourceManage::getPath - Missing code for this platform.");
 #else
-    STUBBED("ResourceManage::getPath - Missing code for this platform.");
+  STUBBED("ResourceManage::getPath - Missing code for this platform.");
 #endif
 
     absolutePath.append(pathToFile);
