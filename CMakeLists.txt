@@ -10,10 +10,19 @@ message("====================================")
 message("Source Dir: ${CMAKE_CURRENT_SOURCE_DIR}")
 message("Binary Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
+# Enable C++ 11 compiling
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-std=c++11")
+
 # json-spirit build variables
 set(JSON_SPIRIT_LIBRARY_TYPE STATIC)
 set(JSON_SPIRIT_BUILD_DEMOS FALSE)
 set(JSON_SPIRIT_BUILD_TESTS FALSE)
+
+# Weird Boost Library requisites (damn you json-spirit)
+set(Boots_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_STATIC_RUNTIME OFF)
+set(Boost_DEBUG ON)
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/lua")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/Artemis-Cpp")
@@ -147,6 +156,9 @@ endif(WIN32)
 set(EXTRA_LIBS ${EXTRA_LIBS} liblua)
 set(INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/lib/lua/src" "${CMAKE_CURRENT_BINARY_DIR}/lib/lua" ${CMAKE_BINARY_DIR})
 
+# Boost
+find_package(Boost REQUIRED system filesystem)
+
 
 # Additional step for Mac OS X
 if(APPLE)
@@ -173,7 +185,16 @@ add_library(QuantumEngine STATIC ${SOURCE_FILES} ${HEADER_FILES})
 
 # Artemis-Cpp and JsonCpp are in the scope of CMake from the subdirs
 if(APPLE)
-    target_link_libraries(QuantumEngine ${OPENGL_LIB} ${ARTEMIS_LIB} ${JSON_LIB} ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB} ${EXTRA_LIBS})
+    target_link_libraries(QuantumEngine
+                          ${OPENGL_LIB}
+                          ${ARTEMIS_LIB}
+                          ${JSON_LIB}
+                          ${SDL2_LIB}
+                          ${SDL2_IMAGE_LIB}
+                          ${SDL2_TTF_LIB}
+                          ${EXTRA_LIBS}
+                          ${Boost_SYSTEM_LIBRARY}
+                          ${Boost_FILESYSTEM_LIBRARY})
 endif(APPLE)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")

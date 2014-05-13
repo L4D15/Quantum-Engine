@@ -2,6 +2,16 @@
 #include <cstdlib>
 #include "quantum/Game.h"
 #include "sstream"
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/operations.hpp>
+#include <boost/filesystem/path.hpp>
+
+#ifdef __APPLE__
+  #include <mach-o/dyld.h>
+#endif
+
+// Nickname the namespace
+namespace fs = boost::filesystem;
 
 ResourceManager::ResourceManager()
 {
@@ -33,10 +43,7 @@ ResourceManager::~ResourceManager()
 
 std::string ResourceManager::getWorkingPath()
 {
-    char currentPath[FILENAME_MAX];
-    getWorkingDir(currentPath, sizeof(currentPath));
-
-    return std::string(currentPath);
+  return fs::current_path().string();
 }
 
 /**
@@ -62,44 +69,48 @@ std::string ResourceManager::fixPath(std::string path)
 }
 
 /**
- * @brief Fix the relative path in a platform independent way.
+ * @brief Get the absolute path of any resource inside the game.
  * The used separator is '/' even in Windows (this will be handled by the engine
  * for each platform). In the case of Mac OS X, it will append Contents/Resources to access
  * the contents inside the app bundle.
  * @param path  Relative path inside the application.
  * @return Absolute path to the given directory or file.
  */
-std::string ResourceManager::getPath(std::string path)
+std::string ResourceManager::getPath(std::string pathToFile)
 {
     std::string absolutePath;
-#ifdef _WIN32
-    absolutePath = path;
-    for (int characterIndex = 0; characterIndex < absolutePath.length(); ++characterIndex)
-    {
-        if (absolutePath[characterIndex] == '/')
-        {
-            absolutePath.replace(characterIndex, 1, "\\");
-        }
-    }
-    absolutePath.insert(0, "\\");
-#endif
+
+    fs::path currentPath;
+
+    currentPath = fs::current_path();
+
+    absolutePath.append(currentPath.string());
+    absolutePath.append("/");
 
 #ifdef __APPLE__
+    char path[FILENAME_MAX];
+    uint32_t size = sizeof(path);
+    _NSGetExecutablePath(path, &size);
+
     absolutePath = path;
-    absolutePath.insert(0, ".app/Contents/Resources/");
-    absolutePath.insert(0, Game::getName());
-    absolutePath.insert(0, "/");
+
+    // Take just the part we need
+    absolutePath = absolutePath.substr(0, absolutePath.find("/MacOS/") + 1);
+    absolutePath.append("Resources/");
+
+#elif __linux
+
+#elif _WIN32
+  STUBBED("ResourceManage::getPath - Missing code for this platform.");
+#elif _WIN64
+  STUBBED("ResourceManage::getPath - Missing code for this platform.");
+#else
+  STUBBED("ResourceManage::getPath - Missing code for this platform.");
 #endif
 
-#ifdef __linux
-    absolutePath = path;
-    absolutePath.insert(0, "/");
-#endif
+    absolutePath.append(pathToFile);
 
-    char currentPath[FILENAME_MAX];
-    getWorkingDir(currentPath, sizeof(currentPath));
-
-    absolutePath.insert(0, currentPath);
+    std::cout << absolutePath << std::endl;
 
     return absolutePath;
 }
